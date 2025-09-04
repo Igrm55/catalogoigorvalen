@@ -11,4 +11,8 @@ app.js       # aplicação React com React e Babel via CDN
 styles.css   # estilos globais
 ```
 
-Para visualizar o catálogo, basta abrir `index.html` em um navegador com acesso à internet.
+## Uso
+
+Abra `index.html` em um navegador com acesso à internet para visualizar o catálogo.
+
+Se o arquivo exibir linhas como `<<<<<<<` ou `>>>>>>>`, remova-as para resolver conflitos de merge.
