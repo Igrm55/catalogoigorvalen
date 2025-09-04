@@ -48,10 +48,14 @@ body::after {
 
 .panel {
     background: white;
+ codex/improve-catalog-design-and-features-pvtxzu
+    border-radius: 2rem;
+
  codex/improve-catalog-design-and-features-mkxvbq
     border-radius: 2rem;
 
     border-radius: 1.5rem;
+ main
  main
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -59,10 +63,14 @@ body::after {
 .category-wave-wrapper {
     position: relative;
     padding: 2rem 1.5rem;
+ codex/improve-catalog-design-and-features-pvtxzu
+    border-radius: 2rem;
+
  codex/improve-catalog-design-and-features-mkxvbq
     border-radius: 2rem;
 
     border-radius: 1.5rem;
+ main
  main
     overflow: hidden;
     background-color: var(--brand-green);
@@ -130,6 +138,8 @@ body::after {
     transform: rotate(-3deg);
 }
 
+ codex/improve-catalog-design-and-features-pvtxzu
+
  codex/improve-catalog-design-and-features-mkxvbq
 
 .toggle-checkbox:checked {
@@ -155,4 +165,5 @@ body::after {
 .sortable-handle {
     cursor: grab;
 }
+ main
  main

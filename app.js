@@ -1,4 +1,7 @@
+ codex/improve-catalog-design-and-features-pvtxzu
+
  codex/improve-catalog-design-and-features-mkxvbq
+ main
 const { useState, useEffect } = React;
 
 const CATEGORY_ICONS = {
@@ -43,6 +46,8 @@ function HomePage() {
   useEffect(() => {
     setLoading(true);
     api.getCatalog({ q: query, category: activeCategory }).then(data => {
+ codex/improve-catalog-design-and-features-pvtxzu
+
 
 "use strict";
 
@@ -252,11 +257,15 @@ var HomePage = function HomePage() {
       category: activeCategory
     }).then(function (data) {
  main
+ main
       setCatalog(data);
       setLoading(false);
     });
   }, [query, activeCategory]);
+ codex/improve-catalog-design-and-features-pvtxzu
+
  codex/improve-catalog-design-and-features-mkxvbq
+ main
 
   const grouped = catalog.settings.categoriesOrder.map(category => ({
     category,
@@ -333,7 +342,9 @@ function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-=======
+ codex/improve-catalog-design-and-features-pvtxzu
+
+
   var groupedProducts = catalog.settings.categoriesOrder.map(function (category) {
     return {
       category: category,
@@ -811,4 +822,5 @@ var App = function App() {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement("main", null, renderPage()));
 };
 ReactDOM.render(/*#__PURE__*/React.createElement(AppProvider, null, /*#__PURE__*/React.createElement(App, null)), document.getElementById('root'));
+ main
  main

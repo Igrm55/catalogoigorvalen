@@ -123,6 +123,8 @@ let MOCK_SETTINGS = {
 };
 
 const api = {
+ codex/improve-catalog-design-and-features-pvtxzu
+
  codex/improve-catalog-design-and-features-mkxvbq
 
     loginAdmin: async (password) => {
@@ -130,6 +132,7 @@ const api = {
         return { ok: password === '1234' };
     },
 
+ main
  main
     getCatalog: async (q) => {
         await new Promise(res => setTimeout(res, 500));
@@ -145,11 +148,16 @@ const api = {
             products = products.filter(p => p.category === q.category);
         }
         return { products, settings: MOCK_SETTINGS };
+ codex/improve-catalog-design-and-features-pvtxzu
+
  codex/improve-catalog-design-and-features-mkxvbq
+ main
     }
 };
 
 window.api = api;
+ codex/improve-catalog-design-and-features-pvtxzu
+
 
     },
 
@@ -195,4 +203,5 @@ window.api = api;
 window.api = api;
 window.MOCK_SETTINGS = MOCK_SETTINGS;
 
+ main
  main
