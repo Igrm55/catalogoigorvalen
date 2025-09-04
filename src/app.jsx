@@ -61,11 +61,14 @@ const Header = () => {
 };
 
 // Product card
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
 
  codex/improve-catalog-design-and-features-bum5a1
+ main
  main
  main
 const ProductCard = ({ product }) => {
@@ -80,6 +83,8 @@ const ProductCard = ({ product }) => {
                         {codeLabel}: {codes.join(', ')}
                     </div>
                 )}
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
@@ -96,10 +101,13 @@ const ProductCard = ({ product, showPrices }) => {
  main
  main
  main
+ main
                 <img loading="lazy" src={product.imageUrl} alt={product.name} className="w-full h-full object-contain" />
             </div>
             <div className="p-4 flex-grow flex flex-col">
                 <h3 className="font-bold text-lg" style={{color: 'var(--brand-green)'}}>{product.name}</h3>
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
@@ -107,10 +115,13 @@ const ProductCard = ({ product, showPrices }) => {
  codex/improve-catalog-design-and-features-bum5a1
  main
  main
+ main
                 {flavors.length > 0 && (
                     <p className="text-sm font-semibold mb-2" style={{color: 'var(--brand-red)'}}>
                         Sabores: <span className="font-normal text-gray-600">{flavors.join(', ')}</span>
                     </p>
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
@@ -141,6 +152,7 @@ const ProductCard = ({ product, showPrices }) => {
  main
  main
  main
+ main
                 )}
             </div>
         </div>
@@ -153,6 +165,8 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [query, setQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState(null);
+ codex/improve-catalog-design-and-features-6xgxz4
+=======
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
@@ -160,6 +174,7 @@ const HomePage = () => {
  codex/improve-catalog-design-and-features-bum5a1
 
     const [showPrices, setShowPrices] = useState(() => localStorage.getItem('showPrices') === 'true');
+ main
  main
  main
  main
@@ -172,6 +187,8 @@ const HomePage = () => {
         });
     }, [query, activeCategory]);
 
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
@@ -182,6 +199,7 @@ const HomePage = () => {
         localStorage.setItem('showPrices', showPrices);
     }, [showPrices]);
 
+ main
  main
  main
  main
@@ -202,6 +220,8 @@ const HomePage = () => {
                             <button key={cat} onClick={() => setActiveCategory(cat)} className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors ${activeCategory === cat ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>{cat}</button>
                         ))}
                     </div>
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
@@ -215,6 +235,7 @@ const HomePage = () => {
                             <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                         </div>
                     </div>
+ main
  main
  main
  main
@@ -232,6 +253,9 @@ const HomePage = () => {
                         <h2 className="text-3xl font-bold text-white mb-4" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}>{group.category}</h2>
                         <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+ codex/improve-catalog-design-and-features-6xgxz4
+                                {group.products.map(p => <ProductCard key={p.id} product={p} />)}
+
  codex/improve-catalog-design-and-features-gmz91i
                                 {group.products.map(p => <ProductCard key={p.id} product={p} />)}
 
@@ -242,6 +266,7 @@ const HomePage = () => {
                                 {group.products.map(p => <ProductCard key={p.id} product={p} />)}
 
                                 {group.products.map(p => <ProductCard key={p.id} product={p} showPrices={showPrices} />)}
+ main
  main
  main
  main
@@ -350,6 +375,9 @@ const AdminProductListPage = () => {
                                     <td className="p-4 text-center sortable-handle text-gray-400">☰</td>
                                     <td className="p-4"><img src={p.imageUrl} className="w-12 h-12 object-contain rounded bg-gray-100 p-1" /></td>
                                     <td className="p-4 font-semibold">{p.name}</td>
+ codex/improve-catalog-design-and-features-6xgxz4
+                                    <td className="p-4">{p.variants.map(v => v.code).filter(Boolean).join(', ')}</td>
+
  codex/improve-catalog-design-and-features-gmz91i
                                     <td className="p-4">{p.variants.map(v => v.code).filter(Boolean).join(', ')}</td>
 
@@ -360,6 +388,7 @@ const AdminProductListPage = () => {
                                     <td className="p-4">{p.variants.map(v => v.code).filter(Boolean).join(', ')}</td>
 
                                     <td className="p-4">{p.codes}</td>
+ main
  main
  main
  main
@@ -390,11 +419,14 @@ const AdminProductEditPage = () => {
     const categories = MOCK_SETTINGS.categoriesOrder;
 
     useEffect(() => {
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
 
  codex/improve-catalog-design-and-features-bum5a1
+ main
  main
  main
         if (id) {
@@ -405,6 +437,8 @@ const AdminProductEditPage = () => {
             });
         } else {
             setProduct({ name: '', category: categories[0], active: true, variants: [{ code: '', flavor: '' }] });
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
@@ -421,6 +455,7 @@ const AdminProductEditPage = () => {
  main
  main
  main
+ main
             setLoading(false);
         }
     }, [id]);
@@ -430,11 +465,14 @@ const AdminProductEditPage = () => {
         setProduct(p => ({ ...p, [name]: type === 'checkbox' ? checked : value }));
     };
 
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
 
  codex/improve-catalog-design-and-features-bum5a1
+ main
  main
  main
     const handleVariantChange = (index, field, value) => {
@@ -453,11 +491,14 @@ const AdminProductEditPage = () => {
         setProduct(p => ({ ...p, variants: p.variants.filter((_, i) => i !== index) }));
     };
 
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
 
 
+ main
  main
  main
  main
@@ -496,11 +537,14 @@ const AdminProductEditPage = () => {
                                 </select>
                             </div>
                         </div>
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
 
  codex/improve-catalog-design-and-features-bum5a1
+ main
  main
  main
                         <div>
@@ -513,6 +557,8 @@ const AdminProductEditPage = () => {
                                 </div>
                             ))}
                             <button type="button" onClick={addVariant} className="mt-2 bg-green-600 text-white font-semibold px-4 py-1 rounded-lg">Adicionar</button>
+ codex/improve-catalog-design-and-features-6xgxz4
+
  codex/improve-catalog-design-and-features-gmz91i
 
  codex/improve-catalog-design-and-features-88qr0z
@@ -549,6 +595,7 @@ const AdminProductEditPage = () => {
                                     <input type="number" name="priceFP" value={product.priceFP} onChange={handleChange} className="w-full p-2 bg-gray-100 border border-gray-300 rounded-lg" />
                                 </div>
                             </div>
+ main
  main
  main
  main
