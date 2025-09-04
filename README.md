@@ -1,10 +1,18 @@
+ codex/improve-catalog-design-and-features-7lleyw
+
  codex/improve-catalog-design-and-features-pvtxzu
 
  codex/improve-catalog-design-and-features-mkxvbq
  main
+ main
 # IgorValen Distribuidora
 
 Site estático de produtos da distribuidora **IgorValen**, feito apenas com HTML, CSS e JavaScript via CDN.
+
+ codex/improve-catalog-design-and-features-7lleyw
+## Estrutura
+
+```
 
  codex/improve-catalog-design-and-features-pvtxzu
 ## Estrutura
@@ -25,11 +33,15 @@ Este repositório contém uma versão estática do catálogo da distribuidora **
 ```
  codex/improve-catalog-design-and-features-mkxvbq
  main
+ main
 index.html   # página principal
 api.js       # implementação mock da API
 app.js       # aplicação React com React e Babel via CDN
 styles.css   # estilos globais
+ codex/improve-catalog-design-and-features-7lleyw
+
  codex/improve-catalog-design-and-features-pvtxzu
+ main
 ```
 
 ## Uso
@@ -37,6 +49,8 @@ styles.css   # estilos globais
 Abra `index.html` em um navegador com acesso à internet para visualizar o catálogo.
 
 Se o arquivo exibir linhas como `<<<<<<<` ou `>>>>>>>`, remova-as para resolver conflitos de merge.
+ codex/improve-catalog-design-and-features-7lleyw
+
 
 
  codex/improve-catalog-design-and-features-u43bim
@@ -54,4 +68,5 @@ styles/globals.css  # estilos globais
 ```
 
 Para visualizar o catálogo, basta abrir `index.html` em um navegador com acesso à internet.
+ main
  main
