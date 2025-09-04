@@ -123,11 +123,14 @@ let MOCK_SETTINGS = {
 };
 
 const api = {
+ codex/improve-catalog-design-and-features-mkxvbq
+
     loginAdmin: async (password) => {
         await new Promise(res => setTimeout(res, 500));
         return { ok: password === '1234' };
     },
 
+ main
     getCatalog: async (q) => {
         await new Promise(res => setTimeout(res, 500));
         let products = MOCK_PRODUCTS.filter(p => p.active);
@@ -142,6 +145,12 @@ const api = {
             products = products.filter(p => p.category === q.category);
         }
         return { products, settings: MOCK_SETTINGS };
+ codex/improve-catalog-design-and-features-mkxvbq
+    }
+};
+
+window.api = api;
+
     },
 
     getAdminProducts: async () => {
@@ -186,3 +195,4 @@ const api = {
 window.api = api;
 window.MOCK_SETTINGS = MOCK_SETTINGS;
 
+ main
