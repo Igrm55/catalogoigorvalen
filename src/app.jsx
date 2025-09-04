@@ -61,6 +61,20 @@ const Header = () => {
 };
 
 // Product card
+ codex/improve-catalog-design-and-features-bum5a1
+const ProductCard = ({ product }) => {
+    const codes = product.variants.map(v => v.code).filter(Boolean);
+    const flavors = product.variants.map(v => v.flavor).filter(Boolean);
+    const codeLabel = codes.length > 1 ? 'Códigos' : 'Código';
+    return (
+        <div className="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col transition-shadow hover:shadow-lg">
+            <div className="bg-gray-50 p-4 relative h-40">
+                {codes.length > 0 && (
+                    <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs font-bold px-2 py-1 rounded">
+                        {codeLabel}: {codes.join(', ')}
+                    </div>
+                )}
+
 const ProductCard = ({ product, showPrices }) => {
     const codeLabel = product.codes && product.codes.includes(',') ? 'Códigos' : 'Código';
     return (
@@ -69,10 +83,17 @@ const ProductCard = ({ product, showPrices }) => {
                 <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs font-bold px-2 py-1 rounded">
                     {codeLabel}: {product.codes}
                 </div>
+ main
                 <img loading="lazy" src={product.imageUrl} alt={product.name} className="w-full h-full object-contain" />
             </div>
             <div className="p-4 flex-grow flex flex-col">
                 <h3 className="font-bold text-lg" style={{color: 'var(--brand-green)'}}>{product.name}</h3>
+ codex/improve-catalog-design-and-features-bum5a1
+                {flavors.length > 0 && (
+                    <p className="text-sm font-semibold mb-2" style={{color: 'var(--brand-red)'}}>
+                        Sabores: <span className="font-normal text-gray-600">{flavors.join(', ')}</span>
+                    </p>
+
                 <p className="text-sm font-semibold mb-2" style={{color: 'var(--brand-red)'}}>
                     Sabores: <span className="font-normal text-gray-600">{product.flavors}</span>
                 </p>
@@ -95,6 +116,7 @@ const ProductCard = ({ product, showPrices }) => {
                             <span className="font-bold text-gray-800">R$ {product.priceFP?.toFixed(2)}</span>
                         </div>
                     </div>
+ main
                 )}
             </div>
         </div>
@@ -107,7 +129,10 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [query, setQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState(null);
+ codex/improve-catalog-design-and-features-bum5a1
+
     const [showPrices, setShowPrices] = useState(() => localStorage.getItem('showPrices') === 'true');
+ main
 
     useEffect(() => {
         setLoading(true);
@@ -117,10 +142,13 @@ const HomePage = () => {
         });
     }, [query, activeCategory]);
 
+ codex/improve-catalog-design-and-features-bum5a1
+
     useEffect(() => {
         localStorage.setItem('showPrices', showPrices);
     }, [showPrices]);
 
+ main
     const groupedProducts = catalog.settings.categoriesOrder
         .map(category => ({
             category,
@@ -138,6 +166,8 @@ const HomePage = () => {
                             <button key={cat} onClick={() => setActiveCategory(cat)} className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors ${activeCategory === cat ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>{cat}</button>
                         ))}
                     </div>
+ codex/improve-catalog-design-and-features-bum5a1
+
                     <div className="flex items-center">
                         <span className="text-sm font-medium text-gray-700 mr-3">Mostrar Preços</span>
                         <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
@@ -145,6 +175,7 @@ const HomePage = () => {
                             <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                         </div>
                     </div>
+ main
                 </div>
                 <div className="relative">
                     <input type="text" placeholder="Buscar por nome, categoria ou código..." onChange={(e) => setQuery(e.target.value)} className="w-full pl-4 pr-32 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" />
@@ -159,7 +190,11 @@ const HomePage = () => {
                         <h2 className="text-3xl font-bold text-white mb-4" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}>{group.category}</h2>
                         <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+ codex/improve-catalog-design-and-features-bum5a1
+                                {group.products.map(p => <ProductCard key={p.id} product={p} />)}
+
                                 {group.products.map(p => <ProductCard key={p.id} product={p} showPrices={showPrices} />)}
+ main
                             </div>
                         </div>
                     </div>
@@ -265,7 +300,11 @@ const AdminProductListPage = () => {
                                     <td className="p-4 text-center sortable-handle text-gray-400">☰</td>
                                     <td className="p-4"><img src={p.imageUrl} className="w-12 h-12 object-contain rounded bg-gray-100 p-1" /></td>
                                     <td className="p-4 font-semibold">{p.name}</td>
+ codex/improve-catalog-design-and-features-bum5a1
+                                    <td className="p-4">{p.variants.map(v => v.code).filter(Boolean).join(', ')}</td>
+
                                     <td className="p-4">{p.codes}</td>
+ main
                                     <td className="p-4">{p.category}</td>
                                     <td className="p-4">{p.active ? 'Sim' : 'Não'}</td>
                                     <td className="p-4">
@@ -293,6 +332,16 @@ const AdminProductEditPage = () => {
     const categories = MOCK_SETTINGS.categoriesOrder;
 
     useEffect(() => {
+ codex/improve-catalog-design-and-features-bum5a1
+        if (id) {
+            api.getProduct(id).then(data => {
+                setProduct({ ...data, variants: data.variants || [{ code: '', flavor: '' }] });
+                if (data.imageUrl) setImagePreview(data.imageUrl);
+                setLoading(false);
+            });
+        } else {
+            setProduct({ name: '', category: categories[0], active: true, variants: [{ code: '', flavor: '' }] });
+
         if(id) {
             api.getProduct(id).then(data => {
                 setProduct(data);
@@ -301,6 +350,7 @@ const AdminProductEditPage = () => {
             });
         } else {
             setProduct({ name: '', category: categories[0], active: true });
+ main
             setLoading(false);
         }
     }, [id]);
@@ -310,6 +360,25 @@ const AdminProductEditPage = () => {
         setProduct(p => ({ ...p, [name]: type === 'checkbox' ? checked : value }));
     };
 
+ codex/improve-catalog-design-and-features-bum5a1
+    const handleVariantChange = (index, field, value) => {
+        setProduct(p => {
+            const variants = [...p.variants];
+            variants[index] = { ...variants[index], [field]: value };
+            return { ...p, variants };
+        });
+    };
+
+    const addVariant = () => {
+        setProduct(p => ({ ...p, variants: [...p.variants, { code: '', flavor: '' }] }));
+    };
+
+    const removeVariant = (index) => {
+        setProduct(p => ({ ...p, variants: p.variants.filter((_, i) => i !== index) }));
+    };
+
+
+ main
     const handleImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
@@ -345,6 +414,18 @@ const AdminProductEditPage = () => {
                                 </select>
                             </div>
                         </div>
+ codex/improve-catalog-design-and-features-bum5a1
+                        <div>
+                            <label className="block font-semibold mb-1">Códigos e Sabores</label>
+                            {product.variants.map((v, index) => (
+                                <div key={index} className="flex gap-2 mb-2">
+                                    <input type="text" value={v.code} onChange={e => handleVariantChange(index, 'code', e.target.value)} placeholder="Código" className="flex-1 p-2 bg-gray-100 border border-gray-300 rounded-lg" />
+                                    <input type="text" value={v.flavor} onChange={e => handleVariantChange(index, 'flavor', e.target.value)} placeholder="Sabor" className="flex-1 p-2 bg-gray-100 border border-gray-300 rounded-lg" />
+                                    <button type="button" onClick={() => removeVariant(index)} className="text-red-600 font-bold px-2">×</button>
+                                </div>
+                            ))}
+                            <button type="button" onClick={addVariant} className="mt-2 bg-green-600 text-white font-semibold px-4 py-1 rounded-lg">Adicionar</button>
+
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label className="block font-semibold mb-1">Códigos</label>
@@ -376,6 +457,7 @@ const AdminProductEditPage = () => {
                                     <input type="number" name="priceFP" value={product.priceFP} onChange={handleChange} className="w-full p-2 bg-gray-100 border border-gray-300 rounded-lg" />
                                 </div>
                             </div>
+ main
                         </div>
                     </div>
                     <div className="space-y-2">
