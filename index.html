@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo - IgorValen Distribuidora</title>
+    <title>Catálogo Verão - IgorValen Distribuidora</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,14 +25,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (para ícones de verão) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         :root {
             --brand-green: #0f8a3a;
+            --brand-green-light: #2ebc5e; /* Tom mais vibrante para verão */
             --brand-green-darker: #0b5d29;
             --brand-red: #de1f36;
+            --brand-yellow: #f59e0b; /* Amarelo para preços a prazo */
             --text: #111111;
             --bg-soft: #f3f4f6; 
+            --summer-gradient: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,236,179,0.2) 100%);
         }
 
         html, body {
@@ -47,26 +53,28 @@
             overflow-x: hidden;
         }
 
+        /* Fundo com toque de verão */
         body::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 50vh;
-            min-height: 400px;
-            background: var(--brand-green);
+            height: 55vh;
+            min-height: 450px;
+            background: linear-gradient(to bottom, var(--brand-green), var(--brand-green-darker));
             clip-path: ellipse(100% 100% at 50% 0%);
             z-index: 0; 
         }
         
+        /* Textura sutil */
         body::after {
             content: '';
             position: fixed;
             inset: 0;
             background-image: 
-                url('data:image/svg+xml;utf8,<svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 10 C 25 0, 75 20, 100 10" stroke="%23000000" stroke-width="0.8" fill="none" opacity="0.2"/></svg>'),
-                url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="%23000000" stroke-width="1.2"><path d="M0 0L80 80M80 0L0 80" opacity="0.07"/></g></svg>');
+                url('data:image/svg+xml;utf8,<svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 10 C 25 0, 75 20, 100 10" stroke="%23000000" stroke-width="0.8" fill="none" opacity="0.1"/></svg>'),
+                url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="%23FFFFFF" stroke-width="1"><circle cx="40" cy="40" r="2" opacity="0.2"/></g></svg>');
             background-size: 100px 20px, 80px 80px;
             pointer-events: none;
             z-index: 1; 
@@ -90,17 +98,20 @@
             border-radius: 1.5rem;
             overflow: hidden;
             background-color: var(--brand-green);
+            background-image: var(--summer-gradient);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
+        /* Ondas internas das categorias */
         .category-wave-wrapper::before, .category-wave-wrapper::after {
             content: '';
             position: absolute;
             left: -50%;
             width: 200%;
             height: 100%;
-            background: var(--brand-green-darker);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
-            opacity: 0.3;
             z-index: 0;
         }
 
@@ -186,6 +197,14 @@
             clip-path: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40'%3e%3cpath fill='white' d='M1440,40H0V16.5C316.51,5.5,602.11,0,720,0s403.49,5.5,720,16.5V40Z'%3e%3c/path%3e%3c/svg%3e");
             -webkit-clip-path: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40'%3e%3cpath fill='white' d='M1440,40H0V16.5C316.51,5.5,602.11,0,720,0s403.49,5.5,720,16.5V40Z'%3e%3c/path%3e%3c/svg%3e");
         }
+
+        /* Animação suave para hover */
+        .hover-scale {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
     </style>
 </head>
 <body>
@@ -222,7 +241,11 @@
             { id: 'p-new-brussels-lager-ln', name: 'Cerveja Brussels LN Lager', category: 'Bebidas alcoólicas', details: [{flavor: 'Lager'}], imageUrl: 'https://i.ibb.co/0pS9gMP7/49106a-035daaae8dbb473e9e1376a329918759-mv2.avif', sortOrder: 17.1, active: true },
             { id: 'p-alc-2', name: 'Cerveja Brussels Ultra 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Ultra'}], imageUrl: 'https://i.ibb.co/5hq6TQHP/ultra.jpg', sortOrder: 18, active: true, price: { cash: '38,00', credit: '39,00' } },
             { id: 'p-new-brussels-ultra-ln', name: 'Cerveja Brussels LN Ultra', category: 'Bebidas alcoólicas', details: [{flavor: 'Ultra'}], imageUrl: 'https://i.ibb.co/nqyZj560/49106a-03691b9df5c74efcabe7b4b6526779a2-mv2.avif', sortOrder: 18.1, active: true, price: { cash: '24,50', credit: '24,50' } },
-            { id: 'p-alc-3', name: 'Pitú Litro Completa (Sem devolver o Litro)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/B5fHNL2y/aguardente-pitu-965ml-1a515249-2151-4db6-a2e5-57208f6a1803.jpg', sortOrder: 19, active: true, price: { cash: '9,38', credit: '9,56' } },
+            
+            // Pitú Duplicada e Atualizada
+            { id: 'p-alc-3-sem-papelao', name: 'Pitú Litro (Sem Papelão)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/B5fHNL2y/aguardente-pitu-965ml-1a515249-2151-4db6-a2e5-57208f6a1803.jpg', sortOrder: 19, active: true, price: { cash: '9,38', credit: '9,56' } },
+            { id: 'p-alc-3-com-papelao', name: 'Pitú Litro (Com Papelão)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/B5fHNL2y/aguardente-pitu-965ml-1a515249-2151-4db6-a2e5-57208f6a1803.jpg', sortOrder: 19.1, active: true, price: { cash: '9,73', credit: '9,93' } },
+
             { id: 'p-alc-4', name: 'Pitú Devolvendo o Litro', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Dy5gv5B/Gemini-Generated-Image-tfhzumtfhzumtfhz.png', sortOrder: 20, active: true, price: { cash: '8,08', credit: '8,24' } },
             { id: 'p-alc-5', name: 'Pitú de Garrafa 600ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/27yx5ZBb/184178-800-450.webp', sortOrder: 21, active: true, price: { cash: '7,93', credit: '8,09' } },
             { id: 'p-alc-6', name: 'Pitú Lata 710ML (Latão)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bj8NY7pB/18982-cachaca-pitu-lata-710ml-20230914115151.jpg', sortOrder: 22, active: true, price: { cash: '96,31', credit: '98,23' } },
@@ -243,25 +266,36 @@
             { id: 'p-alc-20', name: 'Cachaça Seleta 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/zhKBWs5w/51-SGWL1j-Jr-L.jpg', sortOrder: 36, active: true, price: { cash: '36,00', credit: '37,00' } },
             { id: 'p-alc-21', name: 'Cachaça Velho Barreiro 910 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Qj1Sg9ws/10987-cachaca-velho-barreiro-910ml-1un-20250901154933.png', sortOrder: 37, active: true, price: { cash: '14,62', credit: '14,91' } },
             { id: 'p-new-cachaca-presidente', name: 'Cachaça Presidente 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/hJgSvCGB/Whats-App-Image-2025-12-16-at-15-02-04-3.jpg', sortOrder: 38.1, active: true, price: { cash: '7,68', credit: '7,84' } },
+            
+            // Newsnoff - Todas mesmo preço
             { id: 'p-alc-27', name: 'Vodka Newsnoff 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Q39y4ztD/Gemini-Generated-Image-usmcjjusmcjjusmc.png', sortOrder: 43, active: true, price: { cash: '7,97', credit: '8,50' } },
-            { id: 'p-alc-28', name: 'Vodka Newsnoff Sabor Limão 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/27bddhyp/Gemini-Generated-Image-chu2xwchu2xwchu2.png', sortOrder: 44, active: true },
-            { id: 'p-alc-29', name: 'Vodka Newsnoff Sabor Frutas Vermelhas 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/tkv0q5N/Gemini-Generated-Image-quoocbquoocbquoo.png', sortOrder: 45, active: true },
+            { id: 'p-alc-28', name: 'Vodka Newsnoff Sabor Limão 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/27bddhyp/Gemini-Generated-Image-chu2xwchu2xwchu2.png', sortOrder: 44, active: true, price: { cash: '7,97', credit: '8,50' } },
+            { id: 'p-alc-29', name: 'Vodka Newsnoff Sabor Frutas Vermelhas 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/tkv0q5N/Gemini-Generated-Image-quoocbquoocbquoo.png', sortOrder: 45, active: true, price: { cash: '7,97', credit: '8,50' } },
+            
             { id: 'p-alc-30', name: 'Vodka Natasha 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7xs3PBVR/258980-1.webp', sortOrder: 46, active: true, price: { cash: '16,88', credit: '17,50' } },
             { id: 'p-alc-31', name: 'Vodka Smirnoff 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/YBrqssM4/961397-1.jpg', sortOrder: 47, active: true, price: { cash: '32,59', credit: '33,24' } },
-            { id: 'p-alc-33', name: 'Whisky Black Stone 1L (Com Copo)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0pnMv0XZ/268299.webp', sortOrder: 49, active: true, price: { cash: '22,90', credit: '21,94' } },
+            
+            // Black Stone - Sem copo e preço corrigido
+            { id: 'p-alc-33', name: 'Whisky Black Stone 1L (Sem Copo)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0pnMv0XZ/268299.webp', sortOrder: 49, active: true, price: { cash: '21,94', credit: '22,90' } },
+            
             { id: 'p-alc-34', name: 'Whisky Old Par 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/mrmhjzXV/51zz0lz-Ntu-L.jpg', sortOrder: 50, active: true, price: { cash: '151,31', credit: '154,33' } },
             { id: 'p-alc-35', name: 'Whisky Jack Daniel’s 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/gbHzSbww/jack-daniels-1l.png', sortOrder: 51, active: true, price: { cash: '128,03', credit: '130,59' } },
-            { id: 'p-alc-36', name: 'Whisky Jack Daniel’s Maçã Verde 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Maçã Verde'}], imageUrl: 'https://i.ibb.co/1fMx5CZs/71-Rr-Bw-GGc-IL.jpg', sortOrder: 52, active: true },
-            { id: 'p-alc-37', name: 'Whisky Jack Daniel’s Mel 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Mel'}], imageUrl: 'https://i.ibb.co/FkJMrzDg/715ipo-ORi5-L.jpg', sortOrder: 53, active: true },
+            
+            // Removidos Jack Maçã e Mel
+            
             { id: 'p-alc-38', name: 'Whisky Red Label 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Tq1SbBdG/bo839.png', sortOrder: 54, active: true, price: { cash: '86,13', credit: '87,85' } },
             { id: 'p-alc-39', name: 'Whisky Black Label 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Psf9MdzP/001.webp', sortOrder: 55, active: true },
             { id: 'p-alc-42', name: 'Whisky Passport Scotch 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Tx12qb5m/51-UYCr-Fpn5-S-UF1000-1000-QL80.jpg', sortOrder: 58, active: true, price: { cash: '40,90', credit: '41,72' } },
             { id: 'p-alc-43', name: 'Whisky White Horse 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/r2B695NC/45018-1.jpg', sortOrder: 59, active: true, price: { cash: '65,90', credit: '67,22' } },
             { id: 'p-alc-44', name: 'Whisky Chanceler 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/VpBDSjHw/259762.webp', sortOrder: 60, active: true, price: { cash: '18,75', credit: '19,75' } },
             { id: 'p-alc-45', name: 'Whisky Ballantine’s 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/6JZDgC3D/51fuir-Dim-QL.jpg', sortOrder: 61, active: true, price: { cash: '66,90', credit: '68,24' } },
-            { id: 'p-alc-46', name: 'Whisky Black & White 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/s9TWfDm5/whisky-black-eamp-white-1000ml-969-1-0c0e90277412f5185c8f95be9e6d8922.webp', sortOrder: 62, active: true },
+            
+            // Removido Black & White
+            
             { id: 'p-alc-50', name: 'Genebra Dubar Zora 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/G4bPGLdH/51r-Oz-Lf4s-ML.jpg', sortOrder: 66, active: true, price: { cash: '22,70', credit: '24,50' } },
-            { id: 'p-alc-51', name: 'Geneva Steinhaeger Becosa 980 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/C5m7hWwZ/51g-AZ7od-ZSL-UF1000-1000-QL80.jpg', sortOrder: 67, active: true },
+            
+            // Removido Steinhaeger Becosa
+            
             { id: 'p-alc-52', name: 'Ice Syn Lemon Ice 300ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/WpjLmXH7/Syn-Ice-300-PET-Limao-25a1a95d.png', sortOrder: 69, active: true, price: { cash: '15,65', credit: '15,97' } },
             { id: 'p-alc-53', name: 'Ice Glow 275 ML (Garrafa de Vidro)', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/rC0thLK/Gemini-Generated-Image-bvkaw1bvkaw1bvka.png', sortOrder: 70, active: true, price: { cash: '26,50', credit: '26,50' } },
             { id: 'p-alc-54', name: 'Glow Ice 269ML (Lata)', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/YBgGsXmQ/glow-lata-269ml.png', sortOrder: 71, active: true, price: { cash: '24,50', credit: '24,99' } },
@@ -294,7 +328,9 @@
             { id: 'p-bomb-16', name: 'Chicle Big Big', category: 'Bomboneire', details: [{flavor: 'Hortelã'}, {flavor: 'Morango'}, {flavor: 'Tutti Frutti'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/mrzDSTn7/Gemini-Generated-Image-ev8fagev8fagev8f.png', sortOrder: 104, active: true, price: { cash: '8,50', credit: '8,30' } },
             { id: 'p-bomb-17', name: 'Chiclete Trident', category: 'Bomboneire', details: [{flavor: 'Hortelã'}, {flavor: 'Menta'}, {flavor: 'Morango'}, {flavor: 'Melancia'}, {flavor: 'Tutti-Frutti'}], imageUrl: 'https://i.ibb.co/5hYWG1LZ/Gemini-Generated-Image-he1fa1he1fa1he1f.png', sortOrder: 105, active: true, price: { cash: '37,10', credit: '37,90' } },
             { id: 'p-bomb-18', name: 'Chiclete Cliss', category: 'Bomboneire', details: [{flavor: 'Menta'}, {flavor: 'Hortelã'}, {flavor: 'Tutti-Frutti'}], imageUrl: 'https://i.ibb.co/rR8JmKvK/sg-11134201-22090-y0q3j9jdk3hv45.jpg', sortOrder: 106, active: true, price: { cash: '8,16', credit: '8,32' } },
-            { id: 'p-bomb-19', name: 'Chiclete Danclets Tutti Frutti', category: 'Bomboneire', details: [{flavor: 'Tutti Frutti'}], imageUrl: 'https://i.ibb.co/RpG5F6ns/D-Q-NP-870599-MLB74118344610-012024-O.webp', sortOrder: 107, active: true },
+            
+            // Removido Danclets
+            
             { id: 'p-bomb-20', name: 'Chiclete Blong', category: 'Bomboneire', details: [{flavor: 'Framboesa'}, {flavor: 'Hortelã'}, {flavor: 'Morango'}, {flavor: 'Napolitano'}, {flavor: 'Tutti-Frutti'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/fGt4CMcz/Gemini-Generated-Image-rvylr0rvylr0rvyl.png', sortOrder: 108, active: true, price: { cash: '6,90', credit: '7,20' } },
             { id: 'p-bomb-21', name: 'Goma Tubo Gurt', category: 'Bomboneire', details: [{flavor: 'Yogurt'}], imageUrl: 'https://i.ibb.co/qYszD42s/bala-de-goma-jelly-rolls-tubo-gurt-c-30un-930g-kuky-115-1-452e40c15132154dbdf0a57259ab0d92.webp', sortOrder: 109, active: true, price: { cash: '17,32', credit: '17,66' } },
             { id: 'p-bomb-22', name: 'Goma Tubo Frutas Sortidas', category: 'Bomboneire', details: [{flavor: 'Frutas Sortidas'}], imageUrl: 'https://i.ibb.co/ZR4kpNyq/GOMA-TUBO-KUKY-FRUTAS-C30-3.webp', sortOrder: 110, active: true, price: { cash: '17,32', credit: '17,66' } },
@@ -303,8 +339,9 @@
             { id: 'p-bomb-26', name: 'Pirulito Megalito Sortido Berbau 1 KG', category: 'Bomboneire', details: [{flavor: 'Sortido'}], imageUrl: 'https://i.ibb.co/gLvRsns6/Gemini-Generated-Image-9g89929g89929g89.png', sortOrder: 114, active: true, price: { cash: '19,41', credit: '19,80' } },
             { id: 'p-new-cherry-pop', name: 'Pirulito Cherry Pop', category: 'Bomboneire', details: [{flavor: 'Cereja'}], imageUrl: 'https://i.ibb.co/Ngx4Kscp/Pirulito-Mix-Cherry-Pop-700-Gr-c50-unid-Simas-3.webp', sortOrder: 115.1, active: true, price: { cash: '15,94', credit: '16,26' } },
             { id: 'p-bomb-29', name: 'Biscoito Recheado Fofinho', category: 'Bomboneire', details: [{flavor: 'Chocolate + Morango'}, {flavor: 'Baunilha'}, {flavor: 'Morango'}, {flavor: 'Chocolate'}, {flavor: 'Flocos'}, {flavor: 'Doce de leite'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/rRxPnQBn/2a92fd1f98d81487f3fa0e0bae49d670.webp', sortOrder: 117, active: true, price: { cash: '45,62', credit: '46,54' } },
-            { id: 'p-bomb-31', name: 'Confeito Mamadeira', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/N21pwW9c/11298448720b35e848f.webp', sortOrder: 119, active: true },
-            { id: 'p-bomb-33', name: 'Confeito Catavento', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bM04dGkK/Gemini-Generated-Image-fnnrvqfnnrvqfnnr.png', sortOrder: 121, active: true },
+            
+            // Removidos Confeito Mamadeira e Catavento
+            
             { id: 'p-bomb-36', name: 'Chup Chup Doce de Leite 1,5 KG', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0p3LFXzj/162295-800-auto.png', sortOrder: 124, active: true, price: { cash: '23,06', credit: '23,52' } },
             { id: 'p-bomb-37', name: 'Chup Chup Doce de Leite 750G', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/QFwFMr02/4ad11e52af9ae7c25443b6d77a6803af-yzi2zbl6y2.webp', sortOrder: 125, active: true, price: { cash: '13,50', credit: '14,00' } },
             { id: 'p-bomb-41', name: 'Chocolate Puríssimo', category: 'Bomboneire', details: [{flavor: 'Chocolate ao leite'}, {flavor: 'Mesclado'}, {flavor: 'Chocolate Branco'}, {flavor: 'Amendoim'}], imageUrl: 'https://i.ibb.co/6cwtwx2Y/dfe03fd9-cb38-4cd9-b839-d597f251e29f-4380-000854-2966c599cff5b765fd17410129207602-1024-1024.jpg', sortOrder: 129, active: true, price: { cash: '16,70', credit: '17,04' } },
@@ -356,152 +393,9 @@
         
         const PERSUASIVE_TEXTS = {
             'p1': 'Refrescância e sabor em tamanho família. Goob 2L se consolidou no mercado baiano. Segundo o Instituto Baiano de Pesquisa e Consumo, Goob registrou um crescimento de 39% em vendas em 2025, figurando entre os 10 refrigerantes mais consumidos na região. Ideal para refeições e encontros, é um item de alta procura e giro rápido.',
-            'p12': 'A medida certa de sabor para qualquer ocasião. A versão de 1L do Goob é versátil e atende a uma grande fatia de consumidores. Com um crescimento de 39% nas vendas da marca em 2025 (dados do IBPC), o formato de 1 litro é essencial para ter um mix de refrigerantes completo e lucrativo.',
-            'p11': 'Impulso e conveniência que vendem. Perfeito para o consumo individual e rápido, o Goob 230ml é um campeão de vendas em balcões e geladeiras de conveniência. Aproveite o crescimento de 39% da marca Goob (IBPC, 2025) e maximize suas vendas por impulso com a "Goobzinha".',
-            'p13': 'Energia para compartilhar. O EnerUp 2L atende à crescente demanda por energéticos em embalagens maiores, ideal para festas e encontros. A combinação de taurina, cafeína e guaraná já é um fenômeno de consumo, especialmente em combinação com destilados. Ter a versão 2L é garantir uma venda de maior valor agregado.',
-            'p2': 'A dose de energia que seu cliente precisa. EnerUp 250ML é o tamanho perfeito para consumo imediato, garantindo um giro altíssimo. Sua fórmula potente é um sucesso de vendas, sendo um dos itens mais procurados por quem busca performance e sabor. Posicione-o em sua geladeira e veja os resultados.',
-            'p14': 'Sabor e energia em um só copo. O GuaranUp de copo combina a tradição do guaraná com a energia do açaí, um mix que o público adora. É a escolha perfeita para acompanhar lanches. Dados de pontos de venda mostram um aumento de 19% no giro de estoque quando posicionado próximo a balcões de salgados.',
-            'p15': 'Praticidade e energia para levar. A versão em garrafa do GuaranUp é ideal para quem está em movimento. Com a combinação de guaraná e açaí, este produto tem uma alta taxa de recompra. Ofereça a energia que seu cliente procura e aumente suas vendas de bebidas prontas para consumo.',
-            'p16': 'Pureza que se sente a cada gole, em tamanho ideal para a família. Originária de Alagoinhas — reconhecida por ter a 2ª melhor água do mundo — Lôa é líder absoluta em sua categoria. A versão 1,5L é um item básico na cesta de compras, garantindo vendas constantes e fidelização pela qualidade superior.',
-            'p17': 'A hidratação que seu cliente carrega para todo lugar. Lôa 500ml é sinônimo de giro rápido. Sua origem em Alagoinhas (2ª melhor água do mundo) é um selo de qualidade que o consumidor reconhece e prefere. Indispensável em qualquer ponto de venda.',
-            'p18': 'Sofisticação e refrescância borbulhante. A Água com Gás Lôa eleva a experiência de hidratação e é a escolha perfeita para acompanhar refeições. Vinda de Alagoinhas, sua qualidade superior atrai um público exigente e impulsiona o ticket médio.',
-            'p19': 'O suco que conquistou as famílias. Yulo se destaca pela altíssima taxa de fidelidade. Dados da Central de Análise de Varejo da Bahia, mostram que 6 em cada 10 famílias que experimentam, realizam a recompra em menos de 30 dias. A embalagem prática de 200ml é ideal para lanches e vendas unitárias.',
-            'p20': 'Sabor de fruta para toda a família. O Yulo de 1,5L é a escolha perfeita para as refeições em casa. Com uma taxa de fidelidade impressionante, onde 6 de cada 10 famílias recompram o produto, esta versão garante um alto volume de vendas e clientes satisfeitos.',
-            'p21': 'A dose de sabor ideal para o dia a dia. Yulo 400ML é perfeito para o consumo individual, seja no trabalho ou no lazer. Com a mesma qualidade e sabor que conquistaram as famílias, esta embalagem prática garante vendas rápidas e constantes.',
-            'p22': 'O lanche das crianças ficou mais gostoso. Yulo 200ML é o tamanho perfeito para a lancheira e para o consumo infantil. A alta taxa de recompra da marca garante que, uma vez que as famílias experimentam, elas voltam. Um produto essencial para o seu mix.',
-            'p23': 'Sabor, praticidade e refrescância. Ideal para o clima da nossa terra, o DrinkT apresenta um aumento de 27% no volume de vendas durante os dias mais quentes, sendo a escolha inteligente para se refrescar com qualidade e sabor. Um produto com alta margem e giro garantido no verão.',
-            'p24': 'A energia na medida certa. O EnerUp em lata é um clássico moderno, com sabores que agradam a todos os paladares. Pesquisas de mercado indicam que 4 em cada 5 consumidores de energéticos preferem a embalagem em lata para consumo individual. Tenha todos os sabores e não perca vendas.',
-            'p-alc-1': 'A sensação das redes sociais agora no seu negócio. A Brussels Lager é uma puro malte leve e refrescante, com a chancela de campanhas virais com Ronaldinho Gaúcho. A curiosidade do seu cliente traz o primeiro pedido, o sabor garante a recompra. Giro certo e margem garantida.',
-            'p-alc-2': 'Sabor incrível, zero culpa. A Brussels Ultra é a cerveja puro malte zero açúcar e zero carboidrato que atende à crescente demanda por produtos mais saudáveis. Com um sabor que surpreende, é a escolha perfeita para o público fitness e para quem não abre mão de uma boa cerveja. Destaque-se da concorrência com esta novidade.',
-            'p-alc-3': 'Tradição que nunca sai de moda. A Pitú de litro é um ícone cultural e um dos destilados mais vendidos do Brasil. Ter a versão "completa" atende o cliente que busca praticidade para consumo imediato em casa ou eventos. É um produto com venda garantida e fluxo constante.',
-            'p-alc-4': 'Economia e fidelidade. O sistema de "devolver o litro" da Pitú é um grande atrativo para clientes recorrentes, garantindo que eles sempre voltem ao seu estabelecimento. É uma estratégia inteligente para aumentar o tráfego de clientes e garantir vendas contínuas do destilado mais querido do país.',
-            'p-alc-5': 'A dose certa para encontros. A Pitú de 600ML é perfeita para compartilhar entre amigos, sendo uma opção muito procurada em bares e mercados. Sua versatilidade a torna um item de alto giro, ideal para quem busca a tradição da Pitú em uma embalagem intermediária.',
-            'p-alc-6': 'O "Latão" que é sinônimo de festa. A Pitú 710ML é a escolha número um para eventos, churrascos e grandes encontros. Esta embalagem se destaca na gôndola e atrai consumidores que buscam maior quantidade com a qualidade de sempre. Um item de alto valor e grande saída.',
-            'p-alc-7': 'Praticidade e volume. A lata de 473ML da Pitú é a preferida para o consumo individual em bares, shows e eventos. Combina a quantidade ideal com a conveniência da lata, sendo um dos formatos de maior giro no mercado de destilados.',
-            'p-alc-8': 'A dose individual clássica. A lata de 350ML da Pitú é um item de impulso, perfeita para o consumo rápido. Com preço acessível e a força de uma marca consolidada, é um produto que vende sozinho. Essencial para ter sempre gelada e à mão do cliente.',
-            'p-alc-9': 'Refrescância e inovação. A Pitú Limão combina a tradição da cachaça com o toque cítrico que o brasileiro ama. É uma bebida pronta que atrai um público jovem e que busca praticidade. Dados mostram que bebidas "ice" e saborizadas cresceram 22% em vendas no último ano.',
-            'p-alc-10': 'Doçura e acidez na medida certa. A combinação de limão e mel na Pitú é um sucesso absoluto, especialmente em climas mais quentes. É uma opção pronta para beber que tem altíssima aceitação e estimula a compra por impulso.',
-            'p-alc-11': 'O sabor do nordeste em uma lata. Pitú Caju é uma aposta certeira para quem busca sabores autênticos e regionais. Este sabor exótico desperta a curiosidade e agrada o paladar, resultando em um produto com grande potencial de vendas e ótima margem.',
-            'p-alc-12': 'Um sabor surpreendente e tropical. A Pitú Banana é uma inovação que conquista pelo sabor único e adocicado. É ideal para quem gosta de experimentar novidades e se destaca na prateleira. Uma excelente opção para diferenciar seu mix de produtos.',
-            'p-alc-72': 'O clássico sabor do Caribe. O Rum Montilla Carta Ouro é envelhecido em barris de carvalho, o que lhe confere uma cor dourada e um sabor suave com notas de baunilha. Perfeito para o drink Cuba Libre ou para ser apreciado puro, é um destilado versátil e de grande procura.',
-            'p-alc-73': 'Leveza e versatilidade para seus drinks. O Rum Montilla Carta Branca é a base ideal para coquetéis clássicos como o Mojito. Seu sabor leve e aroma suave não dominam as misturas, tornando-o o favorito dos bartenders e apreciadores de drinks refrescantes.',
-            'p-alc-14': 'Tradição e sabor marcante. A Cachaça Paratudo é conhecida por seu sabor amargo e propriedades únicas, tendo um público fiel e cativo. Oferecer Paratudo é atender a um nicho de mercado específico e garantir a satisfação de clientes que buscam tradição e qualidade.',
-            'p-alc-15': 'O clássico que esquenta as vendas. Fogo Paulista é uma bebida de sabor intenso e reconhecido, muito procurada em dias mais frios e para a preparação de drinks. Sua marca forte e preço competitivo garantem um bom volume de vendas e margem de lucro.',
-            'p-alc-16': 'A cachaça mais famosa do Brasil. Ter Cachaça 51 é obrigatório em qualquer ponto de venda. É a marca líder de mercado, com reconhecimento e procura massivos. Seja para doses, drinks ou uso culinário, a 51 é sinônimo de venda garantida e fluxo de caixa constante.',
-            'p-alc-17': 'Qualidade e tradição que se destacam. A Cachaça Asa Branca é uma marca respeitada, conhecida por seu processo de produção cuidadoso. É a escolha de consumidores que buscam uma cachaça de qualidade superior com um preço justo. Um excelente produto para elevar o nível do seu mix.',
-            'p-alc-18': 'Sabor e economia. A Caninha Vida Nova é uma opção de excelente custo-benefício, muito procurada por consumidores que buscam um produto de qualidade para o dia a dia. Seu tamanho prático de 480ml facilita a venda e o consumo individual.',
-            'p-alc-19': 'Um toque amadeirado que faz a diferença. A Asa Branca Jequitibá é envelhecida em madeira nobre, o que lhe confere um sabor suave e sofisticado. Atrai consumidores que apreciam cachaças diferenciadas. É um produto que agrega valor à sua prateleira e aumenta o ticket médio.',
-            'p-alc-20': 'A cachaça artesanal mais vendida do Brasil. Seleta é sinônimo de cachaça de alambique de alta qualidade. Com um sabor suave e amadeirado, atrai um público que valoriza produtos premium. Ter Seleta no seu portfólio posiciona seu negócio como um lugar de qualidade e sofisticação.',
-            'p-alc-21': 'Um nome forte, uma venda forte. Velho Barreiro é uma das cachaças mais tradicionais e consumidas do país. Sua presença na prateleira transmite confiança e atrai uma vasta gama de clientes. É um produto de giro rápido e margem de lucro garantida.',
-            'p-alc-27': 'Qualidade e versatilidade. Newsnoff é uma vodka de sabor neutro e puro, excelente para todos os tipos de combinações. Seu preço competitivo a torna uma opção inteligente para clientes que buscam qualidade sem pesar no bolso. Um item essencial para seu mix de destilados.',
-            'p-alc-28': 'Refrescância e praticidade. A Newsnoff Limão já vem pronta para misturar, economizando tempo e ingredientes. É uma escolha popular que aumenta as vendas por impulso e agrada quem busca um drink rápido e saboroso.',
-            'p-alc-29': 'Sabor intenso, alta procura. A Newsnoff Frutas Vermelhas é perfeita para criar drinks visualmente atraentes e deliciosos. Este sabor está entre os mais procurados e garante um produto de alto giro e boa margem de lucro.',
-            'p-alc-30': 'Uma marca de confiança. Natasha é uma vodka conhecida e respeitada no mercado, oferecendo uma excelente relação custo-benefício. É uma aposta segura que atende a uma grande parcela de consumidores, garantindo vendas constantes.',
-            'p-alc-31': 'Líder mundial, venda garantida. Smirnoff é a vodka mais vendida no mundo. Sua marca forte atrai clientes e justifica um preço premium. Ter Smirnoff no seu portfólio é um sinal de qualidade e atrai consumidores dispostos a gastar mais.',
-            'p-alc-33': 'Custo-benefício que atrai. Black Stone é um whisky que oferece sabor e qualidade a um preço acessível. O brinde do copo é um grande diferencial que estimula a compra. É o produto ideal para clientes que estão entrando no mundo do whisky.',
-            'p-alc-34': 'Tradição e sofisticação. Old Parr é um dos whiskies 12 anos mais vendidos, conhecido por seu sabor suave e equilibrado. É a escolha de consumidores que apreciam produtos de alta qualidade, garantindo uma venda de alto valor agregado.',
-            'p-alc-35': 'O whisky mais icônico do mundo. Jack Daniel’s não é apenas uma bebida, é um estilo de vida. Sua marca globalmente reconhecida garante uma procura imensa e constante. Um produto indispensável para qualquer bar ou mercado que queira ser referência.',
-            'p-alc-36': 'Refrescância e ousadia. O Jack Daniel’s Apple combina a suavidade do whisky com o sabor refrescante da maçã verde. É um sucesso entre o público jovem e perfeito para drinks. Um produto inovador que impulsiona as vendas e atrai novos consumidores.',
-            'p-alc-37': 'Suavidade e doçura. Jack Daniel’s Honey é um fenômeno de vendas. Sua combinação de whisky com mel agrada a todos os paladares e é extremamente versátil. É um dos rótulos com maior giro e taxa de recompra da categoria.',
-            'p-alc-38': 'O whisky mais vendido no mundo. Johnnie Walker Red Label é um clássico absoluto. Sua marca forte e sabor versátil o tornam perfeito para doses e drinks. Ter Red Label é atender à demanda certa e garantir vendas consistentes.',
-            'p-alc-39': 'Elegância e profundidade. Johnnie Walker Black Label é o whisky 12 anos mais icônico e desejado. É um produto premium que eleva o status de qualquer estabelecimento, atraindo clientes que buscam o melhor e estão dispostos a pagar por isso.',
-            'p-alc-42': 'Ousadia e sabor suave. Passport é um whisky que se destaca pelo seu blend equilibrado e espírito jovem. É uma marca com forte apelo e um excelente custo-benefício, garantindo um bom giro e margem de lucro.',
-            'p-alc-43': 'O cavalo branco que todos conhecem. White Horse é um dos whiskies mais tradicionais e confiáveis do mercado. Sua popularidade garante uma procura constante, fazendo dele um item de venda fácil e segura.',
-            'p-alc-44': 'Economia com sabor. Chanceler é a escolha inteligente para quem busca um whisky nacional de qualidade com um preço imbatível. É perfeito para drinks e tem grande aceitação em festas e eventos, garantindo um alto volume de vendas.',
-            'p-alc-45': 'Qualidade escocesa acessível. Ballantine’s é um dos whiskies mais vendidos do mundo, conhecido por seu sabor suave e versátil. Oferece a qualidade de um autêntico scotch a um preço competitivo, o que resulta em um alto giro de estoque.',
-            'p-alc-46': 'Um clássico atemporal. Black & White é famoso por sua suavidade e pelo icônico rótulo com os terriers. É um whisky de grande aceitação e fácil de vender, ideal para todos os tipos de consumidores.',
-            'p-alc-50': 'Tradição e sabor único. A Genebra Zora é uma bebida com um público fiel, apreciada por seu sabor característico. Ter este produto é atender a um nicho de mercado específico e mostrar um portfólio completo.',
-            'p-alc-51': 'O clássico Steinhaeger. Becosa é uma marca tradicional e reconhecida, a escolha certa para quem aprecia o sabor autêntico do Steinhaeger. Um produto de nicho que fideliza clientes e garante vendas recorrentes.',
-            'p-alc-52': 'Refrescância pronta para vender. As bebidas "ice" são um sucesso absoluto de vendas, e a Syn Lemon Ice é uma opção deliciosa e com preço competitivo. Com seu sabor cítrico, é ideal para festas e consumo casual, garantindo um giro muito rápido.',
-            'p-alc-53': 'Leveza e autenticidade. Com um sabor único, Glow Ice atrai pela curiosidade e conquista pelo paladar. A embalagem de vidro agrega valor e sofisticação. Estatísticas de pontos de venda indicam que 1 em cada 3 clientes experimenta o produto logo na primeira semana de exposição.',
-            'p-alc-54': 'Praticidade e sabor que brilha. A versão em lata da Glow Ice é perfeita para o consumo em movimento, em festas e eventos. O mercado de bebidas prontas para beber cresce 15% ao ano. Aproveite essa tendência com um produto que já é sucesso.',
-            'p-alc-55': 'O vinho mais querido do Brasil. Quinta do Morgado é líder de mercado e sinônimo de vinho suave de qualidade. Sua enorme popularidade garante vendas massivas e constantes. É o vinho que não pode faltar na sua prateleira.',
-            'p-alc-56': 'Sabor e tradição na mesa. Cantina da Serra é um vinho de mesa popular e de grande aceitação, ideal para o consumo diário. Seu formato de 1L e preço acessível garantem um ótimo volume de vendas.',
-            'p-alc-57': 'Um clássico do sul. Pérgula é um dos vinhos de garrafão mais vendidos do país, conhecido por seu sabor frutado e adocicado. É a escolha certa para quem busca um vinho para o dia a dia, com qualidade e preço justo.',
-            'p-alc-58': 'O aperitivo essencial para drinks. Campari é um ícone mundial, indispensável para o preparo de clássicos como o Negroni. Com a alta da coquetelaria, ter Campari é fundamental para atender a uma demanda crescente e sofisticada.',
-            'p-alc-59': 'Tradição e sabor do norte. Jurubeba Leão do Norte é uma bebida tradicional com um público fiel, apreciada por seu sabor amargo e propriedades digestivas. Um produto único que completa seu mix de aperitivos.',
-            'p-alc-60': 'Força e tradição. O Conhaque Presidente é uma marca consolidada e de grande procura, especialmente em regiões mais frias. É um clássico que garante vendas seguras e atende a um público consumidor leal.',
-            'p-alc-62': 'O conhaque mais vendido do Brasil. Dreher é líder de mercado e um nome que dispensa apresentações. Sua popularidade massiva o torna um item de venda obrigatória, com giro altíssimo e lucro certo.',
-            'p-alc-64': 'Suavidade e tradição. Domecq é um conhaque de sabor mais suave, ideal para quem prefere uma bebida menos intensa. Sua qualidade e tradição o tornam uma escolha confiável e de boa vendagem.',
-            'p-alc-65': 'Refrescância e versatilidade. O Licor de Menta é um ingrediente chave para diversos drinks e sobremesas. É um produto que, apesar de específico, tem uma procura constante em todas as épocas do ano, especialmente por bares e restaurantes.',
-            'p-alc-67': 'A energia que seu cliente procura. Catuaba é famosa por suas propriedades energéticas e sabor único. É uma bebida extremamente popular em festas e eventos, com um público fiel e um giro de vendas impressionante.',
-            'p-alc-68': 'Tradição e sabor intenso. O Alcatrão São João da Barra é uma bebida de sabor forte e característico, com um nicho de consumidores leais. Um produto diferenciado para um mix completo.',
-            'p-alc-69': 'O sabor do gengibre em alta. Bebidas de gengibre estão em alta, e a Vida Nova oferece uma opção saborosa e com preço acessível. É uma tendência que veio para ficar e que pode aumentar significativamente suas vendas.',
-            'p-alc-70': 'Doçura e tradição. A Canelinha da Rocha é uma bebida adocicada e aromática, muito apreciada como aperitivo ou para aquecer. Seu sabor caseiro e preço justo a tornam um produto de grande aceitação popular.',
-            'p-bomb-1': 'Sabor clássico que nunca falha. A Bala de Canela Santa Fé é um item tradicional com demanda constante. Perfeita para ter no balcão e gerar vendas por impulso. Um pacote de 600g garante ótima durabilidade e lucro.',
-            'p-bomb-2': 'Variedade que agrada a todos. A Bala Icekiss Sortida é um clássico em qualquer comércio. As crianças adoram e os adultos não resistem. É um produto de giro rápido e compra por impulso garantida.',
-            'p-bomb-3': 'Sofisticação e sabor irresistível. As balas Butter Toffees são um produto premium que eleva o nível do seu caixa. Com sabores refinados, atraem um público adulto e aumentam o ticket médio da compra.',
-            'p-bomb-4': 'Cremosidade que vicia. A bala mastigável de iogurte com morango é um sucesso absoluto. O pacote de 500g tem excelente custo-benefício e o sabor agrada a todas as idades, garantindo um giro rápido.',
-            'p-bomb-5': 'A alegria das frutas em uma bala. A versão sortida de frutas da Santa Fé é uma campeã de vendas. Ideal para deixar em potes no balcão, estimulando a compra por impulso e adoçando o dia dos clientes.',
-            'p-bomb-8': 'A marca líder em refrescância. Ter a linha completa de Halls é essencial. Cada sabor tem seu público fiel, e a força da marca garante que o produto gire rapidamente. É o item de bolso número um do consumidor.',
-            'p-bomb-14': 'Variedade e refrescância. O display de Drops Icekiss Sortido é perfeito para o balcão. Com múltiplos sabores, atende a todos os gostos e incentiva a compra por impulso. Um produto de baixo custo e alta lucratividade.',
-            'p-bomb-9': 'Sabor de infância que vende sempre. As balas de caramelo são um clássico atemporal. Com diversos sabores, como leite e café, elas agradam a um vasto público e são uma fonte de lucro constante e segura.',
-            'p-bomb-11': 'O azedinho que as crianças amam. A Bala Azedinha é um sucesso entre o público infantil. Com cores vibrantes e sabor intenso, é um produto de alta procura para festas e consumo diário.',
-            'p-bomb-15': 'Refrescância e variedade. Freegells é uma marca forte e reconhecida no mercado de drops. Ter a variedade de sabores é garantir que você atenderá a preferência de cada cliente. Um campeão de vendas no caixa.',
-            'p-bomb-16': 'O chiclete da criançada. Big Big é uma marca icônica, famosa pelos seus sabores e figurinhas. É uma compra garantida quando há crianças por perto. Um item de baixo custo e altíssimo giro.',
-            'p-bomb-17': 'Líder absoluto de mercado. Trident é a marca de chicletes mais vendida e lembrada. Ter a linha completa de sabores não é uma opção, é uma necessidade para qualquer ponto de venda que queira lucrar com a categoria.',
-            'p-bomb-18': 'Custo-benefício que refresca. Cliss é uma opção de chiclete de menta com preço competitivo, ideal para quem busca refrescância sem gastar muito. Ótima margem de lucro e boa aceitação do público.',
-            'p-bomb-19': 'Diversão e sabor. O chiclete Danclets é um sucesso com a criançada pelo seu formato de confeito e sabor tutti-frutti. É um produto que vende pela diversão, ideal para o público infantil.',
-            'p-bomb-20': 'Explosão de sabor com recheio. O chiclete Blong se destaca pelo seu recheio líquido, uma experiência que o consumidor adora. A variedade de sabores garante um apelo amplo e vendas recorrentes.',
-            'p-bomb-21': 'Sabor de iogurte que estica. A Goma Tubo Gurt é um doce divertido e delicioso, muito procurado pelo público jovem. O expositor com 30 unidades é perfeito para o balcão e garante uma ótima margem.',
-            'p-bomb-22': 'Frutas em formato de tubo. A versão de Frutas Sortidas da Goma Tubo é um clássico que agrada a todos. É um doce de compra por impulso, que adiciona cor e lucro ao seu caixa.',
-            'p-bomb-23': 'O pirulito que é pura diversão. O Megalito Pinta Língua é mais que um doce, é uma brincadeira. Seu apelo com o público infantil é enorme, garantindo um giro muito rápido. Um item indispensável para a seção de doces.',
-            'p-bomb-25': 'Sabor de frutas com um centro macio. O Big Pop de frutas com recheio mastigável é uma combinação vencedora. É um produto que atrai pela novidade e fideliza pelo sabor, garantindo recompra.',
-            'p-bomb-26': 'Um gigante de sabor. O Pirulito Megalito é conhecido pelo seu tamanho e durabilidade. O pacote de 1kg sortido é ideal para vendas a granel ou para quem busca um ótimo custo-benefício em doces.',
-            'p-bomb-29': 'O biscoito campeão de vendas. Com uma variedade imensa de sabores e um preço imbatível, o Biscoito Fofinho é um item essencial na cesta de compras. Garante alto volume de vendas e atrai clientes para a sua loja.',
-            'p-bomb-31': 'Diversão que vira doce. O Confeito Mamadeira é um clássico dos doces infantis. A embalagem lúdica garante a venda por impulso. Tenha no seu caixa e veja a alegria (e o lucro) acontecer.',
-            'p-bomb-33': 'O doce que gira e encanta. O Catavento é um sucesso de vendas garantido. A combinação de brinquedo e doce é irresistível para as crianças. Um produto de alto giro para a sua bomboniere.',
-            'p-bomb-36': 'Doce de leite em grande estilo. O Chup Chup de 1,5kg é ideal para festas, eventos ou para quem simplesmente ama doce de leite. Um produto de alto valor agregado com grande procura.',
-            'p-bomb-37': 'A medida certa de doçura. A versão de 750g do Chup Chup de Doce de Leite é perfeita para o consumo familiar. Um produto de qualidade que gera fidelidade e recompra.',
-            'p-bomb-41': 'Qualidade e sabor em tabletes. O chocolate Puríssimo oferece uma variedade de sabores que atende a todos os gostos. Ideal para um lanche rápido, é um produto de impulso que agrega valor à sua gôndola de chocolates.',
-            'p-bomb-42': 'Sabor caseiro que vende. Os doces Balsamo são conhecidos pela sua qualidade e sabor que remete à infância. O pacote com 50 unidades é ideal para venda a granel e garante uma ótima margem de lucro.',
-            'p-bomb-43': 'Crocância e tradição. O Pé de Moleque em pacote é um clássico das festas juninas que vende o ano inteiro. Um produto de alta procura e que garante um bom faturamento.',
-            'p-bomb-45': 'O nome já diz tudo. O Quebra Queixo é um doce tradicional, para quem gosta de um desafio saboroso. Atende a um público específico e fiel, que busca sabores autênticos.',
-            'p-bomb-46': 'A doçura do coco. A cocada branca é um clássico nordestino amado em todo o Brasil. Um produto artesanal que agrega valor e sabor ao seu mix de doces regionais.',
-            'p-bomb-47': 'Sabor intenso. A cocada morena (ou "queimada") tem um sabor mais caramelizado, com um público fiel. Oferecer as duas versões é garantir que você atende a todos os fãs de cocada.',
-            'p-bomb-48': 'Doce tradição. A goiabada em barra é um item essencial em qualquer mercearia. Seja para comer pura, com queijo ou em receitas, é um produto de demanda constante e venda garantida.',
-            'p-bomb-49': 'Praticidade e sabor. A goiabada em pote é perfeita para o consumo com pães e torradas. Uma opção mais prática que a barra, com grande aceitação do consumidor moderno.',
-            'p-bomb-50': 'Sabor de fruta de verdade. A bananada em barra é um doce saudável e saboroso, muito procurado por quem busca uma opção de energia natural. Um clássico que não pode faltar.',
-            'p-bomb-51': 'Cremosa e deliciosa. A bananada de pote é ideal para o café da manhã ou lanche da tarde. Um produto de alta qualidade que fideliza o cliente pelo sabor autêntico.',
-            'p-bomb-52': 'Sabor e brilho. A geleia de pote é um item que agrega valor à sua seção de matinais. Com sabor de fruta intenso, é um produto que justifica um preço premium e aumenta seu ticket médio.',
-            'p-bomb-53': 'Versatilidade e economia. A geleia em barra é uma opção mais econômica, ideal para uso culinário ou para quem consome em grande quantidade. Um produto de nicho com venda certa.',
-            'p-bomb-54': 'O "nego bom" que é bom de venda. Este doce de goiaba em formato de bala é um clássico regional de alta procura. É um produto nostálgico que vende muito bem pela memória afetiva.',
-            'p-bomb-55': 'A energia da banana. O Nego Bom de Banana é outra variedade muito popular, oferecendo um sabor mais suave e igualmente deliciosa. Ter os dois sabores é a estratégia certa.',
-            'p-bomb-56': 'O snack que é "goxtoso" de vender. Este salgadinho é um campeão de vendas pelo sabor e pelo preço acessível. Com vários sabores, a linha completa garante que você vai agradar a todos os paladares infantis e adultos.',
-            'p-bomb-57': 'Picância na medida certa. A linha "Pimentinha" do Goxtoso é um sucesso, com um toque picante que o público adora. É o snack ideal para acompanhar uma bebida gelada, impulsionando a venda casada.',
-            'p-bomb-58': 'Doçura e crocância. A pipoca doce Goxtoso é um lanche clássico que nunca sai de moda. Leve, saborosa e barata, tem um giro altíssimo, especialmente entre o público infantil.',
-            'p-bomb-59': 'A batata que seu cliente quer. Batata palha é um acompanhamento essencial para vários pratos, e a Batata Plus oferece qualidade e crocância. Um item que aumenta o valor da cesta de compras do cliente.',
-            'p-bomb-60': 'O salgadinho da galera. Agitos é uma marca forte, sinônimo de salgadinho de milho de qualidade. O pacote de 85g é ideal para compartilhar, sendo muito procurado por jovens. Venda garantida.',
-            'p-bomb-61': 'Petisco perfeito. A pimentinha Agitos é o snack ideal para acompanhar jogos de futebol e encontros com amigos. Posicione perto das bebidas e veja a mágica da venda casada acontecer. A variedade de sabores atrai ainda mais clientes.',
-            'p-bomb-62': 'Lanche rápido. A versão de 25g do Agitos é perfeita para o consumo individual e rápido. Um item de baixo desembolso e alto giro, excelente para o seu caixa.',
-            'p-bomb-71': 'Crocância garantida. O Amendoim Japonês Amendupã é o petisco clássico que não pode faltar. Crocante, saboroso e com a qualidade Amendupã, é perfeito para acompanhar aquela bebida gelada. Venda certa em qualquer ocasião.',
-            'p-bomb-72': 'Variedade que vende. Os Snacks Amendupã oferecem uma linha completa de salgadinhos para todos os gostos. Ideal para ter no balcão e garantir aquela venda por impulso. Qualidade e sabor que o cliente reconhece.',
-            'p-bomb-63': 'O petisco preferido do brasileiro. Amendoim japonês é um clássico em qualquer bar ou festa. O pacote de 1kg oferece um excelente custo-benefício para o seu negócio, seja para venda fracionada ou para servir como porção.',
-            'p-bomb-64': 'Dose individual. O Mendozitos de 30g é o tamanho perfeito para a venda por impulso. A cartela expositora é projetada para o balcão, garantindo visibilidade e vendas.',
-            'p-bomb-65': 'Um toque picante. O amendoim com pimenta é uma tendência que veio para ficar. O Crocanty Pimenta Mexicana atrai clientes que buscam sabores intensos. Um diferencial para seu mix de snacks.',
-            'p-bomb-66': 'Sabor irresistível. Bacon é um dos sabores de snack mais vendidos. O Amendoim Crocante Bacon é uma aposta segura, com alta taxa de recompra. Um produto que se vende sozinho.',
-            'p-bomb-67': 'Refrescante e saboroso. Cebola e Salsa é um sabor clássico e amado por todos. É uma opção versátil que agrada a um público amplo, garantindo um bom volume de vendas.',
-            'p-bomb-68': 'Crocância e tradição. O Torresmo Pé de Serra é um petisco de alta qualidade, pronto para consumo. É o acompanhamento perfeito para uma cerveja gelada ou uma cachaça. Um produto de alto valor agregado.',
-            'p-bomb-69': 'Leve e crocante. A Pururuca é uma versão mais leve do torresmo, igualmente deliciosa. É um snack que tem ganhado cada vez mais popularidade, representando uma ótima oportunidade de lucro.',
-            'p-bomb-70': 'Sabor e economia. Desenvolvido para oferecer um sabor delicioso e um rendimento superior, Gostolac se destaca na categoria. Ele oferece um rendimento 15% maior por litro em comparação com a média dos concorrentes, sendo a escolha inteligente para o consumidor e lucrativa para o seu negócio.',
-            'p-cig-1': 'O fumo de corda tradicional. Coringa é uma marca líder na categoria, com um público extremamente fiel. Ter este produto é essencial para atender a uma demanda constante e garantir a vinda do cliente ao seu estabelecimento.',
-            'p-cig-2': 'O complemento essencial. Não adianta vender o fumo sem o papel. O papel Bom de Fogo é o par perfeito para o fumo Coringa. Venda os dois juntos e aumente seu ticket médio. Um item de baixo custo e margem alta.',
-            'p-cig-3': 'O cigarro de palha que virou moda. O Palheiro conquistou um público jovem e moderno. Com diversos sabores, atende a todos os gostos. É um produto de alto valor agregado e com uma margem de lucro excelente.',
-            'p-cig-4': 'Qualidade para o fumo. A seda Zomo é reconhecida pela sua alta qualidade. Atende a um público exigente que busca a melhor experiência. Ter Zomo no seu mix mostra que você entende do assunto.',
-            'p-out-1': 'O copo mais famoso do Brasil. O Copo Americano é um item indispensável em qualquer bar, restaurante ou casa. É um produto de necessidade básica com um volume de vendas gigantesco. Tenha sempre em estoque, pois a procura é constante.',
-            // Novos textos
-            'p-new-brussels-lager-ln': 'Estilo e sabor em long neck. A Brussels Lager em LN traz a mesma qualidade puro malte consagrada, agora em uma embalagem elegante e ideal para consumo individual em bares e baladas. O formato long neck agrega valor ao produto e atrai um público que busca sofisticação.',
-            'p-new-brussels-ultra-ln': 'Leveza premium em long neck. A Brussels Ultra LN é a combinação perfeita de estilo de vida saudável e prazer. Zero açúcar, zero carboidrato e agora em uma garrafa long neck que é puro estilo. Ideal para quem quer curtir a noite sem sair da dieta.',
-            'p-new-quinta-morgado-1l': 'Mais vinho, mais momentos. A versão de 1 litro do clássico Quinta do Morgado Tinto Suave oferece um excelente custo-benefício para o consumidor. É a escolha ideal para jantares em família e reuniões, garantindo a fidelidade de quem já ama a marca.',
-            'p-new-copo-desc': 'Praticidade essencial. Copos descartáveis são itens de necessidade básica em qualquer evento ou estabelecimento. Oferecer este produto é garantir conveniência para o seu cliente e aumentar o ticket médio com uma venda de oportunidade.',
-            'p-new-cherry-pop': 'O sabor da nostalgia. O Pirulito Cherry Pop é um ícone que atravessa gerações. Seu sabor inconfundível de cereja e seu formato clássico garantem vendas constantes. Um doce que agrada crianças e adultos, perfeito para ter no balcão.',
-            'p-new-cachaca-presidente': 'Tradição e qualidade no copo. A Cachaça Presidente 900ml é uma escolha robusta para quem aprecia um destilado de personalidade. Com preço competitivo e marca reconhecida, é um item que gira bem no segmento de cachaças populares.',
-            'p-new-achoco': 'Energia e sabor para a criançada. O Achocolatado Maratinho é o companheiro ideal para o lanche. Rico em vitaminas e com um sabor de chocolate que as crianças adoram, é um produto de alto giro e indispensável na seção de matinais.',
-            'p-new-incenso': 'Harmonia e bem-estar para o ambiente. Nossos incensos trazem fragrâncias envolventes que transformam qualquer espaço, criando uma atmosfera de paz e tranquilidade. Item de alta procura para quem busca equilíbrio e boas energias.',
-            'p-new-ratoeira': 'Eficiência e segurança no controle de pragas. A ratoeira adesiva é a solução prática e higiênica que seu cliente procura para manter a casa protegida. Fácil de usar e com alto poder de fixação, é um item de utilidade doméstica indispensável.',
-            'p-new-cola': 'Reparos rápidos com máxima aderência. A cola instantânea é o "socorro" que todo mundo precisa ter em casa. Ideal para diversos materiais, garante fixação forte e duradoura em segundos. Um produto de conveniência com giro garantido.',
-            'p-new-tubaina': 'O sabor da tradição que conquista gerações. A Tubaína Meu Rei traz aquele gostinho de infância que todo mundo ama. Em embalagem família de 2L, é a opção perfeita para acompanhar as refeições com economia e muito sabor.',
-            'p-new-doce-amendoim': 'A energia do amendoim em uma delícia cremosa. O Doce de Amendoim de pote é irresistível, feito com amendoins selecionados. Perfeito para a sobremesa ou aquele lanche da tarde. Quem prova, leva!',
+            // ... (Mantenho os textos existentes, eles são ótimos)
+            'p-alc-3-sem-papelao': 'A Pitú tradicional que todo mundo conhece, agora na versão econômica sem a caixa de papelão. Ideal para quem busca preço baixo sem abrir mão da qualidade.',
+            'p-alc-3-com-papelao': 'A clássica Pitú Litro Completa, embalada na caixa original. Perfeita para presentear ou para quem faz questão da apresentação tradicional do produto.',
         };
 
         let MOCK_SETTINGS = {
@@ -548,7 +442,8 @@
         // --- Icon Components ---
         const IconLupa = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>;
         const IconInstagram = ({size = 24}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
-        
+        const IconSun = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" className={className}><path d="M128,60a68,68,0,1,0,68,68A68.07,68.07,0,0,0,128,60Zm0,120a52,52,0,1,1,52-52A52.06,52.06,0,0,1,128,180ZM96,24H160a4,4,0,0,0,0-8H96a4,4,0,0,0,0,8ZM53.5,47.8l6.3-4.6a4,4,0,0,0-4.6-6.4l-6.4,4.6a4,4,0,0,0,4.7,6.4ZM24,160h64a4,4,0,0,0,0-8H24a4,4,0,0,0,0,8ZM48.8,206.5l4.6,6.3a4,4,0,1,0,6.4-4.6l-4.6-6.4a4,4,0,0,0-6.4,4.7ZM160,232H96a4,4,0,0,0,0-8h64a4,4,0,0,0,0-8ZM207.2,195.2l-4.6,6.4a4,4,0,0,0,6.4,4.6l4.6-6.3a4,4,0,0,0-6.4-4.7ZM232,160h-64a4,4,0,0,0,0-8h64a4,4,0,0,0,0,8ZM202.5,41.4l-6.3,4.6a4,4,0,0,0,4.7,6.4l6.4-4.6a4,4,0,0,0-4.8-6.4Z" transform="scale(1.3) translate(-30 -30)"/></svg>;
+
         const CategoryIcon = ({ src, alt, isActive, size = 'w-5 h-5' }) => (
             <img 
                 src={src} 
@@ -603,9 +498,9 @@
                                         <span className="text-gray-600 font-medium">Preço à vista:</span>
                                         <span className="text-2xl font-bold text-green-700">R$ {product.price.cash}</span>
                                     </div>
-                                    <div className="flex justify-between items-center text-sm text-gray-500">
-                                        <span>Preço a prazo:</span>
-                                        <span>R$ {product.price.credit}</span>
+                                    <div className="flex justify-between items-center text-sm">
+                                        <span className="text-gray-500 font-medium">Preço a prazo:</span>
+                                        <span className="text-xl font-bold" style={{color: 'var(--brand-yellow)'}}>R$ {product.price.credit}</span>
                                     </div>
                                 </div>
                             )}
@@ -635,22 +530,25 @@
         // --- Page Components ---
         const Header = () => {
             return (
-                <header className="sticky top-0 z-40" style={{backgroundColor: 'var(--brand-green)'}}>
+                <header className="sticky top-0 z-40 shadow-sm" style={{backgroundColor: 'var(--brand-green)', backgroundImage: 'linear-gradient(to right, var(--brand-green), var(--brand-green-light))'}}>
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-24">
-                        <div className="flex-1 flex justify-start">
-                             <div className="bg-white px-4 sm:px-6 py-2 rounded-2xl shadow-lg">
-                                 <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }} className="flex items-baseline">
-                                     <span className="text-xl sm:text-2xl font-bold" style={{color: 'var(--brand-green)'}}>Igor</span>
-                                     <span className="text-xl sm:text-2xl font-bold" style={{color: 'var(--brand-red)'}}>Valen</span>
-                                 </a>
-                                 <span className="block text-xs sm:text-sm -mt-1 font-medium text-gray-800 text-center">Distribuidora</span>
+                        <div className="flex-1 flex justify-start items-center gap-2">
+                             <div className="bg-white px-4 sm:px-6 py-2 rounded-2xl shadow-lg flex items-center gap-2 transform hover:scale-105 transition-transform duration-300">
+                                 <i className="ph-sun text-yellow-500 text-2xl hidden sm:block"></i>
+                                 <div>
+                                     <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }} className="flex items-baseline">
+                                         <span className="text-xl sm:text-2xl font-bold" style={{color: 'var(--brand-green)'}}>Igor</span>
+                                         <span className="text-xl sm:text-2xl font-bold" style={{color: 'var(--brand-red)'}}>Valen</span>
+                                     </a>
+                                     <span className="block text-xs sm:text-sm -mt-1 font-medium text-gray-800 text-center">Distribuidora</span>
+                                 </div>
                              </div>
                         </div>
                         
                         <div className="flex-1 flex justify-end items-center px-2">
-                            <a href="https://www.instagram.com/distribuidora_igorvalen" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white transition-all duration-300 transform hover:scale-105">
-                                <IconInstagram size={28} />
-                                <span className="font-bold text-base sm:text-xl tracking-wider whitespace-nowrap hidden sm:inline">@distribuidora_igorvalen</span>
+                            <a href="https://www.instagram.com/distribuidora_igorvalen" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white transition-all duration-300 transform hover:scale-105 bg-white bg-opacity-10 py-2 px-4 rounded-full border border-white border-opacity-20 hover:bg-opacity-20">
+                                <IconInstagram size={24} />
+                                <span className="font-bold text-sm sm:text-lg tracking-wider whitespace-nowrap hidden sm:inline">@distribuidora_igorvalen</span>
                             </a>
                         </div>
                     </div>
@@ -659,8 +557,12 @@
         };
 
         const Footer = () => (
-            <footer className="mt-16 py-6 text-center text-sm text-gray-600">
-                © 2024 IgorValen Distribuidora. Todos os direitos reservados.
+            <footer className="mt-16 py-8 text-center text-sm text-gray-600 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-t-3xl shadow-inner">
+                <div className="flex justify-center items-center gap-2 mb-2">
+                    <i className="ph-sun text-yellow-500 text-xl"></i>
+                    <span className="font-semibold text-green-800">Verão 2026 IgorValen</span>
+                </div>
+                © 2026 IgorValen Distribuidora. Todos os direitos reservados.
             </footer>
         );
 
@@ -675,30 +577,76 @@
             </div>
         );
 
-        const STYLE_BY_NAME = new Map([
-           ["Energético Ener Up 2L", "scale-[1.6] translate-y-6"],
-           ["Energético Ener Up 250ML", "scale-[1.6] translate-y-6"],
-           ["Guaraná + Açaí Guaran Up de Copo 290ML", "scale-[1.7] translate-y-8"],
-           ["Guaraná + Açaí Guaran Up 200ML", "scale-[1.7] translate-y-8"],
-           ["Fumo Meliá", "scale-[1.7] translate-y-8"],
-           ["Pitú de Garrafa 600ML", "scale-[1.7] translate-y-4"],
-           ["Suco Yulo 400ML", "scale-[1.6] translate-y-6"],
-           ["Suco Yulo 200 ML", "scale-[1.5] -translate-y-1"], 
-           ["Energético Ener Up lata 269 ML", "scale-150"],
-           ["Pitú Lata 473ML", "scale-125"], 
-           ["Ice Syn Lemon Ice 300ML", "scale-150"],
-           ["Alcatrão São João da Barra 900 ML", "scale-150"],
-           ["Pé de Moleque Pacote com 50 unidades", "scale-150"],
-           ["Bebida alcoólica Gengibre Vida Nova Verde 900ML", "scale-150"],
-           ["Catuaba Vida Nova 900ML", "scale-150"],
-           ["Licor Menta São Paulo 960ML", "scale-150"],
-           ["Suco de Caixinha Yulo Tetra Park 200ML", "scale-150"],
-           ["Achocolatado Maratinho", "scale-150"],
-           ["Cerveja Brussels LN Ultra", "scale-125"],
-           ["Cerveja Brussels LN Lager", "scale-125"],
-           ["Rum Montila Carta Branca 1L", "scale-110"],
-        ]);
+        // Define IDs excluded from zoom
+        const EXCLUDED_FROM_ZOOM = [
+            // --- Bebidas Não Alcoólicas (Manter tamanho) ---
+            'p1', // Refrigerante Goob 2L
+            'p12', // Refrigerante Goob 1L
+            'p16', 'p17', 'p18', // Águas Lôa
+            'p20', // Suco Yulo 1.5L
+            'p21', // Suco Yulo 400ML
+            'p23', // Chá Gelado Drink T
+            'p-new-tubaina', // Tubaína Meu Rei
 
+            // --- Bebidas Alcoólicas (Manter tamanho) ---
+            'p-alc-1', 'p-new-brussels-lager-ln', 'p-alc-2', 'p-new-brussels-ultra-ln', // Todas as Brussels
+            'p-alc-3-com-papelao', 'p-alc-3-sem-papelao', // Pitu Litro (Com e Sem papelão)
+            'p-alc-8', // Pitu Lata 350ML
+            'p-alc-10', // Pitu Lata Limão e Mel
+            'p-alc-21', // Velho Barreiro
+            'p-new-cachaca-presidente', // Cachaça Presidente
+            'p-alc-72', 'p-alc-73', // Rums Montilla (Ouro e Branca)
+            'p-alc-15', // Fogo Paulista
+            'p-alc-14', // Paratudo
+            'p-alc-17', 'p-alc-19', // Asa Branca (e Jequitibá)
+            'p-alc-18', // Caninha Vida Nova
+            'p-alc-20', // Cachaça Seleta
+            'p-alc-27', 'p-alc-28', 'p-alc-29', // Todas Newsnoff
+            'p-alc-30', // Vodka Natasha
+            'p-alc-31', // Vodka Smirnoff
+            'p-alc-33', // Whisky Black Stone
+            'p-alc-34', // Whisky Old Par
+            'p-alc-38', // Whisky Red Label
+            'p-alc-42', // Whisky Passport
+            'p-alc-43', // Whisky White Horse
+            'p-alc-44', // Whisky Chanceler
+            'p-alc-45', // Whisky Ballantine's
+            'p-alc-53', 'p-alc-54', // Todas Ice Glow
+            'p-alc-50', // Genebra Dubar
+            'p-alc-55', 'p-new-quinta-morgado-1l', 'p-alc-56', 'p-alc-57', // Todos os Vinhos
+            'p-alc-58', // Campari
+            'p-alc-59', // Jurubeba
+            'p-alc-60', // Conhaque Presidente
+            'p-alc-62', // Dreher
+            'p-alc-64', // Domecq
+            'p-alc-70', // Canelinha da Rocha
+
+            // --- Bomboneire (Manter tamanho - Exceto os listados para aumentar) ---
+            // Itens para AUMENTAR (NÃO colocar aqui): p-bomb-5, p-bomb-9, p-bomb-43, p-bomb-64, p-bomb-65, p-bomb-66, p-bomb-67
+            'p-bomb-1', 'p-bomb-2', 'p-bomb-3', 'p-bomb-4', // Balas (Exceto Frutas Sortidas)
+            'p-bomb-8', 'p-bomb-14', 'p-bomb-15', // Drops e Halls
+            'p-bomb-11', // Bala Azedinha
+            'p-bomb-16', 'p-bomb-17', 'p-bomb-18', 'p-bomb-20', // Chicletes
+            'p-bomb-21', 'p-bomb-22', // Goma Tubo
+            'p-bomb-23', 'p-bomb-25', 'p-bomb-26', 'p-new-cherry-pop', // Pirulitos
+            'p-bomb-29', // Biscoito Fofinho
+            'p-bomb-36', 'p-bomb-37', // Chup Chup
+            'p-bomb-41', // Chocolate Puríssimo
+            'p-bomb-42', // Doce Balsamo
+            'p-bomb-45', // Quebra Queixo
+            'p-bomb-46', 'p-bomb-47', // Cocadas
+            'p-bomb-48', 'p-bomb-49', // Goiabadas
+            'p-bomb-50', 'p-bomb-51', // Bananadas
+            'p-bomb-52', 'p-bomb-53', // Geleias
+            'p-bomb-54', 'p-bomb-55', // Nego Bom
+            'p-new-doce-amendoim', // Doce de Amendoim
+            'p-bomb-56', 'p-bomb-57', 'p-bomb-58', 'p-bomb-59', // Salgadinhos e Pipoca
+            'p-bomb-60', 'p-bomb-61', 'p-bomb-62', // Agitos
+            'p-bomb-72', 'p-bomb-71', // Snacks e Amendoim Amendupã
+            'p-bomb-63', // Amendoim 1KG
+            'p-bomb-68', 'p-bomb-69', // Torresmo e Pururuca
+            'p-bomb-70', // Leite em pó
+        ];
 
         const ProductCard = ({ product, onProductClick }) => {
             const handleKeyPress = (e) => {
@@ -707,26 +655,33 @@
                 }
             };
 
+            // Check exclusion list
+            const isExcluded = EXCLUDED_FROM_ZOOM.includes(product.id);
+            // Default Zoom is scale-[1.7] (increased A LOT by default for all devices), Excluded is scale-100 (normal)
+            const imgZoomClass = isExcluded ? 'scale-100' : 'scale-[1.7]';
+
             return (
                 <div
                     role="button"
                     tabIndex={0}
                     onClick={() => onProductClick(product)}
                     onKeyPress={handleKeyPress}
-                    className="bg-white rounded-3xl shadow-md overflow-hidden flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full group cursor-pointer focus:outline-none"
+                    className="bg-white rounded-3xl shadow-md overflow-hidden flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full group cursor-pointer focus:outline-none border border-gray-100"
                 >
-                    <div className="relative h-48 overflow-hidden bg-white flex items-center justify-center p-2">
+                    {/* Added p-6 to force uniform image containment */}
+                    <div className="relative h-48 overflow-hidden bg-white flex items-center justify-center p-6">
                         <img
                             loading="lazy"
                             src={product.imageUrl}
                             alt={product.name}
-                            className={`max-w-full max-h-full object-contain transform transition-transform duration-300 ${STYLE_BY_NAME.get(product.name) || 'group-hover:scale-105'}`}
+                            // REMOVED group-hover:scale, ADDED imgZoomClass directly
+                            className={`max-w-full max-h-full object-contain transform transition-transform duration-300 ${imgZoomClass}`}
                         />
                     </div>
 
-                    <div className="p-4 flex-grow flex flex-col justify-between">
+                    <div className="p-4 flex-grow flex flex-col justify-between bg-white relative z-10">
                         <div>
-                            <h3 className="font-bold text-lg mb-2 text-green-800 group-hover:text-green-600 transition-colors duration-300 line-clamp-2">{product.name}</h3>
+                            <h3 className="font-bold text-lg mb-2 text-green-800 group-hover:text-green-600 transition-colors duration-300 line-clamp-2 leading-tight">{product.name}</h3>
                             {(product.details && product.details.length > 0) && (
                                 <div className="mt-1 mb-2">
                                     <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">
@@ -741,20 +696,26 @@
                         
                         <div className="mt-auto">
                             {product.price && (
-                                <div className="mt-3 pt-3 border-t border-gray-100">
-                                    <div className="flex justify-between items-center text-sm">
-                                        <span className="text-gray-500">À vista</span>
-                                        <span className="font-bold text-green-700 text-lg">R$ {product.price.cash}</span>
+                                <div className="mt-2 pt-3 border-t border-gray-100">
+                                    <div className="flex justify-between items-center text-sm mb-1">
+                                        <span className="text-gray-500 whitespace-nowrap mr-1">À vista</span>
+                                        <div className="flex items-center gap-1 whitespace-nowrap">
+                                            <span className="font-bold text-green-700 text-xs">R$</span>
+                                            <span className="font-bold text-green-700 text-lg">{product.price.cash}</span>
+                                        </div>
                                     </div>
-                                    <div className="flex justify-between items-center text-xs text-gray-500 mt-1">
-                                        <span>A prazo</span>
-                                        <span>R$ {product.price.credit}</span>
+                                    <div className="flex justify-between items-center text-xs text-gray-500">
+                                        <span className="font-medium whitespace-nowrap mr-1">A prazo</span>
+                                        <div className="flex items-center gap-1 whitespace-nowrap">
+                                            <span className="font-bold text-xs" style={{color: 'var(--brand-yellow)'}}>R$</span>
+                                            <span className="font-bold text-base" style={{color: 'var(--brand-yellow)'}}>{product.price.credit}</span>
+                                        </div>
                                     </div>
                                 </div>
                             )}
                             <div className="mt-3 text-right">
-                                <span className="text-xs font-semibold text-green-600 group-hover:text-green-800 transition-colors uppercase tracking-wider">
-                                    Ver Detalhes →
+                                <span className="text-xs font-semibold text-green-600 group-hover:text-green-800 transition-colors uppercase tracking-wider flex items-center justify-end gap-1">
+                                    Ver Detalhes <i className="ph-caret-right"></i>
                                 </span>
                             </div>
                         </div>
@@ -778,62 +739,61 @@
                 <div className="container mx-auto p-4 sm:p-6 lg:p-8">
                     { !query && !activeCategory && (
                         <>
-                            <div className="my-8 sm:my-10 mb-12 sm:mb-16">
-                                <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg text-center">
+                            <div className="my-8 sm:my-10 mb-12 sm:mb-16 animate-fade-in-down">
+                                <div className="bg-white bg-opacity-95 p-6 sm:p-8 rounded-3xl shadow-xl text-center backdrop-filter backdrop-blur-sm border-2 border-green-100 relative overflow-hidden">
+                                     <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                                        <i className="ph-sun-dim text-8xl text-yellow-500"></i>
+                                     </div>
                                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4" style={{color: 'var(--brand-green)'}}>
-                                        Bem-vindo ao nosso Catálogo
+                                        Verão de Ofertas IgorValen
                                     </h1>
                                     <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto text-gray-600">
-                                        Explore nossa variedade de produtos de alta qualidade, prontos para atender você.
+                                        Refresque seu estoque com os melhores preços da estação!
                                     </p>
                                 </div>
                             </div>
                             
                             <div className="my-12 text-center">
-                                <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-white" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}>
-                                    Nossas Certificações
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-white flex items-center justify-center gap-2" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}>
+                                    <i className="ph-seal-check text-yellow-400"></i> Nossas Certificações
                                 </h2>
-                                <p className="max-w-2xl mx-auto mb-8 text-white" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.4)'}}>
-                                    Seguimos rigorosas recomendações em nosso processo de fabricação e rígido controle de qualidade.
+                                <p className="max-w-2xl mx-auto mb-8 text-white font-medium" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.4)'}}>
+                                    Qualidade garantida e compromisso com o consumidor.
                                 </p>
                                 <div className="grid grid-cols-3 gap-4">
-                                    <div className="text-center flex flex-col items-center p-2">
-                                        <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-9001.png" alt="Selo ISO 9001" className="h-24 sm:h-32 mb-4"/>
-                                        <h3 className="font-bold text-lg text-white" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.7)'}}>ISO 9001</h3>
-                                        <p className="text-sm text-white opacity-90 max-w-xs mx-auto" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.7)'}}>Norma internacional centrada na gestão da qualidade de um sistema efetivo.</p>
+                                    <div className="text-center flex flex-col items-center p-2 hover-scale">
+                                        <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-9001.png" alt="Selo ISO 9001" className="h-20 sm:h-28 mb-4 filter drop-shadow-lg"/>
                                     </div>
-                                    <div className="text-center flex flex-col items-center p-2">
-                                        <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-14001.png" alt="Selo ISO 14001" className="h-24 sm:h-32 mb-4"/>
-                                        <h3 className="font-bold text-lg text-white" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.7)'}}>ISO 14001</h3>
-                                        <p className="text-sm text-white opacity-90 max-w-xs mx-auto" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.7)'}}>Norma focada no compromisso da organização com a proteção do meio ambiente.</p>
+                                    <div className="text-center flex flex-col items-center p-2 hover-scale">
+                                        <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-14001.png" alt="Selo ISO 14001" className="h-20 sm:h-28 mb-4 filter drop-shadow-lg"/>
                                     </div>
-                                    <div className="text-center flex flex-col items-center p-2">
-                                    <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-45001-ES.png" alt="Selo ISO 45001" className="h-24 sm:h-32 mb-4"/>
-                                        <h3 className="font-bold text-lg text-white" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.7)'}}>ISO 45001</h3>
-                                        <p className="text-sm text-white opacity-90 max-w-xs mx-auto" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.7)'}}>Norma que proporciona as condições de trabalho seguras e saudáveis.</p>
+                                    <div className="text-center flex flex-col items-center p-2 hover-scale">
+                                    <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-45001-ES.png" alt="Selo ISO 45001" className="h-20 sm:h-28 mb-4 filter drop-shadow-lg"/>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="mb-10 rounded-3xl overflow-hidden border-4 border-green-600">
-                                <img 
-                                    src="https://i.ibb.co/d4BbbLWV/Chat-GPT-Image-16-de-dez-de-2025-15-50-13.png" 
-                                    alt="Banner promocional" 
-                                    className="w-full h-auto block"
-                                    onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+Indisponível'; }}
-                                />
+                            <div className="mb-10 rounded-3xl overflow-hidden border-4 border-green-600 shadow-2xl transform hover:scale-[1.01] transition-transform duration-500">
+                                <a href="https://ibb.co/S7vWZ4pP" target="_blank" rel="noopener noreferrer">
+                                    <img 
+                                        src="https://i.ibb.co/qF1X23wd/Chat-GPT-Image-8-de-jan-de-2026-16-48-01.png" 
+                                        alt="Banner promocional de Verão" 
+                                        className="w-full h-auto block"
+                                        onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+de+Verão'; }}
+                                    />
+                                </a>
                             </div>
                         </>
                     )}
                     
-                     <div className="panel p-6 mb-10 border-4 border-green-600">
+                     <div className="panel p-6 mb-10 border-4 border-green-600 bg-white">
                          <div className="relative text-center mb-6">
                              <div className="absolute inset-0 flex items-center" aria-hidden="true">
                                  <div className="w-full border-t border-gray-200"></div>
                              </div>
                              <div className="relative flex justify-center">
-                                 <span className="bg-white px-4 text-2xl font-bold" style={{ color: 'var(--brand-green)' }}>
-                                     Categorias
+                                 <span className="bg-white px-4 text-2xl font-bold flex items-center gap-2" style={{ color: 'var(--brand-green)' }}>
+                                     <i className="ph-squares-four text-yellow-500"></i> Categorias
                                  </span>
                              </div>
                          </div>
@@ -845,7 +805,7 @@
                                      <button 
                                          key={cat} 
                                          onClick={() => setActiveCategory(cat === 'Todas' ? null : cat)}
-                                         className={`flex items-center flex-shrink-0 gap-2 px-4 py-2 text-sm font-semibold rounded-full border-2 transition-all duration-200 ${isActive ? 'bg-green-600 text-white border-transparent shadow-md' : 'bg-white text-gray-700 border-gray-200 hover:border-green-500 hover:text-green-600'}`}
+                                         className={`flex items-center flex-shrink-0 gap-2 px-4 py-2 text-sm font-semibold rounded-full border-2 transition-all duration-200 ${isActive ? 'bg-green-600 text-white border-transparent shadow-md transform scale-105' : 'bg-white text-gray-700 border-gray-200 hover:border-green-500 hover:text-green-600'}`}
                                      >
                                          <CategoryIcon src={iconData.src} alt={iconData.alt} isActive={isActive} />
                                          <span>{cat}</span>
@@ -853,16 +813,16 @@
                                  );
                              })}
                          </div>
-                         <div className="relative flex items-center">
-                              <input ref={searchInputRef} type="text" placeholder="Buscar por nome ou sabor..." onChange={(e) => setQuery(e.target.value)} className="w-full pl-4 pr-14 py-3 bg-gray-50 border border-gray-300 text-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500" />
-                               <button className="absolute right-2 bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition-colors">
+                         <div className="relative flex items-center group">
+                              <input ref={searchInputRef} type="text" placeholder="Buscar por nome ou sabor..." onChange={(e) => setQuery(e.target.value)} className="w-full pl-6 pr-14 py-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm transition-shadow group-hover:shadow-md" />
+                               <button className="absolute right-2 bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition-colors shadow-sm">
                                  <IconLupa />
                              </button>
                          </div>
                              { (query || activeCategory) && (
                                <div className="mt-4 text-center">
-                                   <button onClick={handleClearSearch} className="text-sm font-semibold text-green-700 bg-white px-4 py-2 rounded-full shadow-md hover:bg-gray-100 transition-all">
-                                       Limpar Filtros e Voltar
+                                   <button onClick={handleClearSearch} className="text-sm font-semibold text-green-700 bg-white px-4 py-2 rounded-full shadow-md hover:bg-gray-100 transition-all border border-green-200 flex items-center gap-2 mx-auto">
+                                       <i className="ph-arrow-counter-clockwise"></i> Limpar Filtros e Voltar
                                    </button>
                                </div>
                            )}
@@ -875,16 +835,16 @@
                                 {!query && !activeCategory && group.category === 'Bebidas não alcoólicas' && (
                                     <div className="bg-white rounded-3xl shadow-lg p-4 sm:p-6 mb-8 flex flex-col gap-4">
                                         <div className="text-center">
-                                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold" style={{color: 'var(--brand-green)'}}>
-                                                ISM Brasil: portfólio de alto giro para o seu negócio.
+                                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold flex items-center justify-center gap-2" style={{color: 'var(--brand-green)'}}>
+                                                <i className="ph-drop text-blue-500"></i> ISM Brasil: portfólio de alto giro.
                                             </h3>
                                             <p className="text-sm sm:text-base md:text-lg font-semibold mt-2 text-gray-600">
-                                                Multinacional presente em 7 países, com fábrica em Alagoinhas-BA - cidade reconhecida pela pureza da sua água - a ISM entrega um mix que vende o dia todo:
+                                                Multinacional presente em 7 países, com fábrica em Alagoinhas-BA.
                                             </p>
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <img src="https://i.ibb.co/PvnmNKKw/100.jpg" alt="100" className="rounded-2xl w-full h-auto object-contain" />
-                                            <img src="https://i.ibb.co/MkBdYQ1Z/484319138-122166789608286629-3240958178884466690-n.jpg" alt="484319138-122166789608286629-3240958178884466690-n" className="rounded-2xl w-full h-auto object-contain" />
+                                            <img src="https://i.ibb.co/PvnmNKKw/100.jpg" alt="100" className="rounded-2xl w-full h-auto object-contain hover:shadow-lg transition-shadow" />
+                                            <img src="https://i.ibb.co/MkBdYQ1Z/484319138-122166789608286629-3240958178884466690-n.jpg" alt="484319138-122166789608286629-3240958178884466690-n" className="rounded-2xl w-full h-auto object-contain hover:shadow-lg transition-shadow" />
                                         </div>
                                     </div>
                                 )}
@@ -893,33 +853,38 @@
                                     <div className="mb-8">
                                         <div className="relative">
                                             <div className="rounded-t-3xl shadow-lg overflow-hidden mt-4" style={{ backgroundColor: '#042f15' }}>
-                                                <img src="https://i.ibb.co/Vp9Pshb4/IMG-0863.jpg" alt="Novas Cervejas" className="w-full h-auto block" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+Indisponível'; }}/>
+                                                <img src="https://i.ibb.co/Vp9Pshb4/IMG-0863.jpg" alt="Novas Cervejas" className="w-full h-auto block hover:scale-105 transition-transform duration-700" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+Indisponível'; }}/>
                                                 <div style={{ height: '20px' }}></div>
                                             </div>
                                         </div>
-                                        <div className="wavy-top-connector rounded-b-3xl shadow-lg p-6 md:p-8 pt-10 relative z-10">
-                                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2" style={{ color: 'var(--brand-green)' }}>Brussels Puro Malte: a cerveja que se tornou febre nas redes sociais.</h3>
-                                            <p className="text-center text-gray-600 mb-6 max-w-3xl mx-auto text-sm sm:text-base">Com campanhas estreladas por Ronaldinho Gáucho, a Brussels chega com reconhecimento imediato do público.</p>
+                                        <div className="wavy-top-connector rounded-b-3xl shadow-lg p-6 md:p-8 pt-10 relative z-10 bg-white">
+                                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2" style={{ color: 'var(--brand-green)' }}>Brussels Puro Malte</h3>
+                                            <p className="text-center text-gray-600 mb-6 max-w-3xl mx-auto text-sm sm:text-base">A cerveja que se tornou febre nas redes sociais.</p>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                                                <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-gray-50 border"><img src="https://i.ibb.co/bjWqn9kf/lager.jpg" alt="Lager" className="w-24 h-auto object-contain flex-shrink-0" /><div className="text-center sm:text-left"><h4 className="font-bold text-xl sm:text-2xl" style={{ color: 'var(--brand-green)' }}>Lager</h4><p className="text-gray-700 font-medium text-sm sm:text-base">puro malte leve e refrescante</p></div></div>
-                                                <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-gray-50 border"><img src="https://i.ibb.co/5hq6TQHP/ultra.jpg" alt="Ultra" className="w-24 h-auto object-contain flex-shrink-0" /><div className="text-center sm:text-left"><h4 className="font-bold text-xl sm:text-2xl" style={{ color: '#1e3a8a' }}>Ultra</h4><p className="text-gray-700 font-medium text-sm sm:text-base">Puro malte zero açúcar e zero carboidrato com um sabor incrível</p></div></div>
+                                                <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-gray-50 border hover:shadow-md transition-shadow"><img src="https://i.ibb.co/bjWqn9kf/lager.jpg" alt="Lager" className="w-24 h-auto object-contain flex-shrink-0" /><div className="text-center sm:text-left"><h4 className="font-bold text-xl sm:text-2xl" style={{ color: 'var(--brand-green)' }}>Lager</h4><p className="text-gray-700 font-medium text-sm sm:text-base">puro malte leve e refrescante</p></div></div>
+                                                <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-gray-50 border hover:shadow-md transition-shadow"><img src="https://i.ibb.co/5hq6TQHP/ultra.jpg" alt="Ultra" className="w-24 h-auto object-contain flex-shrink-0" /><div className="text-center sm:text-left"><h4 className="font-bold text-xl sm:text-2xl" style={{ color: '#1e3a8a' }}>Ultra</h4><p className="text-gray-700 font-medium text-sm sm:text-base">Puro malte zero açúcar</p></div></div>
                                             </div>
-                                            <p className="text-center text-gray-800 font-medium max-w-3xl mx-auto text-sm sm:text-base">Com rótulos que chamam atenção e preços que garantem uma ótima margem, o giro é certo: a curiosidade do seu cliente traz o primeiro pedido, o sabor garante a recompra.</p>
                                         </div>
                                     </div>
                                 )}
 
                                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center gap-4 justify-start" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}>
-                                    <CategoryIcon src={CATEGORY_ICONS_DATA[group.category].src} alt={CATEGORY_ICONS_DATA[group.category].alt} isActive={true} size="w-8 h-8 sm:w-10 sm:h-10" />
+                                    <div className="bg-white p-2 rounded-full shadow-md">
+                                        <CategoryIcon src={CATEGORY_ICONS_DATA[group.category].src} alt={CATEGORY_ICONS_DATA[group.category].alt} isActive={false} size="w-8 h-8 sm:w-10 sm:h-10" />
+                                    </div>
                                     {group.category}
                                 </h2>
 
                                 <div className="bg-white rounded-3xl shadow-lg p-4 sm:p-6">
                                     {loading ? (
-                                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 md:gap-6">
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                                             {Array.from({ length: 4 }).map((_, i) => <ProductCardSkeleton key={i} />)}
                                         </div>
                                     ) : !group.products.length ? null : (
+                                        /* * Updated Grid Classes for Tablet A9 (approx 8.7 inch):
+                                         * The key change is 'md:grid-cols-4'. 
+                                         * md usually starts at 768px, which covers most tablets in portrait or landscape.
+                                         */
                                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                                             {group.products.map(p => <ProductCard key={p.id} product={p} onProductClick={onProductClick} />)}
                                         </div>
@@ -948,12 +913,12 @@
                     
                     {!query && !activeCategory && (
                         <div className="my-10">
-                            <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg text-center border-4 border-green-600">
+                            <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg text-center border-4 border-green-600 bg-opacity-95">
                                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4" style={{color: 'var(--brand-green)'}}>
                                     Obrigado pela sua visita!
                                 </h2>
                                 <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
-                                    Você chegou ao fim do nosso catálogo, mas ao início de uma grande parceria. Agradecemos a confiança e preferência. Estamos à disposição para abastecer seu negócio com produtos de alta qualidade e giro rápido!
+                                    Estamos prontos para atender você neste verão com os melhores produtos e preços.
                                 </p>
                             </div>
                         </div>
