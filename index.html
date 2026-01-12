@@ -295,7 +295,7 @@
             { id: 'p-alc-30', name: 'Vodka Natasha 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7xs3PBVR/258980-1.webp', sortOrder: 46, active: true, price: { cash: '16,80', credit: '17,14' } },
             { id: 'p-alc-31', name: 'Vodka Smirnoff 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/YBrqssM4/961397-1.jpg', sortOrder: 47, active: true, price: { cash: '31,98', credit: '32,62' } },
             
-            { id: 'p-alc-33', name: 'Whisky Black Stone 1L (Sem Copo)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0pnMv0XZ/268299.webp', sortOrder: 49, active: true, price: { cash: '22,68', credit: '23,13' } },
+            { id: 'p-alc-33', name: 'Whisky Black Stone 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0pnMv0XZ/268299.webp', sortOrder: 49, active: true, price: { cash: '22,68', credit: '23,13' } },
             
             { id: 'p-alc-34', name: 'Whisky Old Par 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/mrmhjzXV/51zz0lz-Ntu-L.jpg', sortOrder: 50, active: true, price: { cash: '138,80', credit: '141,58' } },
             { id: 'p-alc-35', name: 'Whisky Jack Daniel’s 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/gbHzSbww/jack-daniels-1l.png', sortOrder: 51, active: true, price: { cash: '128,00', credit: '130,56' } },
@@ -607,63 +607,29 @@
             'p1', // Refrigerante Goob 2L
             'p12', // Refrigerante Goob 1L
             'p16', 'p17', 'p18', // Águas Lôa
-            'p20', // Suco Yulo 1.5L
-            'p21', // Suco Yulo 400ML
-            'p23', // Chá Gelado Drink T
+            // p20, p21, p23 removidos para aumentar
 
             // --- Bebidas Alcoólicas (Manter tamanho) ---
             'p-alc-1', 'p-new-brussels-lager-ln', 'p-alc-2', 'p-new-brussels-ultra-ln', // Todas as Brussels
-            'p-alc-3-com-papelao', 'p-alc-3-sem-papelao', // Pitu Litro (Com e Sem papelão)
-            'p-alc-8', // Pitu Lata 350ML
-            'p-alc-10', // Pitu Lata Limão e Mel
-            'p-alc-21', // Velho Barreiro
-            'p-new-cachaca-presidente', // Cachaça Presidente
-            'p-alc-72', 'p-alc-73', // Rums Montilla (Ouro e Branca)
-            'p-alc-15', // Fogo Paulista
-            'p-alc-14', // Paratudo
-            'p-alc-17', 'p-alc-19', // Asa Branca (e Jequitibá)
-            'p-alc-18', // Caninha Vida Nova
-            'p-alc-20', // Cachaça Seleta
-            'p-alc-27', 'p-alc-28', 'p-alc-29', // Todas Newsnoff
-            'p-alc-30', // Vodka Natasha
-            'p-alc-31', // Vodka Smirnoff
-            'p-alc-33', // Whisky Black Stone
-            'p-alc-34', // Whisky Old Par
-            'p-alc-38', // Whisky Red Label
-            'p-alc-42', // Whisky Passport
-            'p-alc-43', // Whisky White Horse
-            'p-alc-44', // Whisky Chanceler
-            'p-alc-45', // Whisky Ballantine's
-            'p-alc-53', 'p-alc-54', // Todas Ice Glow
-            'p-alc-50', // Genebra Dubar
-            'p-alc-55', 'p-new-quinta-morgado-1l', 'p-alc-56', 'p-alc-57', // Todos os Vinhos
-            'p-alc-58', // Campari
-            'p-alc-59', // Jurubeba
-            'p-alc-60', // Conhaque Presidente
-            'p-alc-62', // Dreher
-            'p-alc-64', // Domecq
-            'p-alc-70', // Canelinha da Rocha
+            // Pitu Litro, Lata e 600ml removidos para aumentar
+            // Cachaças Paratudo, Asa Branca, Vida Nova, Seleta, Presidente removidas para aumentar
+            // Vodkas Newsnoff e Smirnoff removidas para aumentar
+            // Whiskies removidos para aumentar
+            // Vinhos removidos para aumentar
+            'p-alc-21', // Velho Barreiro (Manter pequeno)
+            'p-alc-72', // Rum Montilla Ouro (Manter pequeno)
+            'p-alc-15', // Fogo Paulista (Manter pequeno)
+            'p-alc-30', // Vodka Natasha (Manter pequeno)
+            'p-alc-43', // Whisky White Horse (Manter pequeno)
+            'p-alc-53', 'p-alc-54', // Ice Glow (Manter pequeno)
+            'p-alc-58', // Campari (Manter pequeno)
+            'p-alc-60', // Conhaque Presidente (Manter pequeno)
+            'p-alc-65', // Licor Menta (Manter pequeno)
+            'p-alc-67', // Catuaba (Manter pequeno)
+            'p-alc-68', // Alcatrão (Manter pequeno)
+            'p-alc-69', // Gengibre (Manter pequeno)
 
-            // --- Bomboneire (Manter tamanho - Exceto os listados para aumentar) ---
-            'p-bomb-1', 'p-bomb-2', 'p-bomb-3', 'p-bomb-4', // Balas (Exceto Frutas Sortidas)
-            'p-bomb-8', 'p-bomb-14', 'p-bomb-15', // Drops e Halls
-            'p-bomb-11', // Bala Azedinha
-            'p-bomb-16', 'p-bomb-17', 'p-bomb-18', 'p-bomb-20', // Chicletes
-            'p-bomb-21', 'p-bomb-22', // Goma Tubo
-            'p-bomb-23', 'p-bomb-25', 'p-bomb-26', 'p-new-cherry-pop', // Pirulitos
-            'p-bomb-29', // Biscoito Fofinho
-            'p-bomb-36', 'p-bomb-37', // Chup Chup
-            'p-bomb-41', // Chocolate Puríssimo
-            'p-bomb-42', // Doce Balsamo
-            'p-bomb-48', 'p-bomb-49', // Goiabadas
-            'p-bomb-50', 'p-bomb-51', // Bananadas
-            'p-new-doce-amendoim', // Doce de Amendoim
-            'p-bomb-56', 'p-bomb-57', 'p-bomb-58', 'p-bomb-59', // Salgadinhos e Pipoca
-            'p-bomb-60', 'p-bomb-61', 'p-bomb-62', // Agitos
-            'p-bomb-72', 'p-bomb-71', // Snacks e Amendoim Amendupã
-            'p-bomb-63', // Amendoim 1KG
-            'p-bomb-68', 'p-bomb-69', // Torresmo e Pururuca
-            'p-bomb-70', // Leite em pó
+            // --- Bomboneire (TODOS removidos da lista para AUMENTAR) ---
         ];
 
         const ProductCard = ({ product, onProductClick }) => {
