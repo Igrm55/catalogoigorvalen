@@ -227,6 +227,15 @@
         .price-badge .value {
             font-size: 0.95rem; /* Preço um pouco menor que antes */
         }
+
+        /* Toggle Switch Styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0f8a3a;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0f8a3a;
+        }
     </style>
 </head>
 <body>
@@ -485,7 +494,7 @@
           'Outros': { src: "https://i.ibb.co/HLMS4Dh5/reuso.png", alt: "Ícone de outros produtos" },
         };
         
-        const ProductDetailModal = ({ product, onClose }) => {
+        const ProductDetailModal = ({ product, onClose, showPrices }) => {
             if (!product) return null;
 
             return (
@@ -516,7 +525,7 @@
                                 </div>
                             )}
 
-                            {product.price && (
+                            {product.price && showPrices && (
                                 <div className="mt-6 border-t pt-4 border-gray-300">
                                     <div className="flex justify-between items-center mb-1">
                                         <span className="text-gray-600 font-medium">Preço à vista:</span>
@@ -602,37 +611,12 @@
         );
 
         // Define IDs excluded from zoom
+        // TODOS REMOVIDOS PARA QUE TODOS FIQUEM MAIORES POR PADRÃO.
+        // ADICIONE AQUI SE QUISER QUE ALGUM FIQUE PEQUENO NOVAMENTE.
         const EXCLUDED_FROM_ZOOM = [
-            // --- Bebidas Não Alcoólicas (Manter tamanho) ---
-            'p1', // Refrigerante Goob 2L
-            'p12', // Refrigerante Goob 1L
-            'p16', 'p17', 'p18', // Águas Lôa
-            // p20, p21, p23 removidos para aumentar
-
-            // --- Bebidas Alcoólicas (Manter tamanho) ---
-            'p-alc-1', 'p-new-brussels-lager-ln', 'p-alc-2', 'p-new-brussels-ultra-ln', // Todas as Brussels
-            // Pitu Litro, Lata e 600ml removidos para aumentar
-            // Cachaças Paratudo, Asa Branca, Vida Nova, Seleta, Presidente removidas para aumentar
-            // Vodkas Newsnoff e Smirnoff removidas para aumentar
-            // Whiskies removidos para aumentar
-            // Vinhos removidos para aumentar
-            'p-alc-21', // Velho Barreiro (Manter pequeno)
-            'p-alc-72', // Rum Montilla Ouro (Manter pequeno)
-            'p-alc-15', // Fogo Paulista (Manter pequeno)
-            'p-alc-30', // Vodka Natasha (Manter pequeno)
-            'p-alc-43', // Whisky White Horse (Manter pequeno)
-            'p-alc-53', 'p-alc-54', // Ice Glow (Manter pequeno)
-            'p-alc-58', // Campari (Manter pequeno)
-            'p-alc-60', // Conhaque Presidente (Manter pequeno)
-            'p-alc-65', // Licor Menta (Manter pequeno)
-            'p-alc-67', // Catuaba (Manter pequeno)
-            'p-alc-68', // Alcatrão (Manter pequeno)
-            'p-alc-69', // Gengibre (Manter pequeno)
-
-            // --- Bomboneire (TODOS removidos da lista para AUMENTAR) ---
         ];
 
-        const ProductCard = ({ product, onProductClick }) => {
+        const ProductCard = ({ product, onProductClick, showPrices }) => {
             const handleKeyPress = (e) => {
                 if (e.key === 'Enter') {
                     onProductClick(product);
@@ -654,7 +638,7 @@
                 >
                     {/* Added p-6 to force uniform image containment */}
                     <div className="relative h-48 overflow-hidden bg-white flex items-center justify-center p-6">
-                        {product.price && (
+                        {product.price && showPrices && (
                             <div className="price-badge">
                                 <span className="label">À Vista</span>
                                 <span className="value">R$ {product.price.cash}</span>
@@ -685,7 +669,7 @@
                         </div>
                         
                         <div className="mt-auto">
-                            {product.price && (
+                            {product.price && showPrices && (
                                 <div className="mt-2 pt-2 border-t border-gray-100">
                                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full gap-1">
                                         <span className="font-extrabold text-[0.65rem] uppercase tracking-wide text-gray-500">A PRAZO</span>
@@ -707,7 +691,7 @@
             );
         };
         
-        const HomePage = ({ loading, groupedProducts, allCategories, activeCategory, setActiveCategory, setQuery, onProductClick, query }) => {
+        const HomePage = ({ loading, groupedProducts, allCategories, activeCategory, setActiveCategory, setQuery, onProductClick, query, showPrices, setShowPrices }) => {
             const searchInputRef = useRef(null);
 
             const handleClearSearch = () => {
@@ -796,19 +780,39 @@
                                  );
                              })}
                          </div>
-                         <div className="relative flex items-center group">
-                              <input ref={searchInputRef} type="text" placeholder="Buscar por nome ou sabor..." onChange={(e) => setQuery(e.target.value)} className="w-full pl-6 pr-14 py-4 bg-gray-5 border border-gray-300 text-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm transition-shadow group-hover:shadow-md" />
-                               <button className="absolute right-2 bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition-colors shadow-sm">
-                                 <IconLupa />
-                             </button>
+                         <div className="flex flex-col md:flex-row gap-4 items-center mb-4">
+                            <div className="relative flex-grow flex items-center group w-full">
+                                <input ref={searchInputRef} type="text" placeholder="Buscar por nome ou sabor..." onChange={(e) => setQuery(e.target.value)} className="w-full pl-6 pr-14 py-4 bg-gray-5 border border-gray-300 text-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm transition-shadow group-hover:shadow-md" />
+                                <button className="absolute right-2 bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition-colors shadow-sm">
+                                    <IconLupa />
+                                </button>
+                            </div>
+
+                            {/* Price Toggle Switch */}
+                            <div className="flex items-center gap-2 bg-gray-100 px-4 py-3 rounded-full border border-gray-200 whitespace-nowrap">
+                                <span className="text-sm font-bold text-gray-700">Mostrar Preços</span>
+                                <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                    <input 
+                                        type="checkbox" 
+                                        name="toggle" 
+                                        id="toggle" 
+                                        className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300 left-0 top-0 checked:bg-white checked:translate-x-full" 
+                                        style={{ top: '-12px', left: '-2px'}}
+                                        checked={showPrices}
+                                        onChange={() => setShowPrices(!showPrices)}
+                                    />
+                                    <label htmlFor="toggle" className={`toggle-label block overflow-hidden h-6 rounded-full cursor-pointer transition-colors duration-300 ${showPrices ? 'bg-green-600' : 'bg-gray-300'}`}></label>
+                                </div>
+                            </div>
                          </div>
-                             { (query || activeCategory) && (
-                               <div className="mt-4 text-center">
-                                   <button onClick={handleClearSearch} className="text-sm font-semibold text-green-700 bg-white px-4 py-2 rounded-full shadow-md hover:bg-gray-100 transition-all border border-green-200 flex items-center gap-2 mx-auto">
-                                       <i className="ph-arrow-counter-clockwise"></i> Limpar Filtros e Voltar
-                                   </button>
-                               </div>
-                           )}
+                         
+                         { (query || activeCategory) && (
+                            <div className="mt-4 text-center">
+                                <button onClick={handleClearSearch} className="text-sm font-semibold text-green-700 bg-white px-4 py-2 rounded-full shadow-md hover:bg-gray-100 transition-all border border-green-200 flex items-center gap-2 mx-auto">
+                                    <i className="ph-arrow-counter-clockwise"></i> Limpar Filtros e Voltar
+                                </button>
+                            </div>
+                         )}
                      </div>
                     
                     {/* Products Section */}
@@ -860,16 +864,13 @@
 
                                 <div className="bg-white rounded-3xl shadow-lg p-4 sm:p-6">
                                     {loading ? (
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
                                             {Array.from({ length: 4 }).map((_, i) => <ProductCardSkeleton key={i} />)}
                                         </div>
                                     ) : !group.products.length ? null : (
-                                        /* * Updated Grid Classes for Tablet A9 (approx 8.7 inch):
-                                         * The key change is 'md:grid-cols-4'. 
-                                         * md usually starts at 768px, which covers most tablets in portrait or landscape.
-                                         */
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                                            {group.products.map(p => <ProductCard key={p.id} product={p} onProductClick={onProductClick} />)}
+                                        // ALTERAÇÃO: Mantendo 'md:grid-cols-4' e removendo 'lg:grid-cols-5' para forçar 4 produtos
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+                                            {group.products.map(p => <ProductCard key={p.id} product={p} onProductClick={onProductClick} showPrices={showPrices} />)}
                                         </div>
                                     )}
                                 </div>
@@ -917,6 +918,7 @@
             const [query, setQuery] = useState('');
             const [activeCategory, setActiveCategory] = useState(null);
             const [selectedProduct, setSelectedProduct] = useState(null);
+            const [showPrices, setShowPrices] = useState(true); // Novo estado para controlar preços
 
             const handleProductClick = (product) => {
                 setSelectedProduct(product);
@@ -956,10 +958,12 @@
                            setQuery={setQuery}
                            onProductClick={handleProductClick}
                            query={query}
+                           showPrices={showPrices}
+                           setShowPrices={setShowPrices}
                        />
                     </main>
                     <Footer />
-                    <ProductDetailModal product={selectedProduct} onClose={handleCloseModal} />
+                    <ProductDetailModal product={selectedProduct} onClose={handleCloseModal} showPrices={showPrices} />
                 </div>
             );
         };
