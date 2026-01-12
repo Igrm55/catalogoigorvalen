@@ -260,7 +260,7 @@
             { id: 'p18', name: 'Água Mineral Lôa 500ML Com gás', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/j9cdnpg7/com-gas-1.png', sortOrder: 10, active: true, price: { cash: '17,66', credit: '17,91' } },
             { id: 'p19', name: 'Suco de Caixinha Yulo Tetra Park 200ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Pêssego'}, {flavor: 'Morango'}, {flavor: 'Frutas Cítricas'}, {flavor: 'Uva'}, {flavor: 'Laranja'}, {flavor: 'Acerola'}], imageUrl: 'https://i.ibb.co/YT77Lzr2/Gemini-Generated-Image-7p6w207p6w207p6w.png', sortOrder: 11, active: true, price: { cash: '37,38', credit: '38,13' } },
             { id: 'p20', name: 'Suco Yulo 1,5L Frutas Cítricas', category: 'Bebidas não alcoólicas', details: [{flavor: 'Frutas Cítricas'}], imageUrl: 'https://i.ibb.co/0jPVR7XP/172760-800-auto.webp', sortOrder: 12, active: true, price: { cash: '30,30', credit: '30,91' } },
-            { id: 'p21', name: 'Suco Yulo 400ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Frutas Cítricas'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/v43Y1zrX/Gemini-Generated-Image-q9sfbwq9sfbwq9sf.png', sortOrder: 13, active: true, price: { cash: '23,85', credit: '24,33' } },
+            { id: 'p21', name: 'Suco Yulo 400ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Frutas Cítricas'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/CKjz1QC7/Gemini-Generated-Image-d5xxjnd5xxjnd5xx.png', sortOrder: 13, active: true, price: { cash: '23,85', credit: '24,33' } },
             { id: 'p22', name: 'Suco Yulo 200 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Frutas Cítricas'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/CKjz1QC7/Gemini-Generated-Image-d5xxjnd5xxjnd5xx.png', sortOrder: 14, active: true, price: { cash: '17,59', credit: '17,70' } },
             { id: 'p23', name: 'Chá Gelado Drink T 300ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Pêssego'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/5XN7dvCf/Gemini-Generated-Image-fr5a3efr5a3efr5a.png', sortOrder: 15, active: true, price: { cash: '26,50', credit: '27,00' } },
             { id: 'p24', name: 'Energético Ener Up lata 269 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}, {flavor: 'Maçã verde'}, {flavor: 'Tropical'}, {flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/QFn2KWcD/Gemini-Generated-Image-vx1r3mvx1r3mvx1r.png', sortOrder: 16, active: true, price: { cash: '24,85', credit: '25,34' } },
@@ -611,9 +611,20 @@
         );
 
         // Define IDs excluded from zoom
-        // TODOS REMOVIDOS PARA QUE TODOS FIQUEM MAIORES POR PADRÃO.
-        // ADICIONE AQUI SE QUISER QUE ALGUM FIQUE PEQUENO NOVAMENTE.
+        // Esses produtos NÃO terão o zoom de 1.7x, ficando no tamanho original (scale-100)
         const EXCLUDED_FROM_ZOOM = [
+            // Aguas Loa
+            'p16', 'p17', 'p18',
+            // Cervejas Brussels
+            'p-alc-1', 'p-new-brussels-lager-ln', 'p-alc-2', 'p-new-brussels-ultra-ln',
+            // Pitu Lata
+            'p-alc-9', 'p-alc-6',
+            // Destilados Específicos
+            'p-alc-72', 'p-alc-15', 'p-alc-21', 'p-new-cachaca-presidente', 'p-alc-43', 'p-alc-60',
+            // Ice Glow
+            'p-alc-53', 'p-alc-54',
+            // Bomboneire e Outros
+            'p-bomb-1', 'p-bomb-36', 'p-bomb-71', 'p-bomb-63', 'p-bomb-70', 'p-out-1'
         ];
 
         const ProductCard = ({ product, onProductClick, showPrices }) => {
