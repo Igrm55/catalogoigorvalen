@@ -228,14 +228,9 @@
             font-size: 0.95rem; /* Preço um pouco menor que antes */
         }
 
-        /* Toggle Switch Styles */
-        .toggle-checkbox:checked {
-            right: 0;
-            border-color: #0f8a3a;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #0f8a3a;
-        }
+        /* REMOVIDO CSS ANTIGO DO TOGGLE QUE ESTAVA FEIO.
+           SUBSTITUÍDO POR CLASSES TAILWIND NO COMPONENTE.
+        */
     </style>
 </head>
 <body>
@@ -610,21 +605,30 @@
             </div>
         );
 
-        // Define IDs excluded from zoom
-        // Esses produtos NÃO terão o zoom de 1.7x, ficando no tamanho original (scale-100)
+        // --- ZOOM LOGIC CONFIGURATION ---
+        // 1. Excluded: No Zoom (scale-100)
         const EXCLUDED_FROM_ZOOM = [
-            // Aguas Loa
-            'p16', 'p17', 'p18',
-            // Cervejas Brussels
-            'p-alc-1', 'p-new-brussels-lager-ln', 'p-alc-2', 'p-new-brussels-ultra-ln',
-            // Pitu Lata
-            'p-alc-9', 'p-alc-6',
-            // Destilados Específicos
-            'p-alc-72', 'p-alc-15', 'p-alc-21', 'p-new-cachaca-presidente', 'p-alc-43', 'p-alc-60',
-            // Ice Glow
-            'p-alc-53', 'p-alc-54',
-            // Bomboneire e Outros
-            'p-bomb-1', 'p-bomb-36', 'p-bomb-71', 'p-bomb-63', 'p-bomb-70', 'p-out-1'
+            'p16', 'p17', 'p18', // Aguas Loa
+            'p-alc-1', 'p-new-brussels-lager-ln', 'p-alc-2', 'p-new-brussels-ultra-ln', // Cervejas
+            'p-alc-9', 'p-alc-6', // Pitu Lata
+            'p-alc-72', 'p-alc-15', 'p-alc-21', 'p-new-cachaca-presidente', 'p-alc-43', 'p-alc-60', // Destilados Específicos
+            'p-alc-53', 'p-alc-54', // Ice Glow
+            'p-bomb-1', 'p-bomb-36', 'p-bomb-71', 'p-bomb-63', 'p-bomb-70', 'p-out-1' // Bomboneire/Outros
+        ];
+
+        // 2. Super Zoom: Scale 2.3x (Requested "aumentar bastante")
+        const SUPER_ZOOM_IDS = [
+            'p13',       // Enerup 2L
+            'p2',        // Enerup 250ML
+            'p14',       // Guarana+ açaí Guaran UP de copo 290 ML
+            'p15',       // Guarana+ açaí Guaran UP 200 ML
+            'p-alc-5',   // Pitu de Garrafa 600 ML
+            'p-alc-52'   // Ice Syn
+        ];
+
+        // 3. Slight Zoom: Scale 1.9x (Requested "aumentar só um pouquinho")
+        const SLIGHT_ZOOM_IDS = [
+            'p-alc-4'    // Pitu Devolvendo o Litro
         ];
 
         const ProductCard = ({ product, onProductClick, showPrices }) => {
@@ -634,10 +638,16 @@
                 }
             };
 
-            // Check exclusion list
-            const isExcluded = EXCLUDED_FROM_ZOOM.includes(product.id);
-            // Default Zoom is scale-[1.7] (increased A LOT by default for all devices), Excluded is scale-100 (normal)
-            const imgZoomClass = isExcluded ? 'scale-100' : 'scale-[1.7]';
+            // Determine Scale Class
+            let imgZoomClass = 'scale-[1.7]'; // Default Zoom
+
+            if (EXCLUDED_FROM_ZOOM.includes(product.id)) {
+                imgZoomClass = 'scale-100';
+            } else if (SUPER_ZOOM_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[2.3]'; // Big Zoom
+            } else if (SLIGHT_ZOOM_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[1.9]'; // Slight Zoom
+            }
 
             return (
                 <div
@@ -659,7 +669,6 @@
                             loading="lazy"
                             src={product.imageUrl}
                             alt={product.name}
-                            // REMOVED group-hover:scale, ADDED imgZoomClass directly
                             className={`max-w-full max-h-full object-contain transform transition-transform duration-300 ${imgZoomClass}`}
                         />
                     </div>
@@ -799,21 +808,18 @@
                                 </button>
                             </div>
 
-                            {/* Price Toggle Switch */}
-                            <div className="flex items-center gap-2 bg-gray-100 px-4 py-3 rounded-full border border-gray-200 whitespace-nowrap">
-                                <span className="text-sm font-bold text-gray-700">Mostrar Preços</span>
-                                <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            {/* MODERN TOGGLE SWITCH COMPONENT */}
+                            <div className="flex items-center gap-3 bg-gray-50 px-5 py-3 rounded-full border border-gray-200 whitespace-nowrap shadow-sm">
+                                <span className="text-sm font-bold text-gray-700 select-none">Mostrar Preços</span>
+                                <label className="relative inline-flex items-center cursor-pointer">
                                     <input 
                                         type="checkbox" 
-                                        name="toggle" 
-                                        id="toggle" 
-                                        className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300 left-0 top-0 checked:bg-white checked:translate-x-full" 
-                                        style={{ top: '-12px', left: '-2px'}}
+                                        className="sr-only peer"
                                         checked={showPrices}
                                         onChange={() => setShowPrices(!showPrices)}
                                     />
-                                    <label htmlFor="toggle" className={`toggle-label block overflow-hidden h-6 rounded-full cursor-pointer transition-colors duration-300 ${showPrices ? 'bg-green-600' : 'bg-gray-300'}`}></label>
-                                </div>
+                                    <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                                </label>
                             </div>
                          </div>
                          
