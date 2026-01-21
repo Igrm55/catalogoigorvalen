@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Verão - IgorValen Distribuidora</title>
+    <title>Catálogo Verão - WR Atacadista</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Phosphor Icons (para ícones de verão) -->
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
@@ -198,37 +198,35 @@
             transform: scale(1.03);
         }
         
-        /* Updated Price Badge Styles - Smaller, Green Text on White Background */
         .price-badge {
             background: white;
             color: var(--brand-green);
-            padding: 4px 8px; /* Menor padding */
-            border-radius: 12px; /* Bordas mais arredondadas */
+            padding: 4px 8px;
+            border-radius: 12px;
             font-weight: 800;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15);
             position: absolute;
-            top: 8px; /* Um pouco mais para cima */
-            right: 8px; /* Um pouco mais para direita */
+            top: 8px;
+            right: 8px;
             z-index: 20;
-            border: 2px solid var(--brand-green); /* Borda verde para destacar */
+            border: 2px solid var(--brand-green);
             display: flex;
             flex-direction: column;
             align-items: center;
             line-height: 1;
-            min-width: 65px; /* Largura mínima ajustada */
+            min-width: 65px;
         }
         .price-badge .label {
-            font-size: 0.55rem; /* Texto "À VISTA" menor */
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 1px;
-            color: #555; /* Cinza escuro para legibilidade */
+            color: #555;
         }
         .price-badge .value {
-            font-size: 0.95rem; /* Preço um pouco menor que antes */
+            font-size: 0.95rem;
         }
         
-        /* Badge para produtos em falta */
         .out-of-stock-overlay {
             position: absolute;
             inset: 0;
@@ -237,11 +235,11 @@
             align-items: center;
             justify-content: center;
             z-index: 25;
-            pointer-events: none; /* Permite ver a imagem mas indica indisponibilidade */
+            pointer-events: none;
         }
         
         .out-of-stock-badge {
-            background-color: #ef4444; /* red-500 */
+            background-color: #ef4444;
             color: white;
             padding: 8px 16px;
             border-radius: 9999px;
@@ -261,264 +259,165 @@
     <div class="wave-container"></div>
 
     <script type="text/babel">
-        // [2026-01-20] Desafio: Digite "verão" com os olhos fechados nos comentários!
+        // [2026-01-20] Desafio: Digite "VERÃO" com os olhos fechados nos comentários!
 
         // ===================================================================
         // DATA
         // ===================================================================
+        // NOTA: Dados visuais (imagens/detalhes) trazidos da IgorValen
+        //       Preços mantidos da WR Atacadista
         const MOCK_PRODUCTS = [
-            // --- Bebidas não alcoólicas ---
-            { id: 'p1', name: 'Refrigerante Goob 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Uva'}, {flavor: 'Guaraná'}, {flavor: 'Laranja'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/23PSr9s0/Gemini-Generated-Image-a5jkuba5jkuba5jk.png', sortOrder: 1, active: true, price: { cash: '25,80', credit: '26,30' } },
-            { id: 'p12', name: 'Refrigerante Goob 1L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Guaraná'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/Z6L113Sv/1768937474288.png', sortOrder: 2, active: true, price: { cash: '19,95', credit: '20,35' } },
-            { id: 'p11', name: 'Refrigerante Goob 230ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Guaraná'}, {flavor: 'Morango com Limão'}, {flavor: 'Limão'}, {flavor: 'Laranja'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/Csbp4YJd/1768937683878.png', sortOrder: 3, active: true, price: { cash: '13,86', credit: '14,13' } },
-            { id: 'p13', name: 'Energético Ener Up 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Sabor tradicional'}], imageUrl: 'https://i.ibb.co/8LCtQwjT/ISM-SITE-BANNER-730-X400-ENERUP-2-L-640x400.png', sortOrder: 4, active: true, price: { cash: '36,00', credit: '36,72' } },
-            { id: 'p2', name: 'Energético Ener Up 250ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bjbfp4Xh/ISM-SITE-BANNER-730-X400-ENERUP-250-ML-640x400.png', sortOrder: 5, active: true, price: { cash: '32,90', credit: '33,56' } },
-            { id: 'p14', name: 'Guaraná + Açaí Guaran Up de Copo 290ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/3mSgbrqw/ISM-SITE-BANNER-730-X400-GUARANUP-COPO-640x400.png', sortOrder: 6, active: true, price: { cash: '28,95', credit: '29,53' } },
-            { id: 'p15', name: 'Guaraná + Açaí Guaran Up 200ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Y7Rm31tR/ISM-SITE-BANNER-730-X400-GUARANUP-GARRAFA-640x400.png', sortOrder: 7, active: true, price: { cash: '19,00', credit: '19,40' } },
-            { id: 'p16', name: 'Água Mineral Lôa 1,5L Sem gás', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bgv1DxzH/1768938897965.png', sortOrder: 8, active: true, price: { cash: '13,85', credit: '13,99' } },
-            { id: 'p17', name: 'Água Mineral Lôa 500ML Sem Gás', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/tpHbj1yZ/1768938500430.png', sortOrder: 9, active: true, price: { cash: '11,98', credit: '12,13' } },
-            { id: 'p18', name: 'Água Mineral Lôa 500ML Com gás', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/YBdRGc2Z/1768938703890.png', sortOrder: 10, active: true, price: { cash: '17,66', credit: '17,91' } },
-            { id: 'p19', name: 'Suco de Caixinha Yulo Tetra Park 200ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Laranja e Acerola'}, {flavor: 'Uva'}, {flavor: 'Pêssego'}, {flavor: 'Morango'}, {flavor: 'Frutas Cítricas'}], imageUrl: 'https://i.ibb.co/39ZNBHZY/1768938234848.png', sortOrder: 11, active: true, price: { cash: '37,38', credit: '38,13' } },
-            { id: 'p20', name: 'Suco Yulo 1,5L Frutas Cítricas', category: 'Bebidas não alcoólicas', details: [{flavor: 'Frutas Cítricas'}], imageUrl: 'https://i.ibb.co/0jPVR7XP/172760-800-auto.webp', sortOrder: 12, active: true, price: { cash: '30,30', credit: '30,91' } },
-            { id: 'p21', name: 'Suco Yulo 400ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Uva'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/RGJmf393/1768939190446.png', sortOrder: 13, active: true, price: { cash: '23,85', credit: '24,33' } },
-            { id: 'p22', name: 'Suco Yulo 200 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Uva'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/Fkxjg2Wq/1768939366828.png', sortOrder: 14, active: true, price: { cash: '17,59', credit: '17,70' } },
-            { id: 'p23', name: 'Chá Gelado Drink T 300ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Pêssego'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/5XN7dvCf/Gemini-Generated-Image-fr5a3efr5a3efr5a.png', sortOrder: 15, active: true, price: { cash: '26,50', credit: '26,33' } },
-            { id: 'p24', name: 'Energético Ener Up lata 269 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}, {flavor: 'Melância'}, {flavor: 'Tropical'}, {flavor: 'Maçã Verde'}, {flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/Wq8dkqz/1768937912013.png', sortOrder: 16, active: true, price: { cash: '24,85', credit: '25,34' } },
-            { id: 'p-new-achoco', name: 'Achocolatado Maratinho', category: 'Bebidas não alcoólicas', details: [{flavor: 'Chocolate'}], imageUrl: 'https://i.ibb.co/W13jj1s/02.png', sortOrder: 16.1, active: true, price: { cash: '38,73', credit: '39,51' } },
-            
-            // --- Bebidas alcoólicas ---
-            { id: 'p-alc-1', name: 'Cerveja Brussels Lager 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Lager'}], imageUrl: 'https://i.ibb.co/bjWqn9kf/lager.jpg', sortOrder: 17, active: true, price: { cash: '29,00', credit: '29,60' }, comingSoon: true },
-            { id: 'p-new-brussels-lager-ln', name: 'Cerveja Brussels LN Lager', category: 'Bebidas alcoólicas', details: [{flavor: 'Lager'}], imageUrl: 'https://i.ibb.co/0pS9gMP7/49106a-035daaae8dbb473e9e1376a329918759-mv2.avif', sortOrder: 17.1, active: true, price: { cash: '23,50', credit: '24,00' }, comingSoon: true },
-            { id: 'p-alc-2', name: 'Cerveja Brussels Ultra 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Ultra'}], imageUrl: 'https://i.ibb.co/5hq6TQHP/ultra.jpg', sortOrder: 18, active: true, price: { cash: '37,00', credit: '37,75' }, comingSoon: true },
-            { id: 'p-new-brussels-ultra-ln', name: 'Cerveja Brussels LN Ultra', category: 'Bebidas alcoólicas', details: [{flavor: 'Ultra'}], imageUrl: 'https://i.ibb.co/nqyZj560/49106a-03691b9df5c74efcabe7b4b6526779a2-mv2.avif', sortOrder: 18.1, active: true, price: { cash: '23,50', credit: '23,00' }, comingSoon: true },
-            
-            { id: 'p-alc-3-sem-papelao', name: 'Pitú Litro (Sem Papelão)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/B5fHNL2y/aguardente-pitu-965ml-1a515249-2151-4db6-a2e5-57208f6a1803.jpg', sortOrder: 19, active: true, price: { cash: '9,42', credit: '9,56' } },
-            { id: 'p-alc-3-com-papelao', name: 'Pitú Litro (Com Papelão)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/B5fHNL2y/aguardente-pitu-965ml-1a515249-2151-4db6-a2e5-57208f6a1803.jpg', sortOrder: 19.1, active: true, price: { cash: '9,73', credit: '9,46' } },
+            // --- NOVIDADES Brussels (Sem preço definido na base WR, mantido ativo) ---
+            { id: 'b1', name: 'Brussels Lager 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Puro Malte'}], imageUrl: 'https://i.ibb.co/bjWqn9kf/lager.jpg', sortOrder: -4, active: true, comingSoon: true },
+            { id: 'b2', name: 'Brussels Ultra 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Puro Malte'}], imageUrl: 'https://i.ibb.co/5hq6TQHP/ultra.jpg', sortOrder: -3, active: true, comingSoon: true },
+            { id: 'b3', name: 'Brussels Lager L.N', category: 'Bebidas alcoólicas', details: [{flavor: 'Puro Malte'}], imageUrl: 'https://i.ibb.co/0pS9gMP7/49106a-035daaae8dbb473e9e1376a329918759-mv2.avif', sortOrder: -2, active: true, comingSoon: true },
+            { id: 'b4', name: 'Brussels Ultra L.N', category: 'Bebidas alcoólicas', details: [{flavor: 'Puro Malte'}], imageUrl: 'https://i.ibb.co/nqyZj560/49106a-03691b9df5c74efcabe7b4b6526779a2-mv2.avif', sortOrder: -1, active: true, comingSoon: true },
 
-            { id: 'p-alc-4', name: 'Pitú Devolvendo o Litro', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Dy5gv5B/Gemini-Generated-Image-tfhzumtfhzumtfhz.png', sortOrder: 20, active: true, price: { cash: '8,09', credit: '8,25' } },
-            { id: 'p-alc-5', name: 'Pitú de Garrafa 600ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/27yx5ZBb/184178-800-450.webp', sortOrder: 21, active: true, price: { cash: '7,94', credit: '8,10' } },
-            { id: 'p-alc-6', name: 'Pitú Lata 710ML (Latão)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bj8NY7pB/18982-cachaca-pitu-lata-710ml-20230914115151.jpg', sortOrder: 22, active: true, price: { cash: '96,32', credit: '98,25' } },
-            { id: 'p-alc-7', name: 'Pitú Lata 473ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/yvkRyX1/7896607100303.webp', sortOrder: 23, active: true, price: { cash: '65,40', credit: '66,71' } },
-            { id: 'p-alc-8', name: 'Pitú Lata 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/6JLTr2Dh/9064.jpg', sortOrder: 24, active: true, price: { cash: '51,70', credit: '52,73' } },
-            { id: 'p-alc-9', name: 'Pitú Lata Sabor Limão 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/9khwPPWq/D-NQ-NP-608552-MLU72642575375-112023-O.webp', sortOrder: 25, active: true, price: { cash: '53,90', credit: '54,98' } },
-            { id: 'p-alc-10', name: 'Pitú Lata Sabor Limão e Mel 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão e Mel'}], imageUrl: 'https://i.ibb.co/nV8g7Hw/272835.webp', sortOrder: 26, active: true, price: { cash: '53,90', credit: '54,98' } },
-            { id: 'p-alc-11', name: 'Pitú Lata Sabor Caju 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Caju'}], imageUrl: 'https://i.ibb.co/7tZyg3Sb/D-Q-NP-810535-MLA90946626834-082025-O.webp', sortOrder: 27, active: true, price: { cash: '53,90', credit: '54,98' } },
-            { id: 'p-alc-12', name: 'Pitú Lata Sabor Banana 350 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Banana'}], imageUrl: 'https://i.ibb.co/SkDWw6Q/D-Q-NP-930648-MLA88192377865-072025-O.webp', sortOrder: 28, active: true, price: { cash: '53,90', credit: '54,98' } },
-            { id: 'p-alc-72', name: 'Montilla Rum Carta Ouro 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Carta Ouro'}], imageUrl: 'https://i.ibb.co/qLKJDh8g/Gemini-Generated-Image-l8z624l8z624l8z6.png', sortOrder: 29, active: true, price: { cash: '26,46', credit: '26,22' } },
-            { id: 'p-alc-73', name: 'Rum Montila Carta Branca 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Carta Branca'}], imageUrl: 'https://i.ibb.co/S43Qdrdd/20240622170612-66772eb4ae2d8.webp', sortOrder: 29.1, active: true, price: { cash: '26,46', credit: '26,99' } },
-            { id: 'p-alc-14', name: 'Cachaça Paratudo 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/mV5Jcph9/15126653667-1065-amargo-paratudo-900ml.jpg', sortOrder: 30, active: true, price: { cash: '13,13', credit: '13,39' } },
-            { id: 'p-alc-16', name: 'Cachaça 51 de 965 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7ttFj1hP/156261-1.jpg', sortOrder: 32, active: true, price: { cash: '8,42', credit: '8,59' } },
-            { id: 'p-alc-17', name: 'Cachaça Asa Branca 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/vC07C1rt/D-Q-NP-682768-MLA85665355420-062025-O.webp', sortOrder: 33, active: true, price: { cash: '31,95', credit: '32,59' } },
-            { id: 'p-alc-18', name: 'Cachaça Caninha Vida Nova 480 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Kp08m4QT/aguardente-caninha-vida-nova-ac63c08b-c80d-4c0a-8be0-b5b19dad39c2.png', sortOrder: 34, active: true, price: { cash: '32,76', credit: '33,41' } },
-            { id: 'p-alc-20', name: 'Cachaça Seleta 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/zhKBWs5w/51-SGWL1j-Jr-L.jpg', sortOrder: 36, active: true, price: { cash: '47,90', credit: '48,86' } },
-            { id: 'p-alc-21', name: 'Cachaça Velho Barreiro 910 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Qj1Sg9ws/10987-cachaca-velho-barreiro-910ml-1un-20250901154933.png', sortOrder: 37, active: true, price: { cash: '14,74', credit: '15,03' } },
-            { id: 'p-new-cachaca-presidente', name: 'Cachaça Presidente 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/hJgSvCGB/Whats-App-Image-2025-12-16-at-15-02-04-3.jpg', sortOrder: 38.1, active: true, price: { cash: '7,68', credit: '7,84' } },
+            // --- Bebidas Não Alcoólicas (Visual IgorValen / Preço WR) ---
+            // -- Refrigerantes Goob --
+            { id: '60', name: 'Refrigerante Goob 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Uva'}, {flavor: 'Guaraná'}, {flavor: 'Laranja'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/23PSr9s0/Gemini-Generated-Image-a5jkuba5jkuba5jk.png', sortOrder: 1, active: true, price: { cash: '25,80', credit: '26,30' } },
+            { id: '58', name: 'Refrigerante Goob 1L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Guaraná'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/Z6L113Sv/1768937474288.png', sortOrder: 2, active: true, price: { cash: '19,95', credit: '20,35' } },
+            { id: '64', name: 'Refrigerante Goob 230ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Guaraná'}, {flavor: 'Morango com Limão'}, {flavor: 'Limão'}, {flavor: 'Laranja'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/Csbp4YJd/1768937683878.png', sortOrder: 3, active: true, price: { cash: '13,86', credit: '14,13' } },
             
-            // Newsnoff
-            { id: 'p-alc-27', name: 'Vodka Newsnoff 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Q39y4ztD/Gemini-Generated-Image-usmcjjusmcjjusmc.png', sortOrder: 43, active: true, price: { cash: '7,99', credit: '8,00' } },
-            { id: 'p-alc-28', name: 'Vodka Newsnoff Sabor Limão 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/27bddhyp/Gemini-Generated-Image-chu2xwchu2xwchu2.png', sortOrder: 44, active: true, price: { cash: '7,99', credit: '8,15' } },
-            { id: 'p-alc-29', name: 'Vodka Newsnoff Sabor Frutas Vermelhas 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/tkv0q5N/Gemini-Generated-Image-quoocbquoocbquoo.png', sortOrder: 45, active: true, price: { cash: '7,99', credit: '8,15' } },
+            // -- Energéticos --
+            { id: '74', name: 'Energético Ener Up 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Sabor tradicional'}], imageUrl: 'https://i.ibb.co/8LCtQwjT/ISM-SITE-BANNER-730-X400-ENERUP-2-L-640x400.png', sortOrder: 4, active: true, price: { cash: '36,00', credit: '36,70' } },
+            { id: '72', name: 'Energético Ener Up 250ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bjbfp4Xh/ISM-SITE-BANNER-730-X400-ENERUP-250-ML-640x400.png', sortOrder: 5, active: true, price: { cash: '32,90', credit: '33,56' } },
+            { id: '73', name: 'Energético Ener Up lata 269 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}, {flavor: 'Melância'}, {flavor: 'Tropical'}, {flavor: 'Maçã Verde'}, {flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/Wq8dkqz/1768937912013.png', sortOrder: 6, active: true, price: { cash: '24,85', credit: '25,35' } },
+            { id: '76', name: 'Guaraná + Açaí Guaran Up de Copo 290ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/3mSgbrqw/ISM-SITE-BANNER-730-X400-GUARANUP-COPO-640x400.png', sortOrder: 7, active: true, price: { cash: '28,95', credit: '29,53' } },
+            { id: '75', name: 'Guaraná + Açaí Guaran Up 200ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Y7Rm31tR/ISM-SITE-BANNER-730-X400-GUARANUP-GARRAFA-640x400.png', sortOrder: 8, active: true, price: { cash: '19,00', credit: '19,38' } },
             
-            { id: 'p-alc-30', name: 'Vodka Natasha 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7xs3PBVR/258980-1.webp', sortOrder: 46, active: true, price: { cash: '16,80', credit: '17,14' } },
-            { id: 'p-alc-31', name: 'Vodka Smirnoff 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/YBrqssM4/961397-1.jpg', sortOrder: 47, active: true, price: { cash: '31,98', credit: '32,62' } },
+            // -- Sucos --
+            { id: '79', name: 'Suco Yulo 1,5L Frutas Cítricas', category: 'Bebidas não alcoólicas', details: [{flavor: 'Frutas Cítricas'}], imageUrl: 'https://i.ibb.co/0jPVR7XP/172760-800-auto.webp', sortOrder: 9, active: true, price: { cash: '30,30', credit: '30,90' } },
+            { id: '77', name: 'Suco Yulo 400ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Uva'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/RGJmf393/1768939190446.png', sortOrder: 10, active: true, price: { cash: '23,85', credit: '24,35' } },
+            { id: '80', name: 'Suco Yulo 200 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Uva'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/Fkxjg2Wq/1768939366828.png', sortOrder: 11, active: true, price: { cash: '17,60', credit: '17,70' } },
+            { id: '82', name: 'Suco de Caixinha Yulo Tetra Park 200ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Laranja e Acerola'}, {flavor: 'Uva'}, {flavor: 'Pêssego'}, {flavor: 'Morango'}, {flavor: 'Frutas Cítricas'}], imageUrl: 'https://i.ibb.co/39ZNBHZY/1768938234848.png', sortOrder: 12, active: true, price: { cash: '37,38', credit: '38,10' } },
+            { id: '70', name: 'Chá Gelado Drink T 300ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Pêssego'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/5XN7dvCf/Gemini-Generated-Image-fr5a3efr5a3efr5a.png', sortOrder: 13, active: true, price: { cash: '26,30', credit: '26,50' } },
             
-            { id: 'p-alc-33', name: 'Whisky Black Stone 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0pnMv0XZ/268299.webp', sortOrder: 49, active: true, price: { cash: '22,68', credit: '23,13' } },
+            // -- Águas --
+            { id: '85', name: 'Água Mineral Lôa 1,5L Sem gás', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bgv1DxzH/1768938897965.png', sortOrder: 14, active: true, price: { cash: '13,75', credit: '13,95' } },
+            { id: '86', name: 'Água Mineral Lôa 500ML Sem Gás', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/tpHbj1yZ/1768938500430.png', sortOrder: 15, active: true, price: { cash: '11,90', credit: '12,15' } },
+            { id: '87', name: 'Água Mineral Lôa 500ML Com gás', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/YBdRGc2Z/1768938703890.png', sortOrder: 16, active: true, price: { cash: '17,70', credit: '18,05' } },
             
-            { id: 'p-alc-34', name: 'Whisky Old Par 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/mrmhjzXV/51zz0lz-Ntu-L.jpg', sortOrder: 50, active: true, price: { cash: '138,80', credit: '141,58' } },
-            { id: 'p-alc-35', name: 'Whisky Jack Daniel’s 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/gbHzSbww/jack-daniels-1l.png', sortOrder: 51, active: true, price: { cash: '128,00', credit: '130,56' } },
-            
-            { id: 'p-alc-38', name: 'Whisky Red Label 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Tq1SbBdG/bo839.png', sortOrder: 54, active: true, price: { cash: '87,23', credit: '88,87' } },
-            { id: 'p-alc-39', name: 'Whisky Black Label 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Psf9MdzP/001.webp', sortOrder: 55, active: true, price: { cash: '139,50', credit: '142,30' } },
-            { id: 'p-alc-42', name: 'Whisky Passport Scotch 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Tx12qb5m/51-UYCr-Fpn5-S-UF1000-1000-QL80.jpg', sortOrder: 58, active: true, price: { cash: '41,50', credit: '42,33' } },
-            { id: 'p-alc-43', name: 'Whisky White Horse 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/r2B695NC/45018-1.jpg', sortOrder: 59, active: true, price: { cash: '66,50', credit: '67,83' } },
-            { id: 'p-alc-44', name: 'Whisky Chanceler 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/VpBDSjHw/259762.webp', sortOrder: 60, active: true, price: { cash: '18,96', credit: '19,34' } },
-            { id: 'p-alc-45', name: 'Whisky Ballantine’s 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/6JZDgC3D/51fuir-Dim-QL.jpg', sortOrder: 61, active: true, price: { cash: '66,84', credit: '68,18' } },
-            
-            { id: 'p-alc-50', name: 'Genebra Dubar Zora 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/G4bPGLdH/51r-Oz-Lf4s-ML.jpg', sortOrder: 66, active: true, price: { cash: '25,26', credit: '25,77' } },
-            
-            { id: 'p-alc-52', name: 'Ice Syn Lemon Ice 300ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/WpjLmXH7/Syn-Ice-300-PET-Limao-25a1a95d.png', sortOrder: 69, active: true, price: { cash: '16,18', credit: '16,51' } },
-            { id: 'p-alc-53', name: 'Ice Glow 275 ML (Garrafa de Vidro)', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}, {flavor: 'Maracujá'}], imageUrl: 'https://i.ibb.co/4wQKdGtm/file-00000000ec5471f5975d9cc0858c1a91.png', sortOrder: 70, active: true, price: { cash: '26,60', credit: '26,80' } },
-            { id: 'p-alc-54', name: 'Glow Ice 269ML (Lata)', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/YBgGsXmQ/glow-lata-269ml.png', sortOrder: 71, active: true, price: { cash: '24,85', credit: '25,34' } },
-            { id: 'p-alc-55', name: 'Vinho Quinta do Morgado Suave 750ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/j0dGyjr/quinta-do-morgado-tinto-suave.jpg', sortOrder: 72, active: true, price: { cash: '14,42', credit: '14,71' } },
-            { id: 'p-new-quinta-morgado-1l', name: 'Vinho Quinta Morgado 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tinto Suave'}], imageUrl: 'https://i.ibb.co/spJ1bcDy/quinta-do-morgado-tinto-suave-1l.jpg', sortOrder: 72.1, active: true, price: { cash: '20,66', credit: '21,17' } },
-            { id: 'p-alc-56', name: 'Vinho Cantina da Serra 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/DfmgKCmx/vinho-coquetel-cantina-da-serra-tinto-suave-embalagem-12x15-lt-preco-unitario-r9-3enygexapi.webp', sortOrder: 73, active: true, price: { cash: '6,15', credit: '6,27' } },
-            { id: 'p-alc-57', name: 'Vinho Pérgula Tinto Suave 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/pjykdnSp/Vinho-Brasileiro-Pergola-Tinto-Suave-1l.png', sortOrder: 74, active: true, price: { cash: '21,50', credit: '21,62' } },
-            
-            // --- Novos Vinhos ---
-            { id: 'p-new-vinho-pergula-rose', name: 'Vinho Pérgula Rosé', category: 'Bebidas alcoólicas', details: [{flavor: 'Rosé'}], imageUrl: 'https://i.ibb.co/0RRrMJRS/Produtos-Site.jpg', sortOrder: 74.1, active: true, price: { cash: '21,50', credit: '21,93' } },
-            { id: 'p-new-vinho-dom-macedo', name: 'Vinho Dom Macedo', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7J3ZS66M/1768418602681.png', sortOrder: 74.2, active: true, price: { cash: '18,49', credit: '19,63' } },
+            // -- Achocolatado (Movido para depois das águas) --
+            { id: 'new1', name: 'Achocolatado Maratinho', category: 'Bebidas não alcoólicas', details: [{flavor: 'Chocolate'}], imageUrl: 'https://i.ibb.co/W13jj1s/02.png', sortOrder: 17, active: true, price: { cash: '38,73', credit: '39,51' } },
 
-            { id: 'p-alc-58', name: 'Aperitivo Campari 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/b0T3DPR/10375-aperitivo-bitter-campari-998ml-1un-20250901154933.png', sortOrder: 75, active: true, price: { cash: '58,50', credit: '59,67' } },
-            { id: 'p-alc-59', name: 'Aperitivo Jurubeba Leão do Norte 600 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Cs9Z7Zzs/aperitivo-jurubeba-leao-do-norte-600ml-1959-1-6a7a79b098d66071f5d0ad6a07cacf14.webp', sortOrder: 76, active: true, price: { cash: '13,00', credit: '13,26' } },
-            { id: 'p-alc-60', name: 'Conhaque Presidente 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Z6437SW4/9375-conhaque-presidente-900ml.jpg', sortOrder: 77, active: true, price: { cash: '13,03', credit: '13,29' } },
-            { id: 'p-alc-62', name: 'Conhaque Dreher 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/ksGwKgS8/20240629110719-66801517ad651.webp', sortOrder: 79, active: true, price: { cash: '18,95', credit: '19,33' } },
-            { id: 'p-alc-64', name: 'Conhaque Domecq Coquetel Composto 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/5h7zC8sB/51-Ir-C0-JN5a-L.jpg', sortOrder: 81, active: true, price: { cash: '34,99', credit: '35,69' } },
-            { id: 'p-alc-65', name: 'Licor Menta São Paulo 960ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/gFB5d5wS/Gemini-Generated-Image-nts7ifnts7ifnts7.png', sortOrder: 82, active: true, price: { cash: '8,25', credit: '8,42' } },
-            { id: 'p-alc-67', name: 'Catuaba Vida Nova 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/j91j5KRh/01-325152-01.webp', sortOrder: 84, active: true, price: { cash: '7,78', credit: '7,94' } },
-            { id: 'p-alc-68', name: 'Alcatrão São João da Barra 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/PvjZRQcT/134.jpg', sortOrder: 85, active: true, price: { cash: '19,19', credit: '19,57' } },
-            { id: 'p-alc-69', name: 'Bebida alcoólica Gengibre Vida Nova Verde 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0V6X2rpH/Gemini-Generated-Image-jd60eajd60eajd60.png', sortOrder: 86, active: true, price: { cash: '7,45', credit: '7,60' } },
-            { id: 'p-alc-70', name: 'Canelinha da Rocha 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4nyHHwMy/3708eb250af525b1f523081bc7116cd6.webp', sortOrder: 87, active: true, price: { cash: '12,39', credit: '12,64' } },
+            // --- Bebidas Alcoólicas ---
+            // -- Família Pitú (Reordenada: Litro, 600ml, Lata) --
+            { id: '1', name: 'Pitú Litro (Com Papelão)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/B5fHNL2y/aguardente-pitu-965ml-1a515249-2151-4db6-a2e5-57208f6a1803.jpg', sortOrder: 18, active: true, price: { cash: '8,30', credit: '9,60' } },
+            { id: '5', name: 'Pitú de Garrafa 600ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/27yx5ZBb/184178-800-450.webp', sortOrder: 19, active: true, price: { cash: '7,94', credit: '8,10' } },
+            { id: '4', name: 'Pitú Lata 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/6JLTr2Dh/9064.jpg', sortOrder: 20, active: true, price: { cash: '51,70', credit: '52,73' } },
+            
+            // -- Outras Cachaças e Aguardentes --
+            { id: '3', name: 'Cachaça Asa Branca 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/vC07C1rt/D-Q-NP-682768-MLA85665355420-062025-O.webp', sortOrder: 21, active: true, price: { cash: '31,95', credit: '32,59' } },
+            { id: '31', name: 'Cachaça Velho Barreiro 910 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Qj1Sg9ws/10987-cachaca-velho-barreiro-910ml-1un-20250901154933.png', sortOrder: 22, active: true, price: { cash: '15,40', credit: '15,71' } },
+            { id: '23', name: 'Cachaça Paratudo 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/mV5Jcph9/15126653667-1065-amargo-paratudo-900ml.jpg', sortOrder: 23, active: true, price: { cash: '13,15', credit: '13,41' } },
+            { id: '2', name: 'Alcatrão São João da Barra 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/PvjZRQcT/134.jpg', sortOrder: 24, active: true, price: { cash: '19,95', credit: '20,35' } },
+            { id: '7', name: 'Canelinha da Rocha 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4nyHHwMy/3708eb250af525b1f523081bc7116cd6.webp', sortOrder: 25, active: true, price: { cash: '12,50', credit: '12,65' } },
+            { id: '17', name: 'Genebra Dubar Zora 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/G4bPGLdH/51r-Oz-Lf4s-ML.jpg', sortOrder: 26, active: true, price: { cash: '25,26', credit: '25,77' } },
+            { id: '18', name: 'Bebida alcoólica Gengibre Vida Nova Verde 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0V6X2rpH/Gemini-Generated-Image-jd60eajd60eajd60.png', sortOrder: 27, active: true, price: { cash: '7,45', credit: '7,60' } },
+            { id: '9', name: 'Gengibre Pérola da Chapada', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/W46Xfbjn/IMG-0661.jpg', sortOrder: 28, active: true, price: { cash: '7,60', credit: '7,80' } },
+            { id: '20', name: 'Aperitivo Jurubeba Leão do Norte 600 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Cs9Z7Zzs/aperitivo-jurubeba-leao-do-norte-600ml-1959-1-6a7a79b098d66071f5d0ad6a07cacf14.webp', sortOrder: 29, active: true, price: { cash: '13,00', credit: '13,26' } },
 
-            // --- Bomboneire ---
-            { id: 'p-bomb-1', name: 'Bala Santa Fé Canela 600G', category: 'Bomboneire', details: [{flavor: 'Canela'}], imageUrl: 'https://i.ibb.co/Ds3YDxj/128.jpg', sortOrder: 89, active: true, price: { cash: '9,60', credit: '9,79' } },
-            { id: 'p-bomb-2', name: 'Bala Icekiss Sortida 500G', category: 'Bomboneire', details: [{flavor: 'Sortida'}], imageUrl: 'https://i.ibb.co/7dVMMzqJ/bala-dura-icekiss-sortida-500g-16675-1-3b5416d1fada308118535e1796dcd3e3.webp', sortOrder: 90, active: true, price: { cash: '7,24', credit: '7,38' } },
-            { id: 'p-bomb-3', name: 'Bala Butter Toffees 500G', category: 'Bomboneire', details: [{flavor: 'Menta'}, {flavor: 'Pistache'}, {flavor: 'Trufa'}, {flavor: 'Cacau'}, {flavor: 'Leite'}, {flavor: 'Mouse de Maracujá'}], imageUrl: 'https://i.ibb.co/27H2JQtk/Gemini-Generated-Image-iubivjiubivjiubi.png', sortOrder: 91, active: true, price: { cash: '18,60', credit: '18,97' } },
-            { id: 'p-bomb-4', name: 'Bala Santa Fé Mastigável Yogurt Morango 500G', category: 'Bomboneire', details: [{flavor: 'Morango com Yougurte'}], imageUrl: 'https://i.ibb.co/kVsQzs9C/e91aa7f279427e2a82d0f7b6333967b1.webp', sortOrder: 92, active: true, price: { cash: '7,38', credit: '8,03' } },
-            { id: 'p-bomb-5', name: 'Bala Santa Fé Mastigável Sortida Frutas 500G', category: 'Bomboneire', details: [{flavor: 'Frutas Sortidas'}], imageUrl: 'https://i.ibb.co/q3CLvQPP/df00043f0bf6a689281a7536ebbdd5d6.webp', sortOrder: 93, active: true, price: { cash: '6,70', credit: '6,90' } },
-            { id: 'p-bomb-8', name: 'Drops Halls', category: 'Bomboneire', details: [{flavor: 'Extra forte'}, {flavor: 'Melancia'}, {flavor: 'Menta'}, {flavor: 'Hortelã'}, {flavor: 'Cereja'}, {flavor: 'Morango'}], imageUrl: 'https://i.ibb.co/9kh4dc9C/sg-11134201-7qvea-li0fr8iza4l467.jpg', sortOrder: 97, active: true, price: { cash: '24,76', credit: '25,50' } },
-            { id: 'p-bomb-14', name: 'Drops Icekiss Sortido', category: 'Bomboneire', details: [{flavor: 'Sortido'}], imageUrl: 'https://i.ibb.co/wZRb6Kbs/2649499711d66e88d87.webp', sortOrder: 98, active: true, price: { cash: '14,10', credit: '14,49' } },
-            // Freegells Drops (Mantido)
-            { id: 'p-bomb-15', name: 'Drops Freegells', category: 'Bomboneire', details: [{flavor: 'Morango'}, {flavor: 'Menta'}, {flavor: 'Hortelã'}, {flavor: 'Tutti-frutti'}, {flavor: 'Extra forte'}], imageUrl: 'https://i.ibb.co/FkqpRLsb/Gemini-Generated-Image-8mfqux8mfqux8mfq.png', sortOrder: 103, active: true, price: { cash: '18,35', credit: '18,72' } },
-            
-            // Novos itens de bala - MODIFICADO AQUI
-            { id: 'p-new-bala-freegells', name: 'Freegells Chiclete', category: 'Bomboneire', details: [{flavor: 'Sortida'}], imageUrl: 'https://i.ibb.co/FkQJ84s1/739e4202bbc76c756b8d4b98df3af2fe-gfybxeiar9.webp', sortOrder: 103.1, active: true, price: { cash: '16,74', credit: '17,25' } },
-            // MODIFICADO AQUI (Imagem Coffee King)
-            { id: 'p-new-bala-coffee', name: 'Bala de Café Coffee King', category: 'Bomboneire', details: [{flavor: 'Café'}], imageUrl: 'https://i.ibb.co/n86hdmQ6/046804.webp', sortOrder: 103.2, active: true, price: { cash: '10,90', credit: '11,20' } },
+            // -- Vodkas, Gins e Tequilas --
+            { id: '33', name: 'Vodka Natasha 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7xs3PBVR/258980-1.webp', sortOrder: 30, active: true, price: { cash: '16,20', credit: '16,52' } },
+            { id: '30', name: 'Ice Syn Lemon Ice 300ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/WpjLmXH7/Syn-Ice-300-PET-Limao-25a1a95d.png', sortOrder: 31, active: true, price: { cash: '15,70', credit: '16,01' } },
+            { id: '88', name: 'Glow Ice 269ML (Lata)', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/YBgGsXmQ/glow-lata-269ml.png', sortOrder: 32, active: true, price: { cash: '24,50', credit: '24,99' } },
+            { id: '89', name: 'Ice Glow 275 ML (Garrafa de Vidro)', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}, {flavor: 'Maracujá'}], imageUrl: 'https://i.ibb.co/4wQKdGtm/file-00000000ec5471f5975d9cc0858c1a91.png', sortOrder: 33, active: true, price: { cash: '26,50', credit: '26,50' } },
+            { id: '32', name: 'Beefeater London 750ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/gFc44xhq/Beefeater-London-Dry-Gin-aspect-ratio-320-540.jpg', sortOrder: 34, active: true, price: { cash: '80,50', credit: '81,00' } },
+            { id: '19', name: 'Jose Cuervo 750ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/VcRZYDdH/07127902e5b6462da804f886248fe397.webp', sortOrder: 35, active: true, price: { cash: '95,00', credit: '96,90' } },
 
-            { id: 'p-bomb-16', name: 'Chicle Big Big', category: 'Bomboneire', details: [{flavor: 'Hortelã'}, {flavor: 'Morango'}, {flavor: 'Tutti Frutti'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/mrzDSTn7/Gemini-Generated-Image-ev8fagev8fagev8f.png', sortOrder: 104, active: true, price: { cash: '8,40', credit: '8,57' } },
-            { id: 'p-bomb-17', name: 'Chiclete Trident', category: 'Bomboneire', details: [{flavor: 'Hortelã'}, {flavor: 'Menta'}, {flavor: 'Morango'}, {flavor: 'Melancia'}, {flavor: 'Tutti-Frutti'}], imageUrl: 'https://i.ibb.co/5hYWG1LZ/Gemini-Generated-Image-he1fa1he1fa1he1f.png', sortOrder: 105, active: true, price: { cash: '37,20', credit: '37,94' } },
-            { id: 'p-bomb-18', name: 'Chiclete Cliss', category: 'Bomboneire', details: [{flavor: 'Menta'}, {flavor: 'Hortelã'}, {flavor: 'Tutti-Frutti'}], imageUrl: 'https://i.ibb.co/rR8JmKvK/sg-11134201-22090-y0q3j9jdk3hv45.jpg', sortOrder: 106, active: true, price: { cash: '8,36', credit: '8,53' } },
-            
-            { id: 'p-bomb-20', name: 'Chiclete Blong', category: 'Bomboneire', details: [{flavor: 'Framboesa'}, {flavor: 'Hortelã'}, {flavor: 'Morango'}, {flavor: 'Napolitano'}, {flavor: 'Tutti-Frutti'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/fGt4CMcz/Gemini-Generated-Image-rvylr0rvylr0rvyl.png', sortOrder: 108, active: true, price: { cash: '6,99', credit: '7,04' } },
-            { id: 'p-bomb-21', name: 'Goma Tubo Gurt', category: 'Bomboneire', details: [{flavor: 'Yogurt'}], imageUrl: 'https://i.ibb.co/qYszD42s/bala-de-goma-jelly-rolls-tubo-gurt-c-30un-930g-kuky-115-1-452e40c15132154dbdf0a57259ab0d92.webp', sortOrder: 109, active: true, price: { cash: '17,32', credit: '17,67' } },
-            { id: 'p-bomb-22', name: 'Goma Tubo Frutas Sortidas', category: 'Bomboneire', details: [{flavor: 'Frutas Sortidas'}], imageUrl: 'https://i.ibb.co/ZR4kpNyq/GOMA-TUBO-KUKY-FRUTAS-C30-3.webp', sortOrder: 110, active: true, price: { cash: '17,32', credit: '17,67' } },
-            { id: 'p-bomb-23', name: 'Pirulito Megalito Pinta Língua', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/T9m5zn7/1617230123c7i5abc2cd.png', sortOrder: 111, active: true, price: { cash: '19,42', credit: '19,81' } },
-            { id: 'p-bomb-25', name: 'Pirulito Big Pop Frutas Recheado Mastigável 500 G', category: 'Bomboneire', details: [{flavor: 'Frutas'}], imageUrl: 'https://i.ibb.co/L3GybXc/pirulito-big-pop-frutas-sortidas-c-rech-mastigavel-500g-17525-1-b3db72729bb08998eab24f4c6a2c86c3.webp', sortOrder: 113, active: true, price: { cash: '8,44', credit: '8,61' } },
-            { id: 'p-bomb-26', name: 'Pirulito Megalito Sortido Berbau 1 KG', category: 'Bomboneire', details: [{flavor: 'Sortido'}], imageUrl: 'https://i.ibb.co/gLvRsns6/Gemini-Generated-Image-9g89929g89929g89.png', sortOrder: 114, active: true, price: { cash: '19,49', credit: '20,59' } },
-            { id: 'p-new-cherry-pop', name: 'Pirulito Cherry Pop', category: 'Bomboneire', details: [{flavor: 'Cereja'}], imageUrl: 'https://i.ibb.co/Ngx4Kscp/Pirulito-Mix-Cherry-Pop-700-Gr-c50-unid-Simas-3.webp', sortOrder: 115.1, active: true, price: { cash: '15,98', credit: '16,30' } },
-            { id: 'p-bomb-29', name: 'Biscoito Recheado Fofinho', category: 'Bomboneire', details: [{flavor: 'Chocolate + Morango'}, {flavor: 'Baunilha'}, {flavor: 'Morango'}, {flavor: 'Chocolate'}, {flavor: 'Flocos'}, {flavor: 'Doce de leite'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/rRxPnQBn/2a92fd1f98d81487f3fa0e0bae49d670.webp', sortOrder: 117, active: true, price: { cash: '45,90', credit: '46,82' } },
-            
-            { id: 'p-bomb-41', name: 'Chocolate Puríssimo', category: 'Bomboneire', details: [{flavor: 'Chocolate ao leite'}, {flavor: 'Mesclado'}, {flavor: 'Chocolate Branco'}, {flavor: 'Amendoim'}], imageUrl: 'https://i.ibb.co/6cwtwx2Y/dfe03fd9-cb38-4cd9-b839-d597f251e29f-4380-000854-2966c599cff5b765fd17410129207602-1024-1024.jpg', sortOrder: 129, active: true, price: { cash: '16,90', credit: '17,24' } },
-            { id: 'p-bomb-42', name: 'Doce Balsamo Pacote com 50 unidades', category: 'Bomboneire', details: [{flavor: 'Doce de Amendoim'}, {flavor: 'Doce de Caramelo'}, {flavor: 'Doce de Leite'}], imageUrl: 'https://i.ibb.co/fzwM1rPm/Gemini-Generated-Image-klafw5klafw5klaf.png', sortOrder: 130, active: true, price: { cash: '14,95', credit: '15,25' } },
-            
-            { id: 'p-new-doce-amendoim', name: 'Paçoca Paçokids', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/KxQZcMCk/Gemini-Generated-Image-yf3ys0yf3ys0yf3y.png', sortOrder: 143.1, active: true, price: { cash: '14,95', credit: '15,25' } },
-            { id: 'p-bomb-56', name: 'Salgadinho Goxtoso 28G', category: 'Bomboneire', details: [{flavor: 'Cebola'}, {flavor: 'Churrasco'}, {flavor: 'Galinha Caipira'}, {flavor: 'Pizza'}, {flavor: 'Presunto'}, {flavor: 'Queijo'}], imageUrl: 'https://i.ibb.co/7J7yjqvV/Goxtoso-Assado.png', sortOrder: 144, active: true, price: { cash: '6,60', credit: '6,73' } },
-            { id: 'p-bomb-57', name: 'Salgadinho Pimentinha Goxtoso 40G', category: 'Bomboneire', details: [{flavor: 'Pizza'}, {flavor: 'Cebola'}, {flavor: 'Queijo'}, {flavor: 'Picanha'}], imageUrl: 'https://i.ibb.co/4RKPy3cS/Goxtoso-Xeeks.png', sortOrder: 145, active: true, price: { cash: '21,00', credit: '21,42' } },
-            { id: 'p-bomb-58', name: 'Pipoca Doce Goxtoso 40G', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/5X1zGGV0/Goxtoso-pipoca.png', sortOrder: 146, active: true, price: { cash: '8,82', credit: '9,00' } },
-            { id: 'p-bomb-59', name: 'Salgadinho Batata Plus 40G', category: 'Bomboneire', details: [{flavor: 'Tradicional'}, {flavor: 'Churrasco'}, {flavor: 'Cebola e salsa'}], imageUrl: 'https://i.ibb.co/5XMBKbTJ/Gemini-Generated-Image-jxmtyjxmtyjxmtyj.png', sortOrder: 147, active: true, price: { cash: '55,62', credit: '56,73' } },
-            { id: 'p-bomb-60', name: 'Salgadinho Agitos 85G', category: 'Bomboneire', details: [{flavor: 'Cebola'}, {flavor: 'Barbecue'}, {flavor: 'Presunto'}, {flavor: 'Requeijão'}, {flavor: 'Queijo'}, {flavor: 'Galinha caipira'}], imageUrl: 'https://i.ibb.co/4gtTH7sz/Gemini-Generated-Image-2p7o242p7o242p7o.png', sortOrder: 148, active: true, price: { cash: '14,63', credit: '14,93' } },
-            { id: 'p-bomb-61', name: 'Salgadinho Pimentinha Sortida Agitos 40G', category: 'Bomboneire', details: [{flavor: 'Cebola e Salsa'}, {flavor: 'Queijo'}, {flavor: 'Bacon'}, {flavor: 'Churrasco'}, {flavor: 'Pimenta'}], imageUrl: 'https://i.ibb.co/Nf9N43z/Gemini-Generated-Image-6z7eu06z7eu06z7e.png', sortOrder: 149, active: true, price: { cash: '41,70', credit: '42,53' } },
-            { id: 'p-bomb-72', name: 'Salgadinhos Snacks Amendupã', category: 'Bomboneire', details: [{flavor: 'Sortido'}], imageUrl: 'https://i.ibb.co/Myt3D7dB/Captura-de-tela-2025-10-22-145716.png', sortOrder: 149.1, active: true, price: { cash: '21,00', credit: '21,10' } },
-            { id: 'p-bomb-62', name: 'Salgadinho Agitos 25G', category: 'Bomboneire', details: [{flavor: 'Cebola e Salsa'}, {flavor: 'Queijo'}, {flavor: 'Bacon'}, {flavor: 'Churrasco'}, {flavor: 'Pimenta'}], imageUrl: 'https://i.ibb.co/xt3dTbRK/Gemini-Generated-Image-hg0fm8hg0fm8hg0f-1.png', sortOrder: 150, active: true, price: { cash: '6,10', credit: '6,22' } },
-            { id: 'p-bomb-71', name: 'Amendoim Japonês 60G', category: 'Bomboneire', details: [{flavor: 'Japonês'}], imageUrl: 'https://i.ibb.co/B5SCK4rF/Captura-de-tela-2025-10-22-145649.png', sortOrder: 150.1, active: true, price: { cash: '4,00', credit: '4,20' } },
-            { id: 'p-bomb-63', name: 'Amendoim Japonês 1KG', category: 'Bomboneire', details: [{flavor: 'Japonês'}], imageUrl: 'https://i.ibb.co/7tFByG95/mendozitos-1kg.jpg', sortOrder: 151, active: true, price: { cash: '19,49', credit: '20,59' } },
-            { id: 'p-bomb-64', name: 'Mendozitos Japonês 30G', category: 'Bomboneire', details: [{flavor: 'Japonês'}], imageUrl: 'https://i.ibb.co/zTgLhBc0/mendozitos-cartela.jpg', sortOrder: 152, active: true, price: { cash: '3,25', credit: '3,32' } },
-            { id: 'p-bomb-65', name: 'Amendoim Crocanty Pimenta Mexicana 30 G', category: 'Bomboneire', details: [{flavor: 'Pimenta Mexicana'}], imageUrl: 'https://i.ibb.co/V0s0w6Q7/crocanty-cartela-pimenta.jpg', sortOrder: 153, active: true, price: { cash: '3,25', credit: '3,32' } },
-            { id: 'p-bomb-66', name: 'Amendoim Crocante Bacon 30G', category: 'Bomboneire', details: [{flavor: 'Bacon'}], imageUrl: 'https://i.ibb.co/n8N8M0L7/crocanty-cartela-bacon.jpg', sortOrder: 154, active: true, price: { cash: '3,25', credit: '3,32' } },
-            { id: 'p-bomb-67', name: 'Amendoim Cebola e Salsa 30G', category: 'Bomboneire', details: [{flavor: 'Cebola e Salsa'}], imageUrl: 'https://i.ibb.co/tw489vjw/crocanty-cartela-cebola.jpg', sortOrder: 155, active: true, price: { cash: '3,25', credit: '3,32' } },
-            { id: 'p-bomb-68', name: 'Torresmo Pé de Serra', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Hp9txykH/l-9aee4631cfa14377af45cd51cdd3a79f.png', sortOrder: 156, active: true, price: { cash: '20,00', credit: '19,99' } },
-            { id: 'p-bomb-69', name: 'Pururuca Pé de Serra', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/rGyN4K0H/Gemini-Generated-Image-ijfasqijfasqijfa.png', sortOrder: 157, active: true, price: { cash: '11,20', credit: '10,66' } },
-            { id: 'p-bomb-70', name: 'Leite em Pó Gostolac 200G', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/LDQhfcH6/gostolac-thumb.png', sortOrder: 158, active: true, price: { cash: '3,80', credit: '3,88' } },
+            // -- Whiskies --
+            { id: '21', name: 'Whisky Black Label 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Psf9MdzP/001.webp', sortOrder: 36, active: true, price: { cash: '137,00', credit: '139,74' } },
+            { id: '29', name: 'Whisky Red Label 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Tq1SbBdG/bo839.png', sortOrder: 37, active: true, price: { cash: '87,50', credit: '89,25' } },
+            { id: '12', name: 'Whisky White Horse 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/r2B695NC/45018-1.jpg', sortOrder: 38, active: true, price: { cash: '66,50', credit: '67,80' } },
+            { id: '24', name: 'Whisky Passport Scotch 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Tx12qb5m/51-UYCr-Fpn5-S-UF1000-1000-QL80.jpg', sortOrder: 39, active: true, price: { cash: '41,50', credit: '41,75' } },
+            { id: '35', name: 'Whisky Black Stone 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0pnMv0XZ/268299.webp', sortOrder: 40, active: true, price: { cash: '22,90', credit: '23,10' } },
 
-            // --- Cigarro ---
-            { id: 'p-cig-1', name: 'Fumo Coringa', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/jPfJDgsW/Gemini-Generated-Image-i5xfgwi5xfgwi5xf.png', sortOrder: 159, active: true, price: { cash: '84,00', credit: '85,68' } },
-            { id: 'p-cig-2', name: 'Papel para Fumo Bom de Fogo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4wkNb866/Gemini-Generated-Image-fke8b7fke8b7fke8.png', sortOrder: 160, active: true, price: { cash: '25,00', credit: '25,77' } },
-            { id: 'p-cig-3', name: 'Cigarro de Palha Palheiro', category: 'Cigarro', details: [{flavor: 'Menta'}, {flavor: 'Tradicional'}, {flavor: 'Mamica de Cadela'}, {flavor: 'Cereja'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/wrWp8WZy/Gemini-Generated-Image-dpeppzdpeppzdpep.png', sortOrder: 161, active: true, price: { cash: '59,90', credit: '61,10' } },
-            { id: 'p-cig-4', name: 'Seda para Fumo Zomo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/WpNNj4qQ/natural-ybudhybhlg.webp', sortOrder: 162, active: true, price: { cash: '36,15', credit: '36,87' } },
+            // -- Conhaques, Catuabas e Aperitivos --
+            { id: '26', name: 'Conhaque Presidente 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Z6437SW4/9375-conhaque-presidente-900ml.jpg', sortOrder: 41, active: true, price: { cash: '13,50', credit: '13,77' } },
+            { id: '16', name: 'Conhaque Dreher 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/ksGwKgS8/20240629110719-66801517ad651.webp', sortOrder: 42, active: true, price: { cash: '18,95', credit: '19,33' } },
+            { id: '15', name: 'Conhaque Domecq Coquetel Composto 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/5h7zC8sB/51-Ir-C0-JN5a-L.jpg', sortOrder: 43, active: true, price: { cash: '34,99', credit: '35,70' } },
+            { id: '13', name: 'Conhaque Domus', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/XxsjvQkw/6004-conhaque-domus-900ml-20231129151710.jpg', sortOrder: 44, active: true, price: { cash: '11,30', credit: '11,50' } },
+            { id: '6', name: 'Aperitivo Campari 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/b0T3DPR/10375-aperitivo-bitter-campari-998ml-1un-20250901154933.png', sortOrder: 45, active: true, price: { cash: '55,70', credit: '57,20' } },
+            { id: '11', name: 'Catuaba Vida Nova 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/j91j5KRh/01-325152-01.webp', sortOrder: 46, active: true, price: { cash: '7,80', credit: '7,96' } },
+
+            // -- Vinhos --
+            { id: '27', name: 'Vinho Quinta Morgado 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tinto Suave'}], imageUrl: 'https://i.ibb.co/spJ1bcDy/quinta-do-morgado-tinto-suave-1l.jpg', sortOrder: 47, active: true, price: { cash: '21,25', credit: '21,68' } },
+            { id: '28', name: 'Vinho Quinta do Morgado Suave 750ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/j0dGyjr/quinta-do-morgado-tinto-suave.jpg', sortOrder: 48, active: true, price: { cash: '14,45', credit: '14,74' } },
+            { id: '25', name: 'Vinho Pérgula Tinto Suave 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/pjykdnSp/Vinho-Brasileiro-Pergola-Tinto-Suave-1l.png', sortOrder: 49, active: true, price: { cash: '21,70', credit: '22,13' } },
+            { id: '34', name: 'Vinho Pérgola 750ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/mCjMYR6t/12194-1.webp', sortOrder: 50, active: true, price: { cash: '17,80', credit: '18,16' } },
+            { id: '10', name: 'Vinho Cantina da Serra 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/DfmgKCmx/vinho-coquetel-cantina-da-serra-tinto-suave-embalagem-12x15-lt-preco-unitario-r9-3enygexapi.webp', sortOrder: 51, active: true, price: { cash: '6,00', credit: '6,20' } },
+            { id: '8', name: 'Vinho Dom Bosco 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/84B2qNSt/vinho-dom-bosco-tinto-suave-1l-1383-1-ad3d44dab6338ab15e7467ca6071e562.webp', sortOrder: 52, active: true, price: { cash: '16,95', credit: '17,29' } },
+            { id: '92', name: 'Vinho Colheita do Sul 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/3Kdjf2J/l-ea51dada267d48e7a344e61addedfa7b.png', sortOrder: 53, active: true, price: { cash: '17,70', credit: '18,05' } },
+            { id: '93', name: 'Vinho Chilano 750ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7tVsGspt/165239-800-800.png', sortOrder: 54, active: true, price: { cash: '23,50', credit: '23,97' } },
+
+            // --- Bomboneire / Alimentos ---
+            // -- Balas e Drops --
+            { id: '36', name: 'Bala Icekiss Sortida 500G', category: 'Bomboneire', details: [{flavor: 'Sortida'}], imageUrl: 'https://i.ibb.co/7dVMMzqJ/bala-dura-icekiss-sortida-500g-16675-1-3b5416d1fada308118535e1796dcd3e3.webp', sortOrder: 55, active: true, price: { cash: '7,90', credit: '8,06' } },
+            { id: '38', name: 'Bala Santa Fé Canela 600G', category: 'Bomboneire', details: [{flavor: 'Canela'}], imageUrl: 'https://i.ibb.co/Ds3YDxj/128.jpg', sortOrder: 56, active: true, price: { cash: '9,60', credit: '9,79' } },
+            { id: '43', name: 'Bala Santa Fé Mastigável Sortida Frutas 500G', category: 'Bomboneire', details: [{flavor: 'Frutas Sortidas'}], imageUrl: 'https://i.ibb.co/q3CLvQPP/df00043f0bf6a689281a7536ebbdd5d6.webp', sortOrder: 57, active: true, price: { cash: '7,30', credit: '7,45' } },
+            { id: '39', name: 'Drops Halls', category: 'Bomboneire', details: [{flavor: 'Extra forte'}, {flavor: 'Melancia'}, {flavor: 'Menta'}, {flavor: 'Hortelã'}, {flavor: 'Cereja'}, {flavor: 'Morango'}], imageUrl: 'https://i.ibb.co/9kh4dc9C/sg-11134201-7qvea-li0fr8iza4l467.jpg', sortOrder: 58, active: true, price: { cash: '24,76', credit: '25,50' } },
+            
+            // -- Chicletes --
+            { id: '37', name: 'Chiclete Blong', category: 'Bomboneire', details: [{flavor: 'Framboesa'}, {flavor: 'Hortelã'}, {flavor: 'Morango'}, {flavor: 'Napolitano'}, {flavor: 'Tutti-Frutti'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/fGt4CMcz/Gemini-Generated-Image-rvylr0rvylr0rvyl.png', sortOrder: 59, active: true, price: { cash: '7,10', credit: '7,25' } },
+            { id: '45', name: 'Chiclete Trident', category: 'Bomboneire', details: [{flavor: 'Hortelã'}, {flavor: 'Menta'}, {flavor: 'Morango'}, {flavor: 'Melancia'}, {flavor: 'Tutti-Frutti'}], imageUrl: 'https://i.ibb.co/5hYWG1LZ/Gemini-Generated-Image-he1fa1he1fa1he1f.png', sortOrder: 60, active: true, price: { cash: '37,00', credit: '37,50' } },
+            { id: '57', name: 'Chiclete Tattoo Santa Fé', category: 'Bomboneire', details: [{flavor: 'Morango'}, {flavor: 'Hortelã'}], imageUrl: 'https://i.ibb.co/d0sw6kRt/Chat-GPT-Image-20-de-jan-de-2026-15-31-45.png', sortOrder: 61, active: true, price: { cash: '7,85', credit: '8,01' } },
+            
+            // -- Pirulitos --
+            { id: '40', name: 'Pirulito Megalito Pinta Língua', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/T9m5zn7/1617230123c7i5abc2cd.png', sortOrder: 62, active: true, price: { cash: '19,45', credit: '19,85' } },
+            { id: '51', name: 'Pirulito Big Pop Frutas Recheado Mastigável 500 G', category: 'Bomboneire', details: [{flavor: 'Frutas'}], imageUrl: 'https://i.ibb.co/L3GybXc/pirulito-big-pop-frutas-sortidas-c-rech-mastigavel-500g-17525-1-b3db72729bb08998eab24f4c6a2c86c3.webp', sortOrder: 63, active: true, price: { cash: '9,50', credit: '9,69' } },
+            { id: '53', name: 'Pirulito Cherry Pop', category: 'Bomboneire', details: [{flavor: 'Cereja'}], imageUrl: 'https://i.ibb.co/Ngx4Kscp/Pirulito-Mix-Cherry-Pop-700-Gr-c50-unid-Simas-3.webp', sortOrder: 64, active: true, price: { cash: '15,98', credit: '16,30' } },
+            
+            // -- Doces Diversos --
+            { id: '48', name: 'Doce Balsamo Pacote com 150 unidades', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/PvRGxkhq/D-NQ-NP-922701-MLB76612538960-062024-O.webp', sortOrder: 65, active: true, price: { cash: '56,00', credit: '57,12' } },
+            { id: '49', name: 'Doce Balsamo Pacote com 50 unidades', category: 'Bomboneire', details: [{flavor: 'Doce de Amendoim'}, {flavor: 'Doce de Caramelo'}, {flavor: 'Doce de Leite'}], imageUrl: 'https://i.ibb.co/fzwM1rPm/Gemini-Generated-Image-klafw5klafw5klaf.png', sortOrder: 66, active: true, price: { cash: '17,00', credit: '17,34' } },
+            { id: '54', name: 'Paçoca Paçokids', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/KxQZcMCk/Gemini-Generated-Image-yf3ys0yf3ys0yf3y.png', sortOrder: 67, active: true, price: { cash: '17,00', credit: '17,34' } },
+            { id: '50', name: 'Chocolate Puríssimo', category: 'Bomboneire', details: [{flavor: 'Chocolate ao leite'}, {flavor: 'Mesclado'}, {flavor: 'Chocolate Branco'}, {flavor: 'Amendoim'}], imageUrl: 'https://i.ibb.co/6cwtwx2Y/dfe03fd9-cb38-4cd9-b839-d597f251e29f-4380-000854-2966c599cff5b765fd17410129207602-1024-1024.jpg', sortOrder: 68, active: true, price: { cash: '16,15', credit: '17,03' } },
+            { id: '47', name: 'Kakauzinho', category: 'Bomboneire', details: [{flavor: 'Chocolate'}], imageUrl: 'https://i.ibb.co/s9n5Vk7b/Chat-GPT-Image-20-de-jan-de-2026-14-35-11.png', sortOrder: 69, active: true, price: { cash: '17,70', credit: '17,90' } },
+            { id: '46', name: 'Doce Molecão', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/prz1zsm5/Chat-GPT-Image-20-de-jan-de-2026-14-26-54.png', sortOrder: 70, active: true, price: { cash: '13,70', credit: '13,97' } },
+            { id: '56', name: 'Cocada Recheada Pé de Serra', category: 'Bomboneire', details: [{flavor: 'Recheada'}], imageUrl: 'https://i.ibb.co/wFt8jggq/Chat-GPT-Image-20-de-jan-de-2026-15-24-48.png', sortOrder: 71, active: true, price: { cash: '16,00', credit: '16,32' } },
+            { id: '22', name: 'Bolibol 680G', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4g0ZmJyn/bolibol-pote-680g-3419-1-5dc9f8b84c1e6b41ba4462bb2b725447.webp', sortOrder: 72, active: true, price: { cash: '23,40', credit: '23,87' } },
+            
+            // -- Salgadinhos --
+            { id: '44', name: 'Torresmo Pé de Serra', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Hp9txykH/l-9aee4631cfa14377af45cd51cdd3a79f.png', sortOrder: 73, active: true, price: { cash: '21,00', credit: '21,50' } },
+            { id: '94', name: 'Salgadinho Agitos 85G', category: 'Bomboneire', details: [{flavor: 'Cebola'}, {flavor: 'Barbecue'}, {flavor: 'Presunto'}, {flavor: 'Requeijão'}, {flavor: 'Queijo'}, {flavor: 'Galinha caipira'}], imageUrl: 'https://i.ibb.co/4gtTH7sz/Gemini-Generated-Image-2p7o242p7o242p7o.png', sortOrder: 74, active: true, price: { cash: '15,00', credit: '15,25' } },
+            { id: '42', name: 'Salgadinho Goxtoso 28G', category: 'Bomboneire', details: [{flavor: 'Cebola'}, {flavor: 'Churrasco'}, {flavor: 'Galinha Caipira'}, {flavor: 'Pizza'}, {flavor: 'Presunto'}, {flavor: 'Queijo'}], imageUrl: 'https://i.ibb.co/7J7yjqvV/Goxtoso-Assado.png', sortOrder: 75, active: true, price: { cash: '6,70', credit: '6,80' } },
+            { id: '52', name: 'Salgadinho Goxtoso 20x40', category: 'Bomboneire', details: [{flavor: 'Sortido'}], imageUrl: 'https://i.ibb.co/4RKPy3cS/Goxtoso-Xeeks.png', sortOrder: 76, active: true, price: { cash: '20,60', credit: '21,01' } },
+            { id: '41', name: 'Pipoca Doce Goxtoso 40G', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/5X1zGGV0/Goxtoso-pipoca.png', sortOrder: 77, active: true, price: { cash: '8,90', credit: '9,10' } },
+            { id: '90', name: 'Leite em Pó Gostolac 200G', category: 'Bomboneire', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/LDQhfcH6/gostolac-thumb.png', sortOrder: 78, active: true, price: { cash: '3,80', credit: '3,90' } },
 
             // --- Outros ---
-            { id: 'p-out-1', name: 'Copo Americano 240 ML', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/nNm9sV1y/IMG-0658.jpg', sortOrder: 164, active: true, price: { cash: '1,20', credit: '1,22' } },
-            { id: 'p-new-copo-desc', name: 'Copo Descartável', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/RTQ6dcN2/223-1.webp', sortOrder: 165, active: true, price: { cash: '3,99', credit: '4,11' } },
-            { id: 'p-new-incenso', name: 'Incenso', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/SwZ3375V/Whats-App-Image-2025-12-16-at-15-02-04.jpg', sortOrder: 166, active: true, price: { cash: '6,08', credit: '6,20' } },
-            { id: 'p-new-ratoeira', name: 'Ratoeira Adesiva', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/1Y2RHG36/Whats-App-Image-2025-12-16-at-15-02-04-1.jpg', sortOrder: 167, active: true, price: { cash: '2,30', credit: '2,35' } },
-            { id: 'p-new-cola', name: 'Cola instantânea', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0yxGmvWJ/Whats-App-Image-2025-12-16-at-15-02-04-2.jpg', sortOrder: 168, active: true, price: { cash: '41,16', credit: '41,98' } },
+            { id: '14', name: 'Copo Americano 240 ML', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/nNm9sV1y/IMG-0658.jpg', sortOrder: 79, active: true, price: { cash: '1,20', credit: '1,25' } },
+            { id: '91', name: 'Copo Descartável', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/RTQ6dcN2/223-1.webp', sortOrder: 80, active: true, price: { cash: '3,99', credit: '4,11' } },
+            { id: '55', name: 'Incenso', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/SwZ3375V/Whats-App-Image-2025-12-16-at-15-02-04.jpg', sortOrder: 81, active: true, price: { cash: '5,99', credit: '6,11' } },
         ];
         
-        // --- Improved Persuasive Texts with Specific Product Groups ---
+        // --- Improved Persuasive Texts ---
         const getPersuasiveText = (product) => {
             const name = product.name.toLowerCase();
             const category = product.category;
 
-            // --- B2B / Varejista Focused Copy ---
-
-            // Goob - Margem e Volume
-            if (name.includes('goob')) {
-                return 'Margem de lucro superior às marcas líderes. O Goob é o campeão de vendas para o almoço de domingo da classe C e D. Produto de giro rápido que fideliza o cliente pelo sabor e preço competitivo. Item obrigatório para compor o mix de refrigerantes econômicos.';
-            }
-
-            // Ener Up - Mercado em crescimento
-            if (name.includes('ener up')) {
-                return 'O mercado de energéticos cresce 15% ao ano no Brasil. Ener Up entrega a energia que seu cliente busca com um custo que permite alto markup (margem) para o lojista. Ideal para posicionar em geladeiras próximas ao caixa e alavancar a venda por impulso.';
-            }
-
-            // Guaran Up Copo - Lanche rápido
-            if (name.includes('guaran up') && name.includes('copo')) {
-                return 'O queridinho do lanche rápido. Formato prático que vende muito em balcão para consumo imediato. Ideal para mercadinhos próximos a escolas, obras e pontos de ônibus. Giro diário garantido.';
-            }
-            if (name.includes('guaran up')) {
-                return 'Combinação clássica de Guaraná e Açaí. Energético natural com alta aceitação. Ótima opção para variar o mix de bebidas funcionais da sua loja.';
-            }
-
-            // Água Lôa - Item de necessidade básica
-            if (name.includes('lôa')) {
-                return 'Item de primeira necessidade com saída constante. A Lôa tem alta aceitação regional e brand equity consolidado. Garanta estoque de segurança: água não para na prateleira em dias quentes e traz fluxo recorrente para o estabelecimento.';
-            }
-
-            // Sucos Yulo - Lancheira e Família
-            if (name.includes('yulo') && (name.includes('200') || name.includes('caixinha'))) {
-                return 'Alternativa econômica e saborosa para as lancheiras escolares. Excelente aceitação infantil. Dica de exposição: posicione próximo aos biscoitos recheados para estimular a venda casada e aumentar o ticket médio.';
-            }
-            if (name.includes('yulo')) {
-                return 'Sabor da fruta com rendimento para a família toda. Opção de alto giro para o café da manhã e lanches da tarde. Produto com validade estendida, facilitando a gestão de estoque.';
-            }
+            if (name.includes('goob')) return 'Margem de lucro superior às marcas líderes. O Goob é o campeão de vendas para o almoço de domingo da classe C e D.';
+            if (name.includes('enerup') || name.includes('ener up')) return 'O mercado de energéticos cresce 15% ao ano no Brasil. Ener Up entrega a energia que seu cliente busca.';
+            if (name.includes('lôa')) return 'Item de primeira necessidade com saída constante. Garanta estoque de segurança: água não para na prateleira em dias quentes.';
+            if (name.includes('yulo')) return 'Sabor da fruta com rendimento para a família toda. Opção de alto giro para o café da manhã e lanches da tarde.';
+            if (name.includes('guaran up')) return 'O queridinho do lanche rápido. Formato prático que vende muito em balcão para consumo imediato.';
             
-            // Cervejas Brussels - Custo x Benefício Premium
-            if (name.includes('brussels')) {
-                return 'Puro Malte com preço de Pilsen comum. A Brussels oferece ao seu cliente uma experiência premium sem pesar no bolso, garantindo recompra. Crescimento acelerado em 2025. Excelente ferramenta para combater o preço das marcas líderes.';
-            }
-
-            // Pitú - Líder de Categoria (Curva A)
-            if (name.includes('pitú') || name.includes('pitu')) {
-                return 'A cachaça líder absoluta. Produto "Curva A" indispensável em qualquer PDV. Ter Pitú na prateleira é garantia de tráfego de clientes na sua loja. Não deixe faltar, pois a falta deste item leva o cliente para a concorrência.';
-            }
-
-            // Montilla - Destilado Popular
-            if (name.includes('montilla')) {
-                return 'O Rum que impulsiona o "esquenta". Montilla é versátil para drinks e muito popular entre o público jovem adulto. Garanta a diversão do seu cliente e a margem do seu setor de destilados com essa marca consagrada.';
-            }
-
-            // Vodkas - Mix de Drinks
-            if (name.includes('vodka')) {
-                return 'Essencial para a coquetelaria popular. Vodkas de custo acessível são a base para caipiroskas e drinks de verão. Item com pico de vendas às sextas e sábados.';
-            }
-
-            // Whisky - Ticket Médio
-            if (name.includes('whisky')) {
-                return 'Sofisticação e sabor marcante. Whiskies selecionados para quem aprecia qualidade. Ótima margem unitária e procura constante em datas comemorativas e fins de semana.';
-            }
-
-            // Vinhos - Versatilidade
-            if (name.includes('vinho') || name.includes('pergula') || name.includes('quinta')) {
-                return 'Vinhos de entrada com alto giro. Do suave ao seco, opções que agradam o paladar brasileiro e trazem requinte ao seu portfólio sem assustar o cliente pelo preço.';
-            }
+            if (name.includes('pitu') || name.includes('pitú')) return 'A cachaça líder absoluta. Produto "Curva A" indispensável em qualquer PDV.';
+            if (name.includes('brussels')) return 'Puro Malte com preço de Pilsen comum. A Brussels oferece ao seu cliente uma experiência premium sem pesar no bolso.';
+            if (name.includes('montilla')) return 'O Rum que impulsiona o "esquenta". Montilla é versátil para drinks e muito popular entre o público jovem adulto.';
+            if (name.includes('vodka')) return 'Essencial para a coquetelaria popular. Vodkas de custo acessível são a base para caipiroskas e drinks de verão.';
+            if (name.includes('whisky')) return 'Sofisticação e sabor marcante. Whiskies selecionados para quem aprecia qualidade.';
+            if (name.includes('vinho') || name.includes('pergula') || name.includes('quinta') || name.includes('dom bosco')) return 'Vinhos de entrada com alto giro. Do suave ao seco, opções que agradam o paladar brasileiro.';
             
-            // Ice - Público Jovem / Impulso
-            if (name.includes('ice') || name.includes('glow')) {
-                return 'Visual que vende sozinho. A embalagem chamativa atrai o público jovem e impulsiona as vendas de fim de semana e "esquentas". Ótima margem para o varejista e alto giro em geladeiras de autosserviço.';
-            }
-
-            // Bomboneire - Checkout e Ticket Médio
-            if (category === 'Bomboneire') {
-                if (name.includes('bala') || name.includes('drops') || name.includes('chiclete') || name.includes('pirulito')) {
-                    return 'O rei do checkout. Produtos de baixo desembolso que aumentam o ticket médio da compra sem o cliente perceber. Alta rentabilidade por centímetro quadrado no balcão.';
-                }
-                if (name.includes('salgadinho') || name.includes('amendoim') || name.includes('torresmo')) {
-                    return 'O petisco ideal para o happy hour. Exponha no corredor de bebidas ("Cross-merchandising") e veja a venda acontecer naturalmente. Essencial para acompanhar a cerveja gelada.';
-                }
-                return 'Doçura que vende fácil! Ideal para troco e compras de impulso.';
-            }
+            if (category === 'Bomboneire') return 'O rei do checkout. Produtos de baixo desembolso que aumentam o ticket médio da compra sem o cliente perceber.';
             
-            // Cigarros - Gerador de Tráfego
-            if (category === 'Cigarro') {
-                return 'Gerador de fluxo. Produtos de tabacaria garantem a visita diária de clientes fiéis, que acabam levando outros itens de conveniência. Mantenha o mix variado para não perder venda.';
-            }
-            
-            return 'Este produto de alta qualidade é uma excelente adição ao seu mix, garantindo satisfação do cliente, alto giro e excelente retorno financeiro neste verão.';
+            return 'Este produto de alta qualidade é uma excelente adição ao seu mix, garantindo satisfação do cliente e excelente retorno financeiro.';
         };
 
         let MOCK_SETTINGS = {
             id: 1,
-            categoriesOrder: ['Bebidas não alcoólicas', 'Bebidas alcoólicas', 'Bomboneire', 'Cigarro', 'Outros'],
+            categoriesOrder: ['Bebidas não alcoólicas', 'Bebidas alcoólicas', 'Bomboneire', 'Outros'],
         };
 
         const normalizeText = (text = '') => {
@@ -560,7 +459,6 @@
         // --- Icon Components ---
         const IconLupa = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>;
         const IconInstagram = ({size = 24}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
-        const IconSun = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" className={className}><path d="M128,60a68,68,0,1,0,68,68A68.07,68.07,0,0,0,128,60Zm0,120a52,52,0,1,1,52-52A52.06,52.06,0,0,1,128,180ZM96,24H160a4,4,0,0,0,0-8H96a4,4,0,0,0,0,8ZM53.5,47.8l6.3-4.6a4,4,0,0,0-4.6-6.4l-6.4,4.6a4,4,0,0,0,4.7,6.4ZM24,160h64a4,4,0,0,0,0-8H24a4,4,0,0,0,0,8ZM48.8,206.5l4.6,6.3a4,4,0,1,0,6.4-4.6l-4.6-6.4a4,4,0,0,0-6.4,4.7ZM160,232H96a4,4,0,0,0,0-8h64a4,4,0,0,0,0-8ZM207.2,195.2l-4.6,6.4a4,4,0,0,0,6.4,4.6l4.6-6.3a4,4,0,0,0-6.4-4.7ZM232,160h-64a4,4,0,0,0,0-8h64a4,4,0,0,0,0-8ZM202.5,41.4l-6.3,4.6a4,4,0,0,0,4.7,6.4l6.4-4.6a4,4,0,0,0-4.8-6.4Z" transform="scale(1.3) translate(-30 -30)"/></svg>;
 
         const CategoryIcon = ({ src, alt, isActive, size = 'w-5 h-5' }) => (
             <img 
@@ -664,22 +562,18 @@
                 <header className="sticky top-0 z-40 shadow-sm" style={{backgroundColor: 'var(--brand-green)', backgroundImage: 'linear-gradient(to right, var(--brand-green), var(--brand-green-light))'}}>
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-24">
                         <div className="flex-1 flex justify-start items-center gap-2">
-                             <div className="bg-white px-4 sm:px-6 py-2 rounded-2xl shadow-lg flex items-center gap-2 transform hover:scale-105 transition-transform duration-300">
-                                 <i className="ph-sun text-yellow-500 text-2xl hidden sm:block"></i>
-                                 <div>
-                                     <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }} className="flex items-baseline">
-                                         <span className="text-xl sm:text-2xl font-bold" style={{color: 'var(--brand-green)'}}>Igor</span>
-                                         <span className="text-xl sm:text-2xl font-bold" style={{color: 'var(--brand-red)'}}>Valen</span>
-                                     </a>
-                                     <span className="block text-xs sm:text-sm -mt-1 font-medium text-gray-800 text-center">Distribuidora</span>
-                                 </div>
+                             {/* Retângulo arredondado e não muito espesso (padding reduzido py-0.5 e altura da imagem h-24) */}
+                             <div className="bg-white px-2 py-0.5 rounded-2xl shadow-lg flex items-center gap-2 transform hover:scale-105 transition-transform duration-300">
+                                 <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }} className="flex items-center">
+                                     <img src="https://i.ibb.co/Fb94vFGd/Chat-GPT-Image-20-de-jan-de-2026-12-41-03.png" alt="WR Atacadista" className="h-24 w-auto object-contain" />
+                                 </a>
                              </div>
                         </div>
                         
                         <div className="flex-1 flex justify-end items-center px-2">
-                            <a href="https://www.instagram.com/distribuidora_igorvalen" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white transition-all duration-300 transform hover:scale-105 bg-white bg-opacity-10 py-2 px-4 rounded-full border border-white border-opacity-20 hover:bg-opacity-20">
+                            <a href="https://www.instagram.com/atacadistawr?igsh=dHJlNHFjMWprNG05" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white transition-all duration-300 transform hover:scale-105 bg-white bg-opacity-10 py-2 px-4 rounded-full border border-white border-opacity-20 hover:bg-opacity-20">
                                 <IconInstagram size={24} />
-                                <span className="font-bold text-sm sm:text-lg tracking-wider whitespace-nowrap hidden sm:inline">@distribuidora_igorvalen</span>
+                                <span className="font-bold text-sm sm:text-lg tracking-wider whitespace-nowrap hidden sm:inline">@atacadistawr</span>
                             </a>
                         </div>
                     </div>
@@ -691,9 +585,9 @@
             <footer className="mt-16 py-8 text-center text-sm text-gray-600 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-t-3xl shadow-inner">
                 <div className="flex justify-center items-center gap-2 mb-2">
                     <i className="ph-sun text-yellow-500 text-xl"></i>
-                    <span className="font-semibold text-green-800">Verão 2026 IgorValen</span>
+                    <span className="font-semibold text-green-800">Verão 2026 WR Atacadista</span>
                 </div>
-                © 2026 IgorValen Distribuidora. Todos os direitos reservados.
+                © 2026 WR Atacadista. Todos os direitos reservados.
             </footer>
         );
 
@@ -708,57 +602,81 @@
             </div>
         );
 
-        // --- ZOOM LOGIC CONFIGURATION ---
+        // --- ZOOM LOGIC CONFIGURATION (Tamanhos do IgorValen aplicados aos produtos da WR) ---
+        
         // 1. Excluded: No Zoom (scale-100)
         const EXCLUDED_FROM_ZOOM = [
-            'p16', 'p17', 'p18', // Aguas Loa
-            'p-alc-1', 'p-new-brussels-lager-ln', 'p-alc-2', 'p-new-brussels-ultra-ln', // Cervejas
-            'p-alc-6', // Pitu Lata 710
-            'p-alc-72', 'p-alc-15', 'p-alc-21', 'p-new-cachaca-presidente', 'p-alc-43', 'p-alc-60', // Destilados Específicos
-            'p-bomb-1', 'p-bomb-36', 'p-bomb-71', 'p-bomb-63', 'p-bomb-70', 'p-out-1' // Bomboneire/Outros
+            '85', '86', '87', // Aguas Loa
+            'b1', 'b2', 'b3', 'b4', // Brussels
+            '12', '26', // Destilados Específicos
+            '38', '90', // Bomboneire/Outros (36 e 11 removed)
+            // Moved here from Tiny Zoom (to increase):
+            '9', '13', '19', '31', '32', '14'
         ];
 
-        // 2. Mega Zoom: Scale 3.8x (Increased for Guaranup Copo)
+        // 1.1 Giga Zoom: Scale 5.5x
+        const GIGA_ZOOM_IDS = [];
+
+        // 1.2 Ultra Zoom: Scale 4.5x
+        const ULTRA_ZOOM_IDS = [];
+
+        // 2. Mega Zoom: Scale 3.8x
         const MEGA_ZOOM_IDS = [
-            'p14'
+            '76' // GuaranUp Copo
         ];
 
-        // 3. Super Zoom: Scale 2.6x (Requested "aumentar")
+        // 2.7x Zoom (Added for GuaranUp 200ML)
+        const SCALE_2_7_IDS = ['75']; // GuaranUp 200ML moved here
+
+        // 2.4x Zoom (Added for Catuaba)
+        const SCALE_2_4_IDS = ['11']; // Catuaba
+
+        // 2.0x Zoom (Added for Icekiss Sortida)
+        const SCALE_2_0_IDS = ['36']; // Icekiss Sortida
+
+        // 2.6x Zoom (Super Zoom - Adjusted Black Label here)
         const SUPER_ZOOM_IDS = [
-            'p13',       // Enerup 2L
-            'p2',        // Enerup 250ML
-            'p15',       // Guarana+ açaí Guaran UP 200 ML
-            'p-alc-5',   // Pitu de Garrafa 600 ML
-            'p-alc-52',   // Ice Syn
-            'p11',        // Goob 230ML (NEW)
+            '74', '72', '5', '30', '64' // Removed 75
         ];
 
-        // 4. Slight Zoom: Scale 1.9x (Requested "aumentar só um pouquinho")
+        // 4. Slight Zoom: Scale 1.9x
         const SLIGHT_ZOOM_IDS = [
-            'p-alc-4'    // Pitu Devolvendo o Litro
+            '1',    // Pitu Litro
+            '91'    // Copo Descartável
         ];
-        
-        // 5. Smaller Zoom: Scale 1.35x (Requested "diminua um pouco" - smaller than default 1.7)
+
+        // 1.8x Zoom (Added for Black Label and Domecq)
+        const SCALE_1_8_IDS = ['21', '15'];
+
+        // 1.6x Zoom (Added for Maratinho)
+        const SCALE_1_6_IDS = ['new1'];
+
+        // 1.4x Zoom
+        const SCALE_1_4_IDS = ['4']; // Pitu 350
+
+        // 5. Smaller Zoom: Scale 1.35x
         const SMALLER_ZOOM_IDS = [
-            'p1',         // Goob 2L
-            'p12',        // Goob 1L
-            'p23',        // Drink T
-            'p-alc-58',   // Campari
-            'p-alc-8', 'p-alc-10', 'p-alc-11', 'p-alc-12', // Pitu Lata 350
-            'p-bomb-41',  // Chocolate Puríssimo
-            'p-new-doce-amendoim', // Paçokids
-            'p-alc-53'    // Ice Glow 275 ML
+            '60',     // Goob 2L
+            '58',     // Goob 1L
+            '70',     // Drink T
+            '6',      // Campari
+            '22', '23', '24', // Outros
+            '50',     // Chocolate Puríssimo
+            '54',     // Paçokids
+            '89'      // Ice Glow Garrafa
         ];
+
+        // 1.3x Zoom
+        const SCALE_1_3_IDS = ['48']; // Paçoca 150
 
         // 6. Low Zoom: Scale 1.15x (Smaller than 1.35x)
         const LOW_ZOOM_IDS = [
-            'p21', 'p22' // Suco Yulo 400/200
+            '77', '80' // Suco Yulo 400/200
         ];
 
-        // 7. Tiny Zoom: Scale 0.8x (Smaller than 0.9x - Decreased for Pitu Limao and Ice Glow Lata)
+        // 7. Tiny Zoom: Scale 0.8x (Smaller than 0.9x)
         const TINY_ZOOM_IDS = [
-            'p-alc-54', // Ice Glow 269 Lata
-            'p-alc-9'   // Pitu Limão 350ML
+            '88'  // Glow Ice 269ML
         ];
 
         const ProductCard = ({ product, onProductClick, showPrices }) => {
@@ -768,19 +686,37 @@
                 }
             };
 
-            // Determine Scale Class
+            // Determine Scale Class Based on IgorValen Logic
             let imgZoomClass = 'scale-[1.7]'; // Default Zoom
 
             if (EXCLUDED_FROM_ZOOM.includes(product.id)) {
                 imgZoomClass = 'scale-100';
+            } else if (GIGA_ZOOM_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[5.5]'; // Giga Zoom
+            } else if (ULTRA_ZOOM_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[4.5]'; // Ultra Zoom
             } else if (MEGA_ZOOM_IDS.includes(product.id)) {
                 imgZoomClass = 'scale-[3.8]'; // Mega Zoom
-            } else if (SUPER_ZOOM_IDS.includes(product.id)) {
-                imgZoomClass = 'scale-[2.6]'; // Super Zoom
+            } else if (SCALE_2_7_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[2.7]'; // 2.7x Zoom
+            } else if (SUPER_ZOOM_IDS.includes(product.id)) { // 2.6x
+                imgZoomClass = 'scale-[2.6]'; 
+            } else if (SCALE_2_4_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[2.4]'; // 2.4x Zoom
+            } else if (SCALE_2_0_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[2.0]'; // 2.0x Zoom
             } else if (SLIGHT_ZOOM_IDS.includes(product.id)) {
                 imgZoomClass = 'scale-[1.9]'; // Slight Zoom
+            } else if (SCALE_1_8_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[1.8]';
+            } else if (SCALE_1_6_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[1.6]';
+            } else if (SCALE_1_4_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[1.4]';
             } else if (SMALLER_ZOOM_IDS.includes(product.id)) {
                 imgZoomClass = 'scale-[1.35]'; // Smaller Zoom
+            } else if (SCALE_1_3_IDS.includes(product.id)) {
+                imgZoomClass = 'scale-[1.3]';
             } else if (LOW_ZOOM_IDS.includes(product.id)) {
                 imgZoomClass = 'scale-[1.15]'; // Low Zoom
             } else if (TINY_ZOOM_IDS.includes(product.id)) {
@@ -795,14 +731,13 @@
                     onKeyPress={handleKeyPress}
                     className="bg-white rounded-3xl shadow-md overflow-hidden flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full group cursor-pointer focus:outline-none border border-gray-100"
                 >
-                    {/* Added p-6 to force uniform image containment */}
                     <div className="relative h-48 overflow-hidden bg-white flex items-center justify-center p-6">
                         {product.outOfStock ? (
                             <div className="out-of-stock-overlay">
                                 <span className="out-of-stock-badge">EM FALTA</span>
                             </div>
                         ) : (
-                            !product.comingSoon && product.price && showPrices && (
+                            product.price && showPrices && (
                                 <div className="price-badge">
                                     <span className="label">À Vista</span>
                                     <span className="value">R$ {product.price.cash}</span>
@@ -843,7 +778,7 @@
                                         <span className="text-lg font-bold text-yellow-600 uppercase tracking-wider animate-pulse">EM BREVE</span>
                                     </div>
                                 ) : (
-                                    product.price && showPrices && (
+                                    product.price && showPrices ? (
                                         <div className="mt-2 pt-2 border-t border-gray-100">
                                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full gap-1">
                                                 <span className="font-extrabold text-[0.65rem] uppercase tracking-wide text-gray-500">A PRAZO</span>
@@ -852,6 +787,10 @@
                                                     <span className="font-bold text-base sm:text-lg" style={{color: 'var(--brand-yellow)'}}>{product.price.credit}</span>
                                                 </div>
                                             </div>
+                                        </div>
+                                    ) : (
+                                        <div className="mt-2 pt-2 border-t border-gray-100 text-center">
+                                            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Confira Oferta</span>
                                         </div>
                                     )
                                 )
@@ -888,7 +827,7 @@
                                         <i className="ph-sun-dim text-8xl text-yellow-500"></i>
                                      </div>
                                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4" style={{color: 'var(--brand-green)'}}>
-                                        Verão de Ofertas IgorValen
+                                        Verão de Ofertas WR Atacadista
                                     </h1>
                                     <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto text-gray-600">
                                         Refresque seu estoque com os melhores preços da estação!
@@ -917,9 +856,9 @@
                             </div>
 
                             <div className="mb-10 rounded-3xl overflow-hidden border-4 border-green-600 shadow-2xl transform hover:scale-[1.01] transition-transform duration-500">
-                                <a href="https://ibb.co/S7vWZ4pP" target="_blank" rel="noopener noreferrer">
+                                <a href="https://ibb.co/9H3Td064" target="_blank" rel="noopener noreferrer">
                                     <img 
-                                        src="https://i.ibb.co/qF1X23wd/Chat-GPT-Image-8-de-jan-de-2026-16-48-01.png" 
+                                        src="https://i.ibb.co/nM8cKy91/Chat-GPT-Image-20-de-jan-de-2026-13-39-22.png" 
                                         alt="Banner promocional de Verão" 
                                         className="w-full h-auto block"
                                         onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+de+Verão'; }}
@@ -943,7 +882,7 @@
                          <div className="flex gap-3 mb-6 justify-start overflow-x-auto pb-2 no-scrollbar">
                              {allCategories.map(cat => {
                                  const isActive = (activeCategory === null && cat === 'Todas') || activeCategory === cat;
-                                 const iconData = CATEGORY_ICONS_DATA[cat];
+                                 const iconData = CATEGORY_ICONS_DATA[cat] || { src: '', alt: '' };
                                  return (
                                      <button 
                                          key={cat} 
@@ -1013,7 +952,9 @@
                                     <div className="mb-8">
                                         <div className="relative">
                                             <div className="rounded-t-3xl shadow-lg overflow-hidden mt-4" style={{ backgroundColor: '#042f15' }}>
-                                                <img src="https://i.ibb.co/Vp9Pshb4/IMG-0863.jpg" alt="Novas Cervejas" className="w-full h-auto block hover:scale-105 transition-transform duration-700" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+Indisponível'; }}/>
+                                                <a href="https://ibb.co/NnmnXfrP" target="_blank" rel="noopener noreferrer">
+                                                    <img src="https://i.ibb.co/Pz9zRJMn/Gemini-Generated-Image-jnbhahjnbhahjnbh.png" alt="Novas Cervejas Brussels" className="w-full h-auto block hover:scale-105 transition-transform duration-700" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+Indisponível'; }}/>
+                                                </a>
                                                 <div style={{ height: '20px' }}></div>
                                             </div>
                                         </div>
@@ -1030,7 +971,7 @@
 
                                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center gap-4 justify-start" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}>
                                     <div className="bg-white p-2 rounded-full shadow-md">
-                                        <CategoryIcon src={CATEGORY_ICONS_DATA[group.category].src} alt={CATEGORY_ICONS_DATA[group.category].alt} isActive={false} size="w-8 h-8 sm:w-10 sm:h-10" />
+                                        <CategoryIcon src={CATEGORY_ICONS_DATA[group.category]?.src} alt={CATEGORY_ICONS_DATA[group.category]?.alt} isActive={false} size="w-8 h-8 sm:w-10 sm:h-10" />
                                     </div>
                                     {group.category}
                                 </h2>
