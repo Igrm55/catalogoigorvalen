@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Catálogo Verão - IgorValen Distribuidora</title>
     
     <!-- Tailwind CSS -->
@@ -45,6 +45,7 @@
             background-color: var(--brand-red);
             position: relative;
             overflow-x: hidden;
+            padding-bottom: 80px; /* Espaço para a barra de progresso */
         }
 
         /* Fundo com toque de verão */
@@ -77,7 +78,6 @@
         #root {
             position: relative;
             z-index: 2;
-            padding-bottom: 120px; /* Aumentado para acomodar o novo botão */
         }
         
         .panel {
@@ -229,29 +229,83 @@
             letter-spacing: 1px;
             text-align: center;
         }
-        
-        @media (min-width: 640px) {
-            .out-of-stock-badge {
-                 padding: 8px 16px;
-                 font-size: 0.9rem;
-            }
-        }
 
-        /* Animações Premium para o ScrollPrompt */
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            100% { transform: scale(1.3); opacity: 0; }
-        }
-        .animate-pulse-ring {
-            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes float-vertical {
+        /* Animações Premium */
+        @keyframes bounce-small {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
-        .animate-float-vertical {
-            animation: float-vertical 3s ease-in-out infinite;
+        .animate-bounce-small {
+            animation: bounce-small 2s infinite;
+        }
+        
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 3s infinite;
+        }
+
+        /* Progress Bar Styles */
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; /* Mais altura para o mobile */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-top: 2px solid var(--brand-green);
+        }
+
+        .progress-bar-track {
+            flex-grow: 1;
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 99px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand-yellow), var(--brand-green));
+            transition: width 0.3s ease-out;
+            position: relative;
+        }
+        
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.4) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--brand-green-darker);
+            margin-bottom: 4px;
         }
 
     </style>
@@ -261,7 +315,7 @@
     <div class="wave-container"></div>
 
     <script type="text/babel">
-        // [2026-02-05] Desafio: Eu desafio vc digitar "Oferta" com os olhos fechados nos comentários!
+        // [2026-02-05] Desafio: Eu desafio vc digitar "Verão" com os olhos fechados nos comentários!
 
         // ===================================================================
         // DATA - PREÇOS CORRIGIDOS (PDF 03/02/2026) E PRODUTOS FILTRADOS
@@ -271,7 +325,7 @@
             { id: 'p1', name: 'Refrigerante Goob 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Uva'}, {flavor: 'Guaraná'}, {flavor: 'Laranja'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/23PSr9s0/Gemini-Generated-Image-a5jkuba5jkuba5jk.png', sortOrder: 1, active: true, price: { cash: '25,80', credit: '26,30' } },
             { id: 'p12', name: 'Refrigerante Goob 1L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Guaraná'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/Z6L113Sv/1768937474288.png', sortOrder: 2, active: true, price: { cash: '19,95', credit: '20,35' } },
             { id: 'p11', name: 'Refrigerante Goob 230ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Guaraná'}, {flavor: 'Morango com Limão'}, {flavor: 'Limão'}, {flavor: 'Laranja'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/Csbp4YJd/1768937683878.png', sortOrder: 3, active: true, price: { cash: '13,86', credit: '14,00' } },
-            { id: 'p13', name: 'Energético Ener Up 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Sabor tradicional'}], imageUrl: 'https://i.ibb.co/8LCtQwjT/ISM-SITE-BANNER-730-X400-ENERUP-2-L-640x400.png', sortOrder: 4, active: true, price: { cash: '36,00', credit: '36,72' } },
+            { id: 'p13', name: 'Energético Ener Up 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Sabor tradicional'}, {flavor: 'Melancia'}, {flavor: 'Maçã Verde'}], imageUrl: 'https://i.ibb.co/8LCtQwjT/ISM-SITE-BANNER-730-X400-ENERUP-2-L-640x400.png', sortOrder: 4, active: true, price: { cash: '36,00', credit: '36,72' } },
             { id: 'p2', name: 'Energético Ener Up 250ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bjbfp4Xh/ISM-SITE-BANNER-730-X400-ENERUP-250-ML-640x400.png', sortOrder: 5, active: true, price: { cash: '32,90', credit: '33,56' } },
             { id: 'p14', name: 'Guaraná + Açaí Guaran Up de Copo 290ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/3mSgbrqw/ISM-SITE-BANNER-730-X400-GUARANUP-COPO-640x400.png', sortOrder: 6, active: true, price: { cash: '28,95', credit: '29,53' } },
             { id: 'p15', name: 'Guaraná + Açaí Guaran Up 200ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Y7Rm31tR/ISM-SITE-BANNER-730-X400-GUARANUP-GARRAFA-640x400.png', sortOrder: 7, active: true, price: { cash: '19,00', credit: '19,40' } },
@@ -418,201 +472,322 @@
             { id: 'p-new-cola', name: 'Cola instantânea', category: 'Outros', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0yxGmvWJ/Whats-App-Image-2025-12-16-at-15-02-04-2.jpg', sortOrder: 168, active: true, price: { cash: '41,16', credit: '41,98' } },
         ];
         
-        // --- DESCRIÇÕES ÚNICAS PARA CADA PRODUTO ---
+        // --- TEXTOS PERSUASIVOS ---
         const PRODUCT_DESCRIPTIONS = {
-            'p1': "O gigante da economia! 2 Litros de puro sabor para garantir a alegria do almoço em família.",
-            'p12': "Tamanho perfeito para o dia a dia. Sabor intenso na medida certa para acompanhar suas refeições.",
-            'p11': "A dose individual de refrescância. Ideal para lancheiras ou aquele gole rápido de energia.",
-            'p13': "Energia tamanho família! Mantenha o pique da galera toda noite adentro com 2 litros de pura disposição.",
-            'p2': "Boost instantâneo de energia. A latinha que te dá asas para encarar qualquer desafio do dia.",
-            'p14': "O clássico das ruas. Combinação turbinada de Guaraná e Açaí no copinho que todo mundo ama.",
-            'p15': "Energia de bolso. Guaraná com Açaí para levar onde você for e não perder o ritmo.",
-            'p16': "Hidratação pura e leve. Água mineral de qualidade para manter a saúde da família em dia.",
-            'p17': "Leveza na medida certa. Água sem gás para acompanhar você na academia ou no escritório.",
-            'p18': "Toque de gás refrescante. Para quem ama aquela sensação frisante na hora de matar a sede.",
-            'p19': "Explosão de frutas na caixinha! O companheiro inseparável da lancheira escolar.",
-            'p20': "Suco de verdade para todos. Rendimento incrível com sabor de fruta fresca colhida no pé.",
-            'p21': "A dose dupla de sabor. Tamanho intermediário perfeito para quem quer mais que uma caixinha.",
-            'p22': "Pequeno no tamanho, gigante no sabor. Prático para o lanche rápido sem desperdício.",
-            'p23': "Refrescância natural do chá. Uma pausa gelada e saborosa para o seu dia corrido.",
-            'p24': "Energia em lata com estilo. Sabores vibrantes para quem não aceita a mesmice.",
-            'p-new-achoco': "Chocolate cremoso e irresistível. O achocolatado que faz a alegria da criançada no café da manhã.",
-            'p-alc-1': "Puro malte de verdade. Cerveja lager equilibrada, perfeita para aquele churrasco de responsa.",
-            'p-new-brussels-lager-ln': "Elegância em garrafa. A mesma lager premium, agora em long neck para momentos especiais.",
-            'p-alc-2': "Leveza sem abrir mão do sabor. Ultra refrescante, ideal para quem quer curtir sem pesar.",
-            'p-new-brussels-ultra-ln': "Estilo de vida ativo. Long neck Ultra para brindar com leveza e sofisticação.",
-            'p-alc-3-com-papelao': "A rainha do Brasil completa. Pitú tradicional com a garrafa, pronta para qualquer festa.",
-            'p-alc-4': "Economia inteligente. Traga seu casco e leve a melhor cachaça pagando muito menos.",
-            'p-alc-5': "A garrafinha icônica. Pitú na medida certa para aquela dose de coragem ou caipirinha rápida.",
-            'p-alc-6': "O latão da galera. Muita Pitú para dividir com os amigos e garantir a animação.",
-            'p-alc-7': "Tamanho intermediário campeão. Nem pouco, nem muito, a dose exata da sua alegria.",
-            'p-alc-8': "A branquinha na lata. Praticidade total para curtir sua Pitú onde você estiver.",
-            'p-alc-9': "Caipirinha pronta na lata! O toque azedinho do limão com a força da Pitú.",
-            'p-alc-10': "Doçura e tradição. Limão e mel já misturados para descer macio e saboroso.",
-            'p-alc-11': "Sabor tropical marcante. A cachaça com o gosto inconfundível do caju brasileiro.",
-            'p-alc-12': "Toque tropical adocicado. Pitú sabor banana para quem busca algo diferente e saboroso.",
-            'p-alc-72': "O ouro do Caribe brasileiro. Rum envelhecido perfeito para drinks sofisticados ou puro.",
-            'p-alc-73': "A base perfeita para seus coquetéis. Rum cristalino que se mistura bem com tudo.",
-            'p-alc-14': "Tradição em raízes. O amargo que faz bem, apreciado por gerações.",
-            'p-alc-16': "Uma boa ideia sempre. A cachaça 51 clássica, mundialmente famosa e brasileira.",
-            'p-alc-17': "A legítima do sertão. Asa Branca traz o sabor rústico e autêntico da cana.",
-            'p-alc-18': "Pequena notável. Caninha forte e saborosa em embalagem prática.",
-            'p-alc-20': "O tesouro de Salinas. Cachaça artesanal mineira de sabor aveludado e único.",
-            'p-alc-21': "Mistura fina. Velho Barreiro é tradição, perfeita para caipirinhas ou pura.",
-            'p-new-cachaca-presidente': "Qualidade presidencial. Cachaça selecionada para paladares exigentes.",
-            'p-alc-27': "Vodka pura e cristalina. A base ideal para suas batidas e drinks de verão.",
-            'p-alc-28': "Citrus refrescante. Vodka com toque de limão para drinks rápidos e saborosos.",
-            'p-alc-29': "Doçura vermelha. Sabor frutas vermelhas para quem gosta de drinks coloridos e doces.",
-            'p-alc-30': "Suavidade russa. Natasha é a vodka versátil que não pode faltar no seu bar.",
-            'p-alc-31': "A número 1 do mundo. Smirnoff dispensa apresentações, qualidade garantida.",
-            'p-alc-33': "Sabor intenso e marcante. Whisky acessível para quem aprecia um bom destilado.",
-            'p-alc-34': "O Grande Old Parr. Whisky escocês envelhecido, símbolo de status e bom gosto.",
-            'p-alc-35': "O Tennessee Whiskey original. Jack Daniel's traz o sabor único da suavização em carvão.",
-            'p-alc-38': "O caminhante continua. Red Label é o whisky escocês mais vendido do mundo por um motivo.",
-            'p-alc-39': "Profundidade e caráter. Black Label é o blend de luxo para momentos especiais.",
-            'p-alc-42': "Espírito jovem. Passport é o whisky vibrante e frutado para quem está começando.",
-            'p-alc-43': "O Cavalo Branco. Blend histórico e suave, perfeito com gelo ou puro.",
-            'p-alc-44': "O sabor do sucesso. Chanceler é o destilado nacional de malte whisky apreciado por todos.",
-            'p-alc-45': "Equilíbrio perfeito. Ballantine's é o scotch complexo e refinado para paladares apurados.",
-            'p-alc-50': "O sabor dos Alpes. Genebra aromática com zimbro, ideal para esquentar.",
-            'p-alc-52': "Refrescância alcoólica. Ice sabor limão, pronta para beber e gelar sua festa.",
-            'p-alc-53': "Brilho na garrafa. Ice Glow traz estilo e sabor para a balada.",
-            'p-alc-54': "Glow na lata. A mesma vibração em embalagem prática para levar pro rolê.",
-            'p-alc-55': "O suave da serra gaúcha. Vinho de mesa tinto doce, fácil de beber e amar.",
-            'p-new-quinta-morgado-1l': "Mais vinho, mais prazer. A garrafa de 1L do clássico suave para dividir.",
-            'p-alc-56': "O campeão do custo-benefício. Cantina da Serra é o vinho popular que agrada a todos.",
-            'p-alc-57': "Tradição em cada taça. Pérgula tinto suave é o vinho de mesa que não erra.",
-            'p-new-vinho-pergula-rose': "Leveza rosada. Vinho rosé refrescante para tardes quentes.",
-            'p-new-vinho-dom-macedo': "Sabor caseiro. Vinho de mesa honesto e saboroso para o dia a dia.",
-            'p-alc-58': "O bitter vermelho. Campari é o aperitivo intenso para quem tem personalidade.",
-            'p-alc-59': "Força do norte. Jurubeba tradicional para abrir o apetite com vigor.",
-            'p-alc-60': "O clássico brasileiro. Conhaque Presidente aquece e conforta com sabor amadeirado.",
-            'p-alc-62': "Desce macio. Dreher é o conhaque leve que todo brasileiro conhece.",
-            'p-alc-64': "Tradição espanhola. Domecq tem o sabor rico dos brandies envelhecidos.",
-            'p-alc-65': "Refrescância doce. Licor de menta perfeito para after-dinner ou coquetéis.",
-            'p-alc-67': "A selvagem. Catuaba com sabor de raízes brasileiras para despertar os sentidos.",
-            'p-alc-68': "O original do Rio. Alcatrão forte e encorpado para quem gosta de tradição.",
-            'p-alc-69': "Gengibre que desce quente. Bebida mista ideal para dias frios ou festas juninas.",
-            'p-alc-70': "Canela picante. Bebida mista doce e quente, para bebericar devagar.",
-            'p-bomb-1': "Doce e picante. Bala dura de canela que deixa um gostinho de quero mais.",
-            'p-bomb-2': "Beijo gelado. Balas Icekiss com aquela refrescância que gela a boca.",
-            'p-bomb-3': "Derrete na boca. O caramelo premium que é pura sofisticação e sabor.",
-            'p-bomb-4': "Mastigável e cremosa. O sabor do iogurte de morango em uma bala deliciosa.",
-            'p-bomb-5': "Explosão de frutas. Balas mastigáveis sortidas para agradar todos os gostos.",
-            'p-bomb-8': "Respire fundo. Halls é a pastilha que alivia e refresca com potência máxima.",
-            'p-bomb-14': "Refrescância de bolso. Drops Icekiss para ter sempre à mão.",
-            'p-bomb-15': "Alívio imediato. Drops Freegells gela a garganta e renova o hálito.",
-            'p-new-bala-freegells': "Chiclete com frescor. A combinação perfeita de goma de mascar e o poder do mentol.",
-            'p-new-bala-coffee': "Energia do café. Bala dura com sabor intenso de café expresso.",
-            'p-bomb-16': "O grandão da turma. Big Big é o chiclete que faz bolas gigantes.",
-            'p-bomb-17': "Sabor que dura. Trident é o chiclete sem açúcar número 1 para cuidar dos dentes.",
-            'p-bomb-18': "Clássico e acessível. Chiclete Cliss traz sabor nostálgico e preço amigo.",
-            'p-bomb-20': "Recheio líquido explosivo. Blong surpreende com uma casca crocante e interior suculento.",
-            'p-bomb-21': "Tubo de sabor. Goma de mascar em formato divertido com sabor iogurte.",
-            'p-bomb-22': "Diversão em tubo. Gomas sortidas para brincar e saborear.",
-            'p-bomb-23': "Língua colorida, diversão garantida! O pirulito que pinta a boca e a alegria da festa.",
-            'p-bomb-25': "Popzão da fruta. Pirulito gigante recheado para durar muito tempo.",
-            'p-bomb-26': "Sortimento gigante. Pacote de 1kg de pirulitos para fazer a festa render.",
-            'p-new-cherry-pop': "O sabor da cereja. Pirulito clássico com recheio de chicle que todo mundo ama.",
-            'p-bomb-29': "Fofinho e recheado. O biscoito que derrete na boca, perfeito com leite.",
-            'p-bomb-41': "Chocolate de verdade. Puríssimo entrega o sabor do cacau sem rodeios.",
-            'p-bomb-42': "Gostinho de infância. Doce caseiro tradicional que conforta o coração.",
-            'p-new-doce-amendoim': "A paçoca da criançada. Paçokids é energia e sabor de amendoim torrado.",
-            'p-bomb-56': "Crocância rápida. O snack perfeito para matar a fominha da tarde.",
-            'p-bomb-57': "Pimenta na medida. Salgadinho apimentado para quem gosta de emoção.",
-            'p-bomb-58': "Doce crocância. Pipoca pronta docinha, igualzinha a do cinema.",
-            'p-bomb-59': "Batata de verdade. Ondulada e crocante, impossível comer uma só.",
-            'p-bomb-60': "Agito garantido. Pacote maior para dividir com a galera no happy hour.",
-            'p-bomb-61': "Roleta de sabores. Mix apimentado para testar seu paladar.",
-            'p-bomb-72': "Variedade crocante. Snacks sortidos para todos os momentos.",
-            'p-bomb-62': "Lanchinho rápido. Pacote individual para levar na bolsa.",
-            'p-bomb-71': "Crocância oriental. Amendoim com casca crocante tipo japonês.",
-            'p-bomb-63': "O gigante do aperitivo. 1kg de amendoim japonês para não faltar na mesa do bar.",
-            'p-bomb-64': "Dose única de sabor. Sachê prático de amendoim japonês.",
-            'p-bomb-65': "Fogo mexicano. Amendoim com tempero picante para acompanhar a cerveja.",
-            'p-bomb-66': "Sabor defumado. Amendoim com toque irresistível de bacon.",
-            'p-bomb-67': "Clássico dos petiscos. Amendoim cebola e salsa, o favorito da torcida.",
-            'p-bomb-68': "Crocância suprema. Torresmo sequinho e salgadinho, o rei do boteco.",
-            'p-bomb-69': "Leve e estalante. Pururuca purinha para petiscar sem parar.",
-            'p-bomb-70': "Versatilidade na cozinha. Composto lácteo ideal para receitas e vitaminas.",
-            'p-cig-1': "Tradição do norte. Fumo de rolo forte e autêntico.",
-            'p-cig-2': "Qualidade na queima. Papel de seda fino para enrolar seu fumo.",
-            'p-cig-3': "Sabor da roça. Palheiro artesanal com palha de milho selecionada.",
-            'p-cig-4': "A seda do momento. Zomo garante uma queima lenta e uniforme.",
-            'p-out-1': "O copo do Brasil. Copo americano resistente e icônico para café ou cerveja.",
-            'p-new-copo-desc': "Praticidade descartável. Para festas e eventos sem louça para lavar.",
-            'p-new-incenso': "Ambiente renovado. Incenso perfumado para relaxar e energizar a casa.",
-            'p-new-ratoeira': "Eficiência garantida. Ratoeira adesiva segura e fácil de usar.",
-            'p-new-cola': "Cola tudo em segundos. Adesivo instantâneo poderoso para reparos rápidos."
+             'p1': "O gigante da economia! 2 Litros de puro sabor para garantir a alegria do almoço em família.",
+             'p12': "Tamanho perfeito para o dia a dia. Sabor intenso na medida certa para acompanhar suas refeições.",
+             'p11': "A dose individual de refrescância. Ideal para lancheiras ou aquele gole rápido de energia.",
+             'p13': "Energia tamanho família! Mantenha o pique da galera toda noite adentro com 2 litros de pura disposição.",
+             'p2': "Boost instantâneo de energia. A latinha que te dá asas para encarar qualquer desafio do dia.",
+             'p14': "O clássico das ruas. Combinação turbinada de Guaraná e Açaí no copinho que todo mundo ama.",
+             'p15': "Energia de bolso. Guaraná com Açaí para levar onde você for e não perder o ritmo.",
+             'p16': "Hidratação pura e leve. Água mineral de qualidade para manter a saúde da família em dia.",
+             'p17': "Leveza na medida certa. Água sem gás para acompanhar você na academia ou no escritório.",
+             'p18': "Toque de gás refrescante. Para quem ama aquela sensação frisante na hora de matar a sede.",
+             'p19': "Explosão de frutas na caixinha! O companheiro inseparável da lancheira escolar.",
+             'p20': "Suco de verdade para todos. Rendimento incrível com sabor de fruta fresca colhida no pé.",
+             'p21': "A dose dupla de sabor. Tamanho intermediário perfeito para quem quer mais que uma caixinha.",
+             'p22': "Pequeno no tamanho, gigante no sabor. Prático para o lanche rápido sem desperdício.",
+             'p23': "Refrescância natural do chá. Uma pausa gelada e saborosa para o seu dia corrido.",
+             'p24': "Energia em lata com estilo. Sabores vibrantes para quem não aceita a mesmice.",
+             'p-new-achoco': "Chocolate cremoso e irresistível. O achocolatado que faz a alegria da criançada no café da manhã.",
+             'p-alc-1': "Puro malte de verdade. Cerveja lager equilibrada, perfeita para aquele churrasco de responsa.",
+             'p-new-brussels-lager-ln': "Elegância em garrafa. A mesma lager premium, agora em long neck para momentos especiais.",
+             'p-alc-2': "Leveza sem abrir mão do sabor. Ultra refrescante, ideal para quem quer curtir sem pesar.",
+             'p-new-brussels-ultra-ln': "Estilo de vida ativo. Long neck Ultra para brindar com leveza e sofisticação.",
+             'p-alc-3-com-papelao': "A rainha do Brasil completa. Pitú tradicional com a garrafa, pronta para qualquer festa.",
+             'p-alc-4': "Economia inteligente. Traga seu casco e leve a melhor cachaça pagando muito menos.",
+             'p-alc-5': "A garrafinha icônica. Pitú na medida certa para aquela dose de coragem ou caipirinha rápida.",
+             'p-alc-6': "O latão da galera. Muita Pitú para dividir com os amigos e garantir a animação.",
+             'p-alc-7': "Tamanho intermediário campeão. Nem pouco, nem muito, a dose exata da sua alegria.",
+             'p-alc-8': "A branquinha na lata. Praticidade total para curtir sua Pitú onde você estiver.",
+             'p-alc-9': "Caipirinha pronta na lata! O toque azedinho do limão com a força da Pitú.",
+             'p-alc-10': "Doçura e tradição. Limão e mel já misturados para descer macio e saboroso.",
+             'p-alc-11': "Sabor tropical marcante. A cachaça com o gosto inconfundível do caju brasileiro.",
+             'p-alc-12': "Toque tropical adocicado. Pitú sabor banana para quem busca algo diferente e saboroso.",
+             'p-alc-72': "O ouro do Caribe brasileiro. Rum envelhecido perfeito para drinks sofisticados ou puro.",
+             'p-alc-73': "A base perfeita para seus coquetéis. Rum cristalino que se mistura bem com tudo.",
+             'p-alc-14': "Tradição em raízes. O amargo que faz bem, apreciado por gerações.",
+             'p-alc-16': "Uma boa ideia sempre. A cachaça 51 clássica, mundialmente famosa e brasileira.",
+             'p-alc-17': "A legítima do sertão. Asa Branca traz o sabor rústico e autêntico da cana.",
+             'p-alc-18': "Pequena notável. Caninha forte e saborosa em embalagem prática.",
+             'p-alc-20': "O tesouro de Salinas. Cachaça artesanal mineira de sabor aveludado e único.",
+             'p-alc-21': "Mistura fina. Velho Barreiro é tradição, perfeita para caipirinhas ou pura.",
+             'p-new-cachaca-presidente': "Qualidade presidencial. Cachaça selecionada para paladares exigentes.",
+             'p-alc-27': "Vodka pura e cristalina. A base ideal para suas batidas e drinks de verão.",
+             'p-alc-28': "Citrus refrescante. Vodka com toque de limão para drinks rápidos e saborosos.",
+             'p-alc-29': "Doçura vermelha. Sabor frutas vermelhas para quem gosta de drinks coloridos e doces.",
+             'p-alc-30': "Suavidade russa. Natasha é a vodka versátil que não pode faltar no seu bar.",
+             'p-alc-31': "A número 1 do mundo. Smirnoff dispensa apresentações, qualidade garantida.",
+             'p-alc-33': "Sabor intenso e marcante. Whisky acessível para quem aprecia um bom destilado.",
+             'p-alc-34': "O Grande Old Parr. Whisky escocês envelhecido, símbolo de status e bom gosto.",
+             'p-alc-35': "O Tennessee Whiskey original. Jack Daniel's traz o sabor único da suavização em carvão.",
+             'p-alc-38': "O caminhante continua. Red Label é o whisky escocês mais vendido do mundo por um motivo.",
+             'p-alc-39': "Profundidade e caráter. Black Label é o blend de luxo para momentos especiais.",
+             'p-alc-42': "Espírito jovem. Passport é o whisky vibrante e frutado para quem está começando.",
+             'p-alc-43': "O Cavalo Branco. Blend histórico e suave, perfeito com gelo ou puro.",
+             'p-alc-44': "O sabor do sucesso. Chanceler é o destilado nacional de malte whisky apreciado por todos.",
+             'p-alc-45': "Equilíbrio perfeito. Ballantine's é o scotch complexo e refinado para paladares apurados.",
+             'p-alc-50': "O sabor dos Alpes. Genebra aromática com zimbro, ideal para esquentar.",
+             'p-alc-52': "Refrescância alcoólica. Ice sabor limão, pronta para beber e gelar sua festa.",
+             'p-alc-53': "Brilho na garrafa. Ice Glow traz estilo e sabor para a balada.",
+             'p-alc-54': "Glow na lata. A mesma vibração em embalagem prática para levar pro rolê.",
+             'p-alc-55': "O suave da serra gaúcha. Vinho de mesa tinto doce, fácil de beber e amar.",
+             'p-new-quinta-morgado-1l': "Mais vinho, mais prazer. A garrafa de 1L do clássico suave para dividir.",
+             'p-alc-56': "O campeão do custo-benefício. Cantina da Serra é o vinho popular que agrada a todos.",
+             'p-alc-57': "Tradição em cada taça. Pérgula tinto suave é o vinho de mesa que não erra.",
+             'p-new-vinho-pergula-rose': "Leveza rosada. Vinho rosé refrescante para tardes quentes.",
+             'p-new-vinho-dom-macedo': "Sabor caseiro. Vinho de mesa honesto e saboroso para o dia a dia.",
+             'p-alc-58': "O bitter vermelho. Campari é o aperitivo intenso para quem tem personalidade.",
+             'p-alc-59': "Força do norte. Jurubeba tradicional para abrir o apetite com vigor.",
+             'p-alc-60': "O clássico brasileiro. Conhaque Presidente aquece e conforta com sabor amadeirado.",
+             'p-alc-62': "Desce macio. Dreher é o conhaque leve que todo brasileiro conhece.",
+             'p-alc-64': "Tradição espanhola. Domecq tem o sabor rico dos brandies envelhecidos.",
+             'p-alc-65': "Refrescância doce. Licor de menta perfeito para after-dinner ou coquetéis.",
+             'p-alc-67': "A selvagem. Catuaba com sabor de raízes brasileiras para despertar os sentidos.",
+             'p-alc-68': "O original do Rio. Alcatrão forte e encorpado para quem gosta de tradição.",
+             'p-alc-69': "Gengibre que desce quente. Bebida mista ideal para dias frios ou festas juninas.",
+             'p-alc-70': "Canela picante. Bebida mista doce e quente, para bebericar devagar.",
+             'p-bomb-1': "Doce e picante. Bala dura de canela que deixa um gostinho de quero mais.",
+             'p-bomb-2': "Beijo gelado. Balas Icekiss com aquela refrescância que gela a boca.",
+             'p-bomb-3': "Derrete na boca. O caramelo premium que é pura sofisticação e sabor.",
+             'p-bomb-4': "Mastigável e cremosa. O sabor do iogurte de morango em uma bala deliciosa.",
+             'p-bomb-5': "Explosão de frutas. Balas mastigáveis sortidas para agradar todos os gostos.",
+             'p-bomb-8': "Respire fundo. Halls é a pastilha que alivia e refresca com potência máxima.",
+             'p-bomb-14': "Refrescância de bolso. Drops Icekiss para ter sempre à mão.",
+             'p-bomb-15': "Alívio imediato. Drops Freegells gela a garganta e renova o hálito.",
+             'p-new-bala-freegells': "Chiclete com frescor. A combinação perfeita de goma de mascar e o poder do mentol.",
+             'p-new-bala-coffee': "Energia do café. Bala dura com sabor intenso de café expresso.",
+             'p-bomb-16': "O grandão da turma. Big Big é o chiclete que faz bolas gigantes.",
+             'p-bomb-17': "Sabor que dura. Trident é o chiclete sem açúcar número 1 para cuidar dos dentes.",
+             'p-bomb-18': "Clássico e acessível. Chiclete Cliss traz sabor nostálgico e preço amigo.",
+             'p-bomb-20': "Recheio líquido explosivo. Blong surpreende com uma casca crocante e interior suculento.",
+             'p-bomb-21': "Tubo de sabor. Goma de mascar em formato divertido com sabor iogurte.",
+             'p-bomb-22': "Diversão em tubo. Gomas sortidas para brincar e saborear.",
+             'p-bomb-23': "Língua colorida, diversão garantida! O pirulito que pinta a boca e a alegria da festa.",
+             'p-bomb-25': "Popzão da fruta. Pirulito gigante recheado para durar muito tempo.",
+             'p-bomb-26': "Sortimento gigante. Pacote de 1kg de pirulitos para fazer a festa render.",
+             'p-new-cherry-pop': "O sabor da cereja. Pirulito clássico com recheio de chicle que todo mundo ama.",
+             'p-bomb-29': "Fofinho e recheado. O biscoito que derrete na boca, perfeito com leite.",
+             'p-bomb-41': "Chocolate de verdade. Puríssimo entrega o sabor do cacau sem rodeios.",
+             'p-bomb-42': "Gostinho de infância. Doce caseiro tradicional que conforta o coração.",
+             'p-new-doce-amendoim': "A paçoca da criançada. Paçokids é energia e sabor de amendoim torrado.",
+             'p-bomb-56': "Crocância rápida. O snack perfeito para matar a fominha da tarde.",
+             'p-bomb-57': "Pimenta na medida. Salgadinho apimentado para quem gosta de emoção.",
+             'p-bomb-58': "Doce crocância. Pipoca pronta docinha, igualzinha a do cinema.",
+             'p-bomb-59': "Batata de verdade. Ondulada e crocante, impossível comer uma só.",
+             'p-bomb-60': "Agito garantido. Pacote maior para dividir com a galera no happy hour.",
+             'p-bomb-61': "Roleta de sabores. Mix apimentado para testar seu paladar.",
+             'p-bomb-72': "Variedade crocante. Snacks sortidos para todos os momentos.",
+             'p-bomb-62': "Lanchinho rápido. Pacote individual para levar na bolsa.",
+             'p-bomb-71': "Crocância oriental. Amendoim com casca crocante tipo japonês.",
+             'p-bomb-63': "O gigante do aperitivo. 1kg de amendoim japonês para não faltar na mesa do bar.",
+             'p-bomb-64': "Dose única de sabor. Sachê prático de amendoim japonês.",
+             'p-bomb-65': "Fogo mexicano. Amendoim com tempero picante para acompanhar a cerveja.",
+             'p-bomb-66': "Sabor defumado. Amendoim com toque irresistível de bacon.",
+             'p-bomb-67': "Clássico dos petiscos. Amendoim cebola e salsa, o favorito da torcida.",
+             'p-bomb-68': "Crocância suprema. Torresmo sequinho e salgadinho, o rei do boteco.",
+             'p-bomb-69': "Leve e estalante. Pururuca purinha para petiscar sem parar.",
+             'p-bomb-70': "Versatilidade na cozinha. Composto lácteo ideal para receitas e vitaminas.",
+             'p-cig-1': "Tradição do norte. Fumo de rolo forte e autêntico.",
+             'p-cig-2': "Qualidade na queima. Papel de seda fino para enrolar seu fumo.",
+             'p-cig-3': "Sabor da roça. Palheiro artesanal com palha de milho selecionada.",
+             'p-cig-4': "A seda do momento. Zomo garante uma queima lenta e uniforme.",
+             'p-out-1': "O copo do Brasil. Copo americano resistente e icônico para café ou cerveja.",
+             'p-new-copo-desc': "Praticidade descartável. Para festas e eventos sem louça para lavar.",
+             'p-new-incenso': "Ambiente renovado. Incenso perfumado para relaxar e energizar a casa.",
+             'p-new-ratoeira': "Eficiência garantida. Ratoeira adesiva segura e fácil de usar.",
+             'p-new-cola': "Cola tudo em segundos. Adesivo instantâneo poderoso para reparos rápidos."
         };
 
         const getPersuasiveText = (product) => {
-            if (PRODUCT_DESCRIPTIONS[product.id]) {
-                return PRODUCT_DESCRIPTIONS[product.id];
-            }
-            return 'Este produto de alta qualidade é uma excelente adição ao seu mix, garantindo satisfação e economia.';
+            return PRODUCT_DESCRIPTIONS[product.id] || 'Este produto de alta qualidade é uma excelente adição ao seu mix, garantindo satisfação e economia.';
+        };
+        
+        // === CONTROLE DE ZOOM MANUAL ===
+        // Ajuste fino para a resolução 800x1340
+        // Valores < 1 diminuem, > 1 aumentam
+        const IMAGE_SCALE_OVERRIDES = {
+            // Bebidas não alcoólicas
+            'p11': 0.85, // Goob 230
+            'p13': 0.85, // EnerUp 2L
+            'p2': 0.85,  // EnerUp 250
+            'p14': { scale: 0.75, translateY: '-10px' }, // Guarana Copo (Diminui e sobe um pouco)
+            'p15': 1.0, 
+            'p16': 1.05, // Agua 1.5
+            'p17': 1.05, // Agua 500
+            'p18': 1.05, // Agua com gas
+            'p19': 0.9,  // Suco Caixa
+            'p20': 0.9,  // Suco 1.5
+            'p21': 0.9,
+            'p22': 0.9,
+            'p24': 0.9,  // EnerUp Lata
+            'p-new-achoco': 0.95,
+
+            // Alcoólicas
+            'p-alc-1': 1.05, // Brussels Lager
+            'p-new-brussels-lager-ln': 1.05,
+            'p-alc-2': 1.05,
+            'p-new-brussels-ultra-ln': 1.05,
+            'p-alc-3-com-papelao': 0.9, // Pitu Litro
+            'p-alc-4': 0.9,
+            'p-alc-5': 0.9, // Pitu 600
+            'p-alc-6': 1.05, // Pitu Latao
+            'p-alc-7': 0.9, // Pitu 473
+            'p-alc-8': 0.9, // Pitu 350
+            'p-alc-9': 1.15, // Pitu Limao
+            'p-alc-10': 0.9, // Limao e Mel
+            'p-alc-11': 0.9, // Caju
+            'p-alc-12': 0.9, // Banana
+            'p-alc-72': 1.15, // Montilla Ouro
+            'p-alc-73': 0.9, // Montilla Branca
+            'p-alc-14': 0.9, // Paratudo
+            'p-alc-16': 0.9, // 51
+            'p-alc-17': 0.9, // Asa Branca
+            'p-alc-18': 0.9, // Vida Nova
+            'p-alc-20': 0.9, // Seleta
+            'p-alc-21': 1.05, // Velho Barreiro
+            'p-new-cachaca-presidente': 1.05,
+            'p-alc-27': 0.95, // Newsnoff
+            'p-alc-28': 0.95,
+            'p-alc-29': 0.95,
+            'p-alc-30': 0.9, // Natasha
+            'p-alc-31': 0.9, // Smirnoff
+            'p-alc-33': 0.9, // Black Stone
+            'p-alc-34': 0.9, // Old Par
+            'p-alc-35': 0.9, // Jack
+            'p-alc-38': 0.9, // Red
+            'p-alc-39': 0.9, // Black
+            'p-alc-42': 0.9, // Passport
+            'p-alc-43': 1.1, // White Horse
+            'p-alc-44': 0.9, // Chanceler
+            'p-alc-45': 0.9, // Ballantines
+            'p-alc-50': 0.9, // Dubar
+            'p-alc-52': 0.9, // Ice Syn
+            'p-alc-53': 0.9, // Ice Glow 275
+            'p-alc-54': 1.1, // Glow Lata
+            'p-alc-55': 0.95, // Morgado
+            'p-new-quinta-morgado-1l': 0.95,
+            'p-alc-56': 0.95, // Cantina
+            'p-alc-57': 0.95, // Pergula
+            'p-new-vinho-pergula-rose': 0.95,
+            'p-new-vinho-dom-macedo': 0.95,
+            'p-alc-58': 0.95, // Campari
+            'p-alc-59': 0.9, // Jurubeba
+            'p-alc-60': 1.15, // Conhaque Presidente
+            'p-alc-62': 0.9, // Dreher
+            'p-alc-64': 0.9, // Domecq
+            'p-alc-65': 0.9, // Menta SP
+            'p-alc-67': 0.9, // Catuaba
+            'p-alc-68': 0.9, // Alcatrao
+            'p-alc-69': 0.9, // Gengibre
+            'p-alc-70': 0.9, // Canelinha
+
+            // Bomboneire
+            'p-bomb-1': 1.1, // Bala Canela
+            'p-bomb-2': 0.9, // Icekiss
+            'p-bomb-3': 0.9, // Butter
+            'p-bomb-4': 0.9, // Santa fe
+            'p-bomb-5': 0.9,
+            'p-bomb-8': 0.9, // Halls
+            'p-bomb-14': 0.9,
+            'p-bomb-15': 0.9, // Freegells
+            'p-new-bala-freegells': 0.9,
+            'p-new-bala-coffee': 0.9,
+            'p-bomb-16': 0.9, // Big Big
+            'p-bomb-17': 0.9, // Trident
+            'p-bomb-18': 0.9, // Cliss
+            'p-bomb-20': 0.9, // Blong
+            'p-bomb-21': 0.9, // Tubo
+            'p-bomb-22': 0.9,
+            'p-bomb-23': 0.9, // Pinta lingua
+            'p-bomb-25': 0.9, // Big pop
+            'p-bomb-26': 0.9, // Megalito
+            'p-new-cherry-pop': 0.9,
+            'p-bomb-29': 0.9, // Biscoito
+            'p-bomb-41': 0.9, // Purissimo
+            'p-bomb-42': 0.9, // Balsamo
+            'p-new-doce-amendoim': 0.9,
+            'p-bomb-56': 0.95, // Goxtoso 28
+            'p-bomb-57': 0.95, // Pimentinha
+            'p-bomb-58': 0.95,
+            'p-bomb-59': 0.95,
+            'p-bomb-60': 0.95, // Agitos 85
+            'p-bomb-61': 0.95, // Pimentinha Agitos
+            'p-bomb-72': 0.95, // Amendupa
+            'p-bomb-62': 0.9, // Agitos 25
+            'p-bomb-71': 0.9,
+            'p-bomb-63': 0.9,
+            'p-bomb-64': 0.9,
+            'p-bomb-65': 0.9,
+            'p-bomb-66': 0.9,
+            'p-bomb-67': 0.9,
+            'p-bomb-68': 0.95, // Torresmo
+            'p-bomb-69': 0.95, // Pururuca
+            
+            // Cigarro
+            'p-cig-1': 0.9,
+            'p-cig-2': 0.9,
+            'p-cig-3': 0.9,
+            'p-cig-4': 0.9
         };
 
-        // Scroll Indicator Component - ULTRA PREMIUM & SMART
-        const ScrollPrompt = () => {
-            const [visible, setVisible] = React.useState(true);
-            const [isScrolling, setIsScrolling] = React.useState(false);
-            const timeoutRef = React.useRef(null);
+        const getProductImageStyle = (productId) => {
+            const override = IMAGE_SCALE_OVERRIDES[productId];
+            if (!override) return { transform: 'scale(1)' };
+            
+            if (typeof override === 'object') {
+                return { transform: `scale(${override.scale}) translateY(${override.translateY || '0'})` };
+            }
+            return { transform: `scale(${override})` };
+        };
 
+
+        // --- COMPONENTE: BARRA DE PROGRESSO DOPAMINÉRGICA ---
+        const DopamineProgressBar = () => {
+            const [scrollProgress, setScrollProgress] = React.useState(0);
+            
             React.useEffect(() => {
                 const handleScroll = () => {
-                    const scrollPosition = window.innerHeight + window.scrollY;
-                    const pageHeight = document.documentElement.scrollHeight;
-                    const nearBottom = scrollPosition >= pageHeight - 150;
-
-                    if (nearBottom) {
-                        setVisible(false);
-                    } else {
-                        setVisible(true);
-                    }
-
-                    // Logic: Fade out while scrolling to not obstruct view
-                    setIsScrolling(true);
-                    clearTimeout(timeoutRef.current);
-                    
-                    // Reappear after user stops scrolling (1.2s delay)
-                    timeoutRef.current = setTimeout(() => {
-                        setIsScrolling(false);
-                    }, 1200);
+                    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const progress = (window.scrollY / totalHeight) * 100;
+                    setScrollProgress(Math.min(progress, 100));
                 };
-
+                
                 window.addEventListener('scroll', handleScroll);
+                handleScroll(); // Init
                 return () => window.removeEventListener('scroll', handleScroll);
             }, []);
+            
+            const getMessage = () => {
+                if (scrollProgress < 15) return "Começando...";
+                if (scrollProgress < 40) return "Muitas ofertas!";
+                if (scrollProgress < 75) return "Continue descendo...";
+                if (scrollProgress < 98) return "Quase lá!";
+                return "Você viu tudo! 👏";
+            };
 
-            if (!visible) return null;
+            if (scrollProgress > 98) return null; // Esconde quando chega no final absoluto
 
             return (
-                <div 
-                    className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-700 ease-in-out ${isScrolling ? 'opacity-30 scale-90 translate-y-4' : 'opacity-100 scale-100 translate-y-0 hover:scale-105'}`}
-                >
-                    <div 
-                        className="relative group cursor-pointer" 
-                        onClick={() => window.scrollBy({top: 400, behavior: 'smooth'})}
-                    >
-                        {/* Glowing Ring Effect (Summer Theme) */}
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 via-yellow-400 to-green-400 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-ring"></div>
-                        
-                        {/* Main Glassmorphism Pill */}
-                        <div className="relative bg-white bg-opacity-90 backdrop-blur-xl pl-5 pr-2 py-2 rounded-full flex items-center gap-4 shadow-2xl border border-white/60">
-                            <div className="flex flex-col items-start select-none">
-                                <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-0.5 animate-pulse">Não pare agora</span>
-                                <span className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 leading-none tracking-tight">
-                                    Mais ofertas abaixo
-                                </span>
-                            </div>
-                            
-                            {/* Animated Arrow Circle */}
-                            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center relative overflow-hidden shadow-inner border border-green-100">
-                                 <i className="ph-arrow-down-bold text-green-700 text-lg animate-float-vertical relative z-10 drop-shadow-sm"></i>
-                            </div>
+                <div className="progress-container">
+                    <div className="flex-grow mr-4">
+                        <div className="flex justify-between items-end mb-1">
+                            <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">{getMessage()}</span>
+                            <span className="text-xs font-black text-green-700">{Math.round(scrollProgress)}%</span>
+                        </div>
+                        <div className="progress-bar-track">
+                            <div className="progress-bar-fill" style={{ width: `${scrollProgress}%` }}></div>
                         </div>
                     </div>
+                    
+                    <button 
+                        onClick={() => window.scrollBy({top: window.innerHeight * 0.7, behavior: 'smooth'})}
+                        className="flex flex-col items-center justify-center bg-green-100 text-green-800 p-2 rounded-xl shadow-sm border border-green-200 animate-bounce-small hover:bg-green-200 transition-colors"
+                    >
+                        <span className="text-[10px] font-bold uppercase leading-tight">Ver Mais</span>
+                        <i className="ph-arrow-down-bold text-lg leading-none mt-1"></i>
+                    </button>
                 </div>
             );
         };
@@ -674,17 +849,21 @@
         
         const ProductDetailModal = ({ product, onClose, showPrices }) => {
             if (!product) return null;
+            
+            // Especial: Guaraná Copo (p14) fica GIGANTE no modal
+            const isGuaranaCopo = product.id === 'p14';
+            const modalImageStyle = isGuaranaCopo ? { transform: 'scale(2.5)' } : { transform: 'scale(1.2)' };
 
             return (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity duration-300 p-4"
+                    className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[200] transition-opacity duration-300 p-4"
                     onClick={onClose}
                 >
                     <div 
-                        className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden" 
+                        className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden max-h-[90vh]" 
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="w-full md:w-1/2 bg-gray-100 p-6 md:p-8 flex flex-col justify-center order-2 md:order-1">
+                        <div className="w-full md:w-1/2 bg-gray-50 p-6 md:p-8 flex flex-col justify-center order-2 md:order-1 overflow-y-auto">
                             <h3 className="text-2xl lg:text-3xl font-bold mb-3" style={{color: 'var(--brand-green)'}}>
                                 {product.name}
                             </h3>
@@ -694,29 +873,33 @@
                              {(product.details && product.details.length > 0) && (
                                 <div className="mt-4">
                                     <p className="font-bold text-base" style={{color: 'var(--brand-red)'}}>
-                                        {product.details.length > 1 ? 'Opções:' : 'Opção:'}
+                                        {product.details.length > 1 ? 'Opções Disponíveis:' : 'Opção:'}
                                     </p>
-                                    <p className="text-sm text-gray-700">
-                                        {(product.details || []).map(detail => detail.flavor).join(', ')}
-                                    </p>
+                                    <div className="flex flex-wrap gap-2 mt-2">
+                                        {(product.details || []).map(detail => (
+                                            <span key={detail.flavor} className="bg-white border border-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-700 shadow-sm">
+                                                {detail.flavor}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
 
                             {product.outOfStock ? (
                                 <div className="mt-6 border-t pt-4 border-gray-300">
-                                    <span className="text-2xl font-bold text-red-500 uppercase tracking-widest border-2 border-red-500 px-4 py-2 rounded-lg inline-block transform -rotate-2">
+                                    <span className="text-xl font-bold text-red-500 uppercase tracking-widest border-2 border-red-500 px-4 py-2 rounded-lg inline-block transform -rotate-2">
                                         Produto em Falta
                                     </span>
                                 </div>
                             ) : (
                                 product.price && showPrices && (
-                                    <div className="mt-6 border-t pt-4 border-gray-300">
-                                        <div className="flex justify-between items-center mb-2 p-3 bg-green-50 rounded-xl border border-green-200">
-                                            <span className="text-green-800 font-bold uppercase text-sm">Preço à vista:</span>
-                                            <span className="text-3xl font-black text-green-700">R$ {product.price.cash}</span>
+                                    <div className="mt-6 border-t pt-4 border-gray-300 space-y-3">
+                                        <div className="flex justify-between items-center p-4 bg-green-50 rounded-2xl border border-green-200 shadow-sm">
+                                            <span className="text-green-800 font-bold uppercase text-sm">À vista</span>
+                                            <span className="text-4xl font-black text-green-700 tracking-tight">R$ {product.price.cash}</span>
                                         </div>
                                         <div className="flex justify-between items-center p-3 bg-orange-50 rounded-xl border border-orange-200">
-                                            <span className="text-orange-800 font-bold uppercase text-xs">Preço a prazo:</span>
+                                            <span className="text-orange-800 font-bold uppercase text-xs">No Cartão</span>
                                             <span className="text-2xl font-bold text-orange-600">R$ {product.price.credit}</span>
                                         </div>
                                     </div>
@@ -724,7 +907,7 @@
                             )}
                         </div>
 
-                        <div className="w-full md:w-1/2 bg-white p-6 md:p-8 flex items-center justify-center order-1 md:order-2 relative">
+                        <div className="w-full md:w-1/2 bg-white p-4 md:p-8 flex items-center justify-center order-1 md:order-2 relative h-64 md:h-auto border-b md:border-b-0 md:border-l border-gray-100 overflow-hidden">
                             {product.outOfStock && (
                                 <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold z-10 shadow-lg">
                                     INDISPONÍVEL
@@ -733,16 +916,17 @@
                             <img
                                 src={product.imageUrl}
                                 alt={product.name}
-                                className={`w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain ${product.outOfStock ? 'opacity-50 grayscale' : ''}`}
+                                style={modalImageStyle}
+                                className={`w-full h-full object-contain transition-transform duration-500 ${product.outOfStock ? 'opacity-50 grayscale' : ''}`}
                             />
                         </div>
 
                         <button
                             onClick={onClose}
-                            className="absolute top-3 right-3 bg-white text-gray-700 rounded-full p-2 shadow-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white z-30"
+                            className="absolute top-3 right-3 bg-white text-gray-700 rounded-full p-2 shadow-lg hover:bg-gray-200 focus:outline-none z-30"
                             aria-label="Fechar"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                         </button>
                     </div>
                 </div>
@@ -752,24 +936,24 @@
         const Header = () => {
             return (
                 <header className="sticky top-0 z-40 shadow-sm" style={{backgroundColor: 'var(--brand-green)', backgroundImage: 'linear-gradient(to right, var(--brand-green), var(--brand-green-light))'}}>
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-24">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 sm:h-24">
                         <div className="flex-1 flex justify-start items-center gap-2">
-                             <div className="bg-white px-4 sm:px-6 py-2 rounded-2xl shadow-lg flex items-center gap-2 transform hover:scale-105 transition-transform duration-300">
-                                 <i className="ph-sun text-yellow-500 text-2xl hidden sm:block"></i>
+                             <div className="bg-white px-3 sm:px-6 py-1.5 sm:py-2 rounded-2xl shadow-lg flex items-center gap-2 transform hover:scale-105 transition-transform duration-300">
+                                 <i className="ph-sun text-yellow-500 text-xl sm:text-2xl hidden sm:block"></i>
                                  <div>
-                                     <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }} className="flex items-baseline">
-                                         <span className="text-xl sm:text-2xl font-bold" style={{color: 'var(--brand-green)'}}>Igor</span>
-                                         <span className="text-xl sm:text-2xl font-bold" style={{color: 'var(--brand-red)'}}>Valen</span>
+                                     <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }} className="flex items-baseline leading-none">
+                                         <span className="text-lg sm:text-2xl font-bold" style={{color: 'var(--brand-green)'}}>Igor</span>
+                                         <span className="text-lg sm:text-2xl font-bold" style={{color: 'var(--brand-red)'}}>Valen</span>
                                      </a>
-                                     <span className="block text-xs sm:text-sm -mt-1 font-medium text-gray-800 text-center">Distribuidora</span>
+                                     <span className="block text-[10px] sm:text-sm font-medium text-gray-800 text-center tracking-wide">Distribuidora</span>
                                  </div>
                              </div>
                         </div>
                         
-                        <div className="flex-1 flex justify-end items-center px-2">
-                            <a href="https://www.instagram.com/distribuidora_igorvalen" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white transition-all duration-300 transform hover:scale-105 bg-white bg-opacity-10 py-2 px-4 rounded-full border border-white border-opacity-20 hover:bg-opacity-20">
-                                <IconInstagram size={24} />
-                                <span className="font-bold text-sm sm:text-lg tracking-wider whitespace-nowrap hidden sm:inline">@distribuidora_igorvalen</span>
+                        <div className="flex-1 flex justify-end items-center px-1">
+                            <a href="https://www.instagram.com/distribuidora_igorvalen" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white transition-all duration-300 transform hover:scale-105 bg-white bg-opacity-10 py-1.5 px-3 rounded-full border border-white border-opacity-20 hover:bg-opacity-20">
+                                <IconInstagram size={20} />
+                                <span className="font-bold text-xs sm:text-sm tracking-wider whitespace-nowrap hidden sm:inline">@distribuidora_igorvalen</span>
                             </a>
                         </div>
                     </div>
@@ -778,7 +962,7 @@
         };
 
         const Footer = () => (
-            <footer className="mt-16 py-8 text-center text-sm text-gray-600 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-t-3xl shadow-inner">
+            <footer className="mt-16 py-8 text-center text-sm text-gray-600 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-t-3xl shadow-inner mb-16">
                 <div className="flex justify-center items-center gap-2 mb-2">
                     <i className="ph-sun text-yellow-500 text-xl"></i>
                     <span className="font-semibold text-green-800">Verão 2026 IgorValen</span>
@@ -798,46 +982,15 @@
             </div>
         );
 
-        // --- ZOOM LOGIC CONFIGURATION ---
-        const EXCLUDED_FROM_ZOOM = [
-            'p16', 'p17', 'p18', 
-            'p-alc-1', 'p-new-brussels-lager-ln', 'p-alc-2', 'p-new-brussels-ultra-ln', 
-            'p-alc-6', 
-            'p-alc-72', 'p-alc-15', 'p-alc-21', 'p-new-cachaca-presidente', 'p-alc-43', 'p-alc-60',
-            'p-bomb-1', 'p-bomb-36', 'p-bomb-71', 'p-bomb-63', 'p-bomb-70', 'p-out-1'
-        ];
-
-        const MEGA_ZOOM_IDS = ['p14'];
-        const SUPER_ZOOM_IDS = ['p13', 'p2', 'p15', 'p-alc-5', 'p-alc-52', 'p11'];
-        const SLIGHT_ZOOM_IDS = ['p-alc-4'];
-        const SMALLER_ZOOM_IDS = ['p1', 'p12', 'p23', 'p-alc-58', 'p-alc-8', 'p-alc-10', 'p-alc-11', 'p-alc-12', 'p-bomb-41', 'p-new-doce-amendoim', 'p-alc-53'];
-        const LOW_ZOOM_IDS = ['p21', 'p22'];
-        const TINY_ZOOM_IDS = ['p-alc-54', 'p-alc-9'];
-
         const ProductCard = ({ product, onProductClick, showPrices }) => {
             const handleKeyPress = (e) => {
                 if (e.key === 'Enter') {
                     onProductClick(product);
                 }
             };
-
-            let imgZoomClass = 'scale-[1.7]';
-
-            if (EXCLUDED_FROM_ZOOM.includes(product.id)) {
-                imgZoomClass = 'scale-100';
-            } else if (MEGA_ZOOM_IDS.includes(product.id)) {
-                imgZoomClass = 'scale-[3.8]';
-            } else if (SUPER_ZOOM_IDS.includes(product.id)) {
-                imgZoomClass = 'scale-[2.6]';
-            } else if (SLIGHT_ZOOM_IDS.includes(product.id)) {
-                imgZoomClass = 'scale-[1.9]';
-            } else if (SMALLER_ZOOM_IDS.includes(product.id)) {
-                imgZoomClass = 'scale-[1.35]';
-            } else if (LOW_ZOOM_IDS.includes(product.id)) {
-                imgZoomClass = 'scale-[1.15]';
-            } else if (TINY_ZOOM_IDS.includes(product.id)) {
-                imgZoomClass = 'scale-[0.8]';
-            }
+            
+            // Aplica a escala personalizada
+            const customStyle = getProductImageStyle(product.id);
 
             return (
                 <div
@@ -845,9 +998,9 @@
                     tabIndex={0}
                     onClick={() => onProductClick(product)}
                     onKeyPress={handleKeyPress}
-                    className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full group cursor-pointer focus:outline-none border border-gray-100"
+                    className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full group cursor-pointer focus:outline-none border border-gray-100"
                 >
-                    <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden bg-white flex items-center justify-center p-4">
+                    <div className="relative h-36 sm:h-44 md:h-52 overflow-hidden bg-white flex items-center justify-center p-2">
                         {product.outOfStock && (
                             <div className="out-of-stock-overlay">
                                 <span className="out-of-stock-badge">EM FALTA</span>
@@ -858,13 +1011,14 @@
                             loading="lazy"
                             src={product.imageUrl}
                             alt={product.name}
-                            className={`max-w-full max-h-full object-contain transform transition-transform duration-300 ${imgZoomClass} ${product.outOfStock ? 'opacity-50 grayscale' : ''}`}
+                            style={customStyle}
+                            className={`max-w-full max-h-full object-contain transform transition-transform duration-300 ${product.outOfStock ? 'opacity-50 grayscale' : ''}`}
                         />
                     </div>
 
-                    <div className="p-2 sm:p-3 flex-grow flex flex-col justify-between bg-white relative z-10">
+                    <div className="p-2 sm:p-3 flex-grow flex flex-col justify-between bg-white relative z-10 border-t border-gray-50">
                         <div>
-                            <h3 className="font-bold text-xs sm:text-sm md:text-base lg:text-lg mb-1 text-green-800 group-hover:text-green-600 transition-colors duration-300 line-clamp-2 leading-tight min-h-[2.5em]">{product.name}</h3>
+                            <h3 className="font-bold text-xs sm:text-sm md:text-base mb-1 text-green-800 group-hover:text-green-600 transition-colors duration-300 line-clamp-2 leading-tight min-h-[2.5em]">{product.name}</h3>
                             {(product.details && product.details.length > 0) && (
                                 <div className="mb-1 hidden sm:block">
                                     <p className="text-[10px] text-gray-500 font-medium uppercase tracking-wide truncate">
@@ -886,25 +1040,23 @@
                                     </div>
                                 ) : (
                                     product.price && showPrices && (
-                                        <div className="mt-2 flex flex-col gap-1.5">
-                                            <div className="bg-green-50 border border-green-200 rounded-lg p-1.5 text-center shadow-sm">
-                                                <span className="text-[9px] sm:text-[10px] text-green-700 font-bold uppercase block tracking-wider mb-0.5">À Vista</span>
-                                                <span className="text-sm sm:text-base md:text-xl font-extrabold text-green-700 leading-none block">R$ {product.price.cash}</span>
+                                        <div className="mt-2 flex flex-col gap-1">
+                                            <div className="bg-green-50 border border-green-200 rounded-lg p-1 text-center shadow-sm">
+                                                <span className="text-[9px] text-green-700 font-bold uppercase block tracking-wider mb-0.5 opacity-80">À Vista</span>
+                                                <span className="text-base sm:text-lg font-black text-green-700 leading-none block">R$ {product.price.cash}</span>
                                             </div>
                                             
-                                            <div className="bg-orange-50 border border-orange-100 rounded-lg p-1 text-center">
-                                                <div className="flex flex-col sm:flex-row justify-center items-center gap-1 leading-none">
-                                                    <span className="text-[8px] sm:text-[9px] text-orange-600 font-semibold uppercase tracking-wide">A Prazo:</span>
-                                                    <span className="text-xs sm:text-sm font-bold text-orange-600">R$ {product.price.credit}</span>
-                                                </div>
+                                            <div className="bg-orange-50 border border-orange-100 rounded-lg p-1 text-center flex justify-center items-center gap-1">
+                                                <span className="text-[9px] text-orange-600 font-semibold uppercase">Prazo:</span>
+                                                <span className="text-xs font-bold text-orange-600">R$ {product.price.credit}</span>
                                             </div>
                                         </div>
                                     )
                                 )
                             )}
                             <div className="mt-2 text-center sm:text-right">
-                                <span className="text-[10px] font-semibold text-gray-400 group-hover:text-green-600 transition-colors uppercase tracking-wider flex items-center justify-center sm:justify-end gap-1">
-                                    + Detalhes <i className="ph-caret-right hidden sm:inline"></i>
+                                <span className="text-[9px] font-bold text-gray-300 group-hover:text-green-600 transition-colors uppercase tracking-wider flex items-center justify-center sm:justify-end gap-0.5">
+                                    Ver Detalhes <i className="ph-plus-circle text-xs"></i>
                                 </span>
                             </div>
                         </div>
@@ -925,41 +1077,22 @@
             }
 
             return (
-                <div className="container mx-auto p-2 sm:p-4 lg:p-6 pb-20">
-                    <ScrollPrompt />
+                <div className="container mx-auto p-2 sm:p-4 lg:p-6">
+                    <DopamineProgressBar />
+                    
                     { !query && !activeCategory && (
                         <>
-                            <div className="my-6 sm:my-10 mb-8 sm:mb-12 animate-fade-in-down px-2">
+                            <div className="my-4 sm:my-8 mb-6 sm:mb-10 animate-fade-in-down px-2">
                                 <div className="bg-white bg-opacity-95 p-6 sm:p-8 rounded-3xl shadow-xl text-center backdrop-filter backdrop-blur-sm border-2 border-green-100 relative overflow-hidden">
                                      <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
                                         <i className="ph-sun-dim text-8xl text-yellow-500"></i>
                                      </div>
-                                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-4" style={{color: 'var(--brand-green)'}}>
-                                        Verão de Ofertas IgorValen
+                                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-4 tracking-tight" style={{color: 'var(--brand-green)'}}>
+                                        Verão de Ofertas
                                     </h1>
-                                    <p className="text-sm sm:text-lg md:text-xl max-w-2xl mx-auto text-gray-600">
-                                        Refresque seu estoque com os melhores preços da estação!
+                                    <p className="text-sm sm:text-lg text-gray-600 font-medium">
+                                        Preços refrescantes para seu negócio lucrar mais!
                                     </p>
-                                </div>
-                            </div>
-                            
-                            <div className="my-8 text-center px-2">
-                                <h2 className="text-xl sm:text-3xl font-bold mb-2 text-white flex items-center justify-center gap-2" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}>
-                                    <i className="ph-seal-check text-yellow-400"></i> Nossas Certificações
-                                </h2>
-                                <p className="max-w-2xl mx-auto mb-6 text-white text-sm sm:text-base font-medium" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.4)'}}>
-                                    Qualidade garantida e compromisso com o consumidor.
-                                </p>
-                                <div className="grid grid-cols-3 gap-2 sm:gap-4 max-w-3xl mx-auto">
-                                    <div className="text-center flex flex-col items-center p-1 hover-scale">
-                                        <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-9001.png" alt="Selo ISO 9001" className="h-16 sm:h-28 mb-2 filter drop-shadow-lg"/>
-                                    </div>
-                                    <div className="text-center flex flex-col items-center p-1 hover-scale">
-                                        <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-14001.png" alt="Selo ISO 14001" className="h-16 sm:h-28 mb-2 filter drop-shadow-lg"/>
-                                    </div>
-                                    <div className="text-center flex flex-col items-center p-1 hover-scale">
-                                    <img src="https://group-ism.com/br/wp-content/uploads/2023/07/ism-45001-ES.png" alt="Selo ISO 45001" className="h-16 sm:h-28 mb-2 filter drop-shadow-lg"/>
-                                    </div>
                                 </div>
                             </div>
 
@@ -976,18 +1109,8 @@
                         </>
                     )}
                     
-                     <div className="panel p-4 sm:p-6 mb-8 border-4 border-green-600 bg-white mx-2">
-                         <div className="relative text-center mb-4 sm:mb-6">
-                             <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                                 <div className="w-full border-t border-gray-200"></div>
-                             </div>
-                             <div className="relative flex justify-center">
-                                 <span className="bg-white px-2 sm:px-4 text-xl sm:text-2xl font-bold flex items-center gap-2" style={{ color: 'var(--brand-green)' }}>
-                                     <i className="ph-squares-four text-yellow-500"></i> Categorias
-                                 </span>
-                             </div>
-                         </div>
-                         <div className="flex gap-2 sm:gap-3 mb-6 justify-start overflow-x-auto pb-2 no-scrollbar">
+                     <div className="panel p-3 sm:p-6 mb-8 border-b-4 border-green-600 bg-white mx-2 shadow-lg">
+                         <div className="flex gap-2 mb-4 justify-start overflow-x-auto pb-2 no-scrollbar">
                              {allCategories.map(cat => {
                                  const isActive = (activeCategory === null && cat === 'Todas') || activeCategory === cat;
                                  const iconData = CATEGORY_ICONS_DATA[cat];
@@ -995,24 +1118,24 @@
                                      <button 
                                          key={cat} 
                                          onClick={() => setActiveCategory(cat === 'Todas' ? null : cat)}
-                                         className={`flex items-center flex-shrink-0 gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold rounded-full border-2 transition-all duration-200 ${isActive ? 'bg-green-600 text-white border-transparent shadow-md transform scale-105' : 'bg-white text-gray-700 border-gray-200 hover:border-green-500 hover:text-green-600'}`}
+                                         className={`flex flex-col items-center flex-shrink-0 gap-1 px-3 py-2 text-[10px] sm:text-xs font-bold rounded-2xl border transition-all duration-200 w-20 sm:w-24 text-center ${isActive ? 'bg-green-50 text-green-700 border-green-500 shadow-inner' : 'bg-gray-50 text-gray-500 border-gray-100 hover:border-green-300'}`}
                                      >
-                                         <CategoryIcon src={iconData.src} alt={iconData.alt} isActive={isActive} />
-                                         <span>{cat}</span>
+                                         <CategoryIcon src={iconData.src} alt={iconData.alt} isActive={false} size="w-8 h-8" />
+                                         <span className="leading-tight">{cat}</span>
                                      </button>
                                  );
                              })}
                          </div>
-                         <div className="flex flex-col md:flex-row gap-3 items-center mb-2">
+                         <div className="flex flex-col gap-3 items-center">
                             <div className="relative flex-grow flex items-center group w-full">
-                                <input ref={searchInputRef} type="text" placeholder="Buscar produto..." onChange={(e) => setQuery(e.target.value)} className="w-full pl-5 pr-12 py-3 bg-gray-50 border border-gray-300 text-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm transition-shadow group-hover:shadow-md text-sm sm:text-base" />
+                                <input ref={searchInputRef} type="text" placeholder="O que você procura hoje?" onChange={(e) => setQuery(e.target.value)} className="w-full pl-5 pr-12 py-3 bg-gray-100 border-transparent text-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition-all text-sm font-medium" />
                                 <button className="absolute right-1.5 top-1.5 bottom-1.5 bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition-colors shadow-sm aspect-square flex items-center justify-center">
                                     <IconLupa />
                                 </button>
                             </div>
 
-                            <div className="flex items-center justify-between w-full md:w-auto gap-3 bg-gray-50 px-4 py-2 rounded-full border border-gray-200 whitespace-nowrap shadow-sm">
-                                <span className="text-xs sm:text-sm font-bold text-gray-700 select-none">Mostrar Preços</span>
+                            <div className="flex items-center justify-between w-full px-2">
+                                <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">Exibir Preços</span>
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <input 
                                         type="checkbox" 
@@ -1020,15 +1143,15 @@
                                         checked={showPrices}
                                         onChange={() => setShowPrices(!showPrices)}
                                     />
-                                    <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                                    <div className="w-10 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
                                 </label>
                             </div>
                          </div>
                          
                          { (query || activeCategory) && (
-                            <div className="mt-4 text-center">
-                                <button onClick={handleClearSearch} className="text-sm font-semibold text-green-700 bg-white px-4 py-2 rounded-full shadow-md hover:bg-gray-100 transition-all border border-green-200 flex items-center gap-2 mx-auto">
-                                    <i className="ph-arrow-counter-clockwise"></i> Limpar Filtros
+                            <div className="mt-3 text-center">
+                                <button onClick={handleClearSearch} className="text-xs font-bold text-red-500 hover:text-red-700 transition-colors flex items-center justify-center gap-1 mx-auto">
+                                    <i className="ph-x-circle"></i> Limpar Busca
                                 </button>
                             </div>
                          )}
@@ -1038,52 +1161,46 @@
                         const categoryContent = (
                             <>
                                 {!query && !activeCategory && group.category === 'Bebidas não alcoólicas' && (
-                                    <div className="bg-white rounded-3xl shadow-lg p-4 sm:p-6 mb-8 flex flex-col gap-4">
+                                    <div className="bg-white rounded-3xl shadow-lg p-3 sm:p-6 mb-6 flex flex-col gap-3">
                                         <div className="text-center">
-                                            <h3 className="text-lg sm:text-2xl md:text-3xl font-bold flex items-center justify-center gap-2" style={{color: 'var(--brand-green)'}}>
-                                                <i className="ph-drop text-blue-500"></i> ISM Brasil
+                                            <h3 className="text-lg font-black flex items-center justify-center gap-2 uppercase tracking-wide text-gray-400">
+                                                Parceiros
                                             </h3>
                                         </div>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <img src="https://i.ibb.co/PvnmNKKw/100.jpg" alt="100" className="rounded-2xl w-full h-auto object-contain hover:shadow-lg transition-shadow" />
-                                            <img src="https://i.ibb.co/MkBdYQ1Z/484319138-122166789608286629-3240958178884466690-n.jpg" alt="484319138-122166789608286629-3240958178884466690-n" className="rounded-2xl w-full h-auto object-contain hover:shadow-lg transition-shadow" />
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <img src="https://i.ibb.co/PvnmNKKw/100.jpg" alt="100" className="rounded-xl w-full h-auto object-cover shadow-sm" />
+                                            <img src="https://i.ibb.co/MkBdYQ1Z/484319138-122166789608286629-3240958178884466690-n.jpg" alt="484319138" className="rounded-xl w-full h-auto object-cover shadow-sm" />
                                         </div>
                                     </div>
                                 )}
                                 
                                 {!query && !activeCategory && group.category === 'Bebidas alcoólicas' && (
-                                    <div className="mb-8">
-                                        <div className="relative">
-                                            <div className="rounded-t-3xl shadow-lg overflow-hidden mt-4" style={{ backgroundColor: '#042f15' }}>
-                                                <img src="https://i.ibb.co/Vp9Pshb4/IMG-0863.jpg" alt="Novas Cervejas" className="w-full h-auto block hover:scale-105 transition-transform duration-700" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+Indisponível'; }}/>
-                                                <div style={{ height: '20px' }}></div>
-                                            </div>
-                                        </div>
-                                        <div className="wavy-top-connector rounded-b-3xl shadow-lg p-4 sm:p-8 pt-6 relative z-10 bg-white">
-                                            <h3 className="text-xl sm:text-3xl font-bold text-center mb-2" style={{ color: 'var(--brand-green)' }}>Brussels Puro Malte</h3>
-                                            <p className="text-center text-gray-600 mb-6 max-w-3xl mx-auto text-sm sm:text-base">A cerveja que se tornou febre nas redes sociais.</p>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-                                                <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-gray-50 border hover:shadow-md transition-shadow"><img src="https://i.ibb.co/bjWqn9kf/lager.jpg" alt="Lager" className="w-20 sm:w-24 h-auto object-contain flex-shrink-0" /><div className="text-center sm:text-left"><h4 className="font-bold text-lg sm:text-2xl" style={{ color: 'var(--brand-green)' }}>Lager</h4><p className="text-gray-700 font-medium text-xs sm:text-base">puro malte leve e refrescante</p></div></div>
-                                                <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-gray-50 border hover:shadow-md transition-shadow"><img src="https://i.ibb.co/5hq6TQHP/ultra.jpg" alt="Ultra" className="w-20 sm:w-24 h-auto object-contain flex-shrink-0" /><div className="text-center sm:text-left"><h4 className="font-bold text-lg sm:text-2xl" style={{ color: '#1e3a8a' }}>Ultra</h4><p className="text-gray-700 font-medium text-xs sm:text-base">Puro malte zero açúcar</p></div></div>
+                                    <div className="mb-6">
+                                        <div className="relative rounded-2xl overflow-hidden shadow-lg group">
+                                            <img src="https://i.ibb.co/Vp9Pshb4/IMG-0863.jpg" alt="Novas Cervejas" className="w-full h-auto block transform group-hover:scale-105 transition-transform duration-700" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x300/1f2937/ffffff?text=Banner+Indisponível'; }}/>
+                                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                                <h3 className="text-white font-bold text-lg">Novidade: Brussels</h3>
                                             </div>
                                         </div>
                                     </div>
                                 )}
 
-                                <h2 className="text-xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-3 justify-start pl-2" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}>
-                                    <div className="bg-white p-1.5 sm:p-2 rounded-full shadow-md">
-                                        <CategoryIcon src={CATEGORY_ICONS_DATA[group.category].src} alt={CATEGORY_ICONS_DATA[group.category].alt} isActive={false} size="w-6 h-6 sm:w-10 sm:h-10" />
+                                <div className="flex items-center gap-3 mb-4 pl-2">
+                                    <div className="bg-white p-2 rounded-full shadow-md">
+                                        <CategoryIcon src={CATEGORY_ICONS_DATA[group.category].src} alt={CATEGORY_ICONS_DATA[group.category].alt} isActive={false} size="w-8 h-8" />
                                     </div>
-                                    {group.category}
-                                </h2>
+                                    <h2 className="text-2xl font-black text-white drop-shadow-md">
+                                        {group.category}
+                                    </h2>
+                                </div>
 
-                                <div className="bg-white rounded-3xl shadow-lg p-3 sm:p-6">
+                                <div className="bg-white rounded-t-3xl rounded-b-xl shadow-xl p-2 sm:p-4 pb-6">
                                     {loading ? (
-                                        <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+                                        <div className="grid grid-cols-3 gap-2 sm:gap-4">
                                             {Array.from({ length: 3 }).map((_, i) => <ProductCardSkeleton key={i} />)}
                                         </div>
                                     ) : !group.products.length ? null : (
-                                        <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+                                        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
                                             {group.products.map(p => <ProductCard key={p.id} product={p} onProductClick={onProductClick} showPrices={showPrices} />)}
                                         </div>
                                     )}
@@ -1092,7 +1209,7 @@
                         );
 
                         return (
-                            <div className="mb-10 sm:mb-12" key={group.category}>
+                            <div className="mb-8" key={group.category}>
                                 <div className="category-wave-wrapper">
                                     <div className="category-content">{categoryContent}</div>
                                 </div>
@@ -1102,23 +1219,20 @@
 
                      {!loading && groupedProducts.length === 0 && (query || activeCategory) && (
                          <div className="text-center py-16 px-6 bg-white rounded-3xl shadow-lg mx-2">
-                             <h3 className="text-2xl sm:text-3xl font-bold text-gray-700">Ops!</h3>
-                             <p className="text-gray-500 mt-2 text-base sm:text-lg max-w-md mx-auto">
-                                 Não encontramos nenhum produto com "{query}". Que tal tentar um termo diferente?
+                             <div className="text-6xl mb-4">🤔</div>
+                             <h3 className="text-2xl font-bold text-gray-700">Ops!</h3>
+                             <p className="text-gray-500 mt-2 text-base max-w-md mx-auto">
+                                 Não encontramos nenhum produto com "{query}". Que tal tentar outro termo?
                              </p>
                          </div>
                     )}
                     
                     {!query && !activeCategory && (
-                        <div className="my-10 px-2">
-                            <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg text-center border-4 border-green-600 bg-opacity-95">
-                                <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4" style={{color: 'var(--brand-green)'}}>
-                                    Obrigado pela sua visita!
-                                </h2>
-                                <p className="text-sm sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
-                                    Estamos prontos para atender você neste verão com os melhores produtos e preços.
-                                </p>
-                            </div>
+                        <div className="my-10 px-2 text-center">
+                            <h2 className="text-3xl font-black text-white drop-shadow-md mb-2">
+                                Fim das Ofertas!
+                            </h2>
+                            <p className="text-white opacity-90 text-sm">Mas o verão continua...</p>
                         </div>
                     )}
                 </div>
