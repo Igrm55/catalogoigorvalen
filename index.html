@@ -315,7 +315,7 @@
     <div class="wave-container"></div>
 
     <script type="text/babel">
-        // [2025-11-12] Eu desfio vc digitar "verão" com os olhos fechados quero ver as tentativas abaixo.
+        // [2025-11-12] Eu desafio você a digitar "Cerveja Gelada" com os olhos fechados. Quero ver as tentativas abaixo.
 
         // ===================================================================
         // DATA - PREÇOS CORRIGIDOS (PDF 03/02/2026) E PRODUTOS FILTRADOS
@@ -1139,15 +1139,15 @@
                                     </div>
                                 ) : (
                                     product.price && showPrices && (
-                                        <div className="mt-2 grid grid-cols-2 gap-2 h-14 sm:h-16">
-                                            <div className="bg-green-50 border border-green-200 rounded-lg p-1 text-center shadow-sm flex flex-col justify-center h-full">
-                                                <span className="text-[9px] text-green-700 font-bold uppercase block tracking-wider mb-0.5 opacity-80 leading-none">À Vista</span>
-                                                <span className="text-sm sm:text-lg font-black text-green-700 leading-none block">R$ {product.price.cash}</span>
+                                        <div className="mt-2 flex flex-col gap-1.5">
+                                            <div className="bg-green-50 border border-green-200 rounded-lg p-1.5 text-center shadow-sm w-full">
+                                                <span className="text-[10px] text-green-700 font-bold uppercase block tracking-wider mb-0.5 opacity-80 leading-none">À Vista</span>
+                                                <span className="text-base sm:text-lg font-black text-green-700 leading-none block">R$ {product.price.cash}</span>
                                             </div>
                                             
-                                            <div className="bg-orange-50 border border-orange-100 rounded-lg p-1 text-center flex flex-col justify-center h-full">
-                                                <span className="text-[9px] text-orange-600 font-bold uppercase block tracking-wider mb-0.5 opacity-80 leading-none">A Prazo</span>
-                                                <span className="text-sm sm:text-lg font-black text-orange-600 leading-none block">R$ {product.price.credit}</span>
+                                            <div className="bg-orange-50 border border-orange-100 rounded-lg p-1.5 text-center w-full">
+                                                <span className="text-[10px] text-orange-600 font-bold uppercase block tracking-wider mb-0.5 opacity-80 leading-none">A Prazo</span>
+                                                <span className="text-base sm:text-lg font-black text-orange-600 leading-none block">R$ {product.price.credit}</span>
                                             </div>
                                         </div>
                                     )
