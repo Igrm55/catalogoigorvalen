@@ -619,71 +619,71 @@
         // === CONTROLE DE ZOOM MANUAL ===
         const IMAGE_SCALE_OVERRIDES = {
             // Bebidas não alcoólicas
-            'p1': 0.9, // Goob 2L - Decreased 10%
-            'p12': 0.9, // Goob 1L - Decreased 10%
-            'p11': 1.2, // Goob 230 - Zoom 20%, desesticado
-            'p13': 1.54, // EnerUp 2L - Increased 10% from 1.4
-            'p2': 1.61,  // EnerUp 250 - Increased 15% from 1.4
-            'p14': { scale: 2.12, translateY: '-15px' }, // GuaranUp Copo - Decreased 15% (2.5 -> 2.12), Up 5px (-10 -> -15)
-            'p15': 1.60,  // GuaranUp 200 - Increased 10% from 1.45
-            'p16': 0.85, // Agua 1.5 - Increased 7% from 0.8
-            'p17': 0.85, // Agua 500 - Increased 7% from 0.8
-            'p18': 0.85, // Agua com gas - Increased 7% from 0.8
-            'p19': 1.0, // Suco Tetra - Increased 10% from 0.9 
+            'p1': 0.9, 
+            'p12': 0.9, 
+            'p11': 1.2, 
+            'p13': 1.54, 
+            'p2': 1.61,  
+            'p14': { scale: 2.12, translateY: '-15px' }, 
+            'p15': 1.60,  
+            'p16': 0.85, 
+            'p17': 0.85, 
+            'p18': 0.85, 
+            'p19': 1.0, 
             'p20': 0.9,  
             'p21': 0.9,
             'p22': 0.9,
-            'p24': 1.2, // EnerUp Lata - Increased 20% uniform
+            'p24': 1.2, 
             'p-new-achoco': 0.95,
 
             // Alcoólicas
-            'p-alc-1': 0.93, // Brussels - Decreased 7% from 1.0
+            'p-alc-1': 0.93, 
             'p-new-brussels-lager-ln': 0.93,
             'p-alc-2': 0.93,
             'p-new-brussels-ultra-ln': 0.93,
             
-            'p-alc-3-com-papelao': 0.8, // Pitu Completa - Decreased 10%
-            'p-alc-4': 1.16, // Pitu Devolvendo - Decreased 7% from 1.25
-            'p-alc-5': 1.74, // Pitu 600 - Decreased 13% from 2.0
-            'p-alc-6': 0.8, // Pitu Latao - Decreased 20%
+            'p-alc-3-com-papelao': 0.88, // Pitu Completa - Was 0.8, Increased 10% -> 0.88
+            'p-alc-4': 1.16, 
+            'p-alc-5': 1.74, 
+            'p-alc-6': 0.8, 
             'p-alc-7': 0.9, 
-            'p-alc-8': 0.75, // Pitu 350 - Decreased 10%
-            'p-alc-9': 0.85, // Pitu Limao - Decreased 15%
-            'p-alc-10': 0.75, // Limao e Mel - Decreased 12%
-            'p-alc-11': 0.8, // Caju - Decreased 10%
-            'p-alc-12': 0.8, // Banana - Decreased 10%
+            'p-alc-8': 0.75, 
+            'p-alc-9': 0.85, 
+            'p-alc-10': 0.75, 
+            'p-alc-11': 0.8, 
+            'p-alc-12': 0.8, 
             
-            'p-alc-72': 0.80, // Montilla Ouro - Increased 7% from 0.75
-            'p-alc-73': 0.9, 
-            'p-alc-14': 1.0, // Paratudo - Increased 10%
-            'p-alc-16': 0.9, 
-            'p-alc-17': 0.9, 
+            'p-alc-72': 0.88, // Montilla Ouro - Was 0.80, Increased 10% -> 0.88
+            'p-alc-73': 0.99, // Montilla Branca - Was 0.9, Increased 10% -> 0.99
+            'p-alc-14': 1.1, // Paratudo - Was 1.0, Increased 10% -> 1.1
+            'p-alc-16': 0.99, // 51 - Was 0.9, Increased 10% -> 0.99
+            'p-alc-17': 0.99, // Asa Branca - Was 0.9, Increased 10% -> 0.99
             'p-alc-18': 0.9, 
-            'p-alc-20': 0.9, 
-            'p-alc-21': 0.95, // Velho Barreiro - Decreased 10%
+            'p-alc-20': 0.99, // Seleta - Was 0.9, Increased 10% -> 0.99
+            'p-alc-21': 0.95, 
             'p-new-cachaca-presidente': 1.05,
             
-            'p-alc-27': 1.01, // Newsnoff - Increased 6% from 0.95
-            'p-alc-28': 0.95,
-            'p-alc-29': 0.95,
-            'p-alc-30': 0.9, 
+            'p-alc-27': 1.11, // Newsnoff - Was 1.01, Increased 10% -> 1.11
+            'p-alc-28': 1.05, // Newsnoff Limao - Was 0.95, Increased 10% -> 1.05
+            'p-alc-29': 1.05, // Newsnoff Frutas - Was 0.95, Increased 10% -> 1.05
+            'p-alc-30': 0.99, // Natasha - Was 0.9, Increased 10% -> 0.99
             'p-alc-31': 0.9, 
             
             'p-alc-33': 0.9, 
-            'p-alc-34': 1.05, // Old Par - Increased 10%
-            'p-alc-35': 1.05, // Jack - Increased 10%
+            'p-alc-34': 1.05, 
+            'p-alc-35': 1.05, 
             
             'p-alc-38': 0.9, 
             'p-alc-39': 0.9, 
             'p-alc-42': 0.9, 
-            'p-alc-43': 1.0, // White Horse - Decreased 10%
-            'p-alc-44': { scale: 1.05, translateY: '5px' }, // Chanceler - Decreased 5% (1.1->1.05), Up 45px (50->5)
-            'p-alc-45': 1.0, // Ballantines - Increased 10%
+            'p-alc-43': 1.0, 
+            'p-alc-44': { scale: 1.05, translateY: '5px' }, 
+            'p-alc-45': 1.0, 
             
-            'p-alc-50': { scale: 0.95, translateY: '5px' }, // Dubar - Increased 5% (0.9->0.95), Down 5px
-            'p-alc-52': 1.4, // Ice Syn - Increased 40%
-            'p-alc-53': 0.8, // Glow Garrafa - Decreased 10%
-            'p-alc-54': 0.7, // Glow Lata - Decreased 30%
+            'p-alc-50': { scale: 0.95, translateY: '5px' }, 
+            'p-alc-52': 1.4, 
+            'p-alc-53': 0.8, 
+            'p-alc-54': 0.7, 
             
             'p-alc-55': 0.95, 
             'p-new-quinta-morgado-1l': 0.95,
@@ -694,24 +694,24 @@
             
             'p-alc-58': 0.95, 
             'p-alc-59': 0.9, 
-            'p-alc-60': { scale: 1.09, translateY: '-7px' }, // Presidente - Decreased 5% (1.15->1.09), Up 7px
+            'p-alc-60': { scale: 1.09, translateY: '-7px' }, 
             'p-alc-62': 0.9, 
             'p-alc-64': 0.9, 
-            'p-alc-65': 1.05, // Menta SP - Increased 10%
-            'p-alc-67': { scale: 1.18, translateY: '13px' }, // Catuaba - Increased 7% (1.1->1.18), Up 7px (20->13)
-            'p-alc-68': 1.16, // Alcatrao - Increased 25%
-            'p-alc-69': 0.96, // Gengibre - Increased 7%
+            'p-alc-65': 1.05, 
+            'p-alc-67': { scale: 1.18, translateY: '13px' }, 
+            'p-alc-68': 1.16, 
+            'p-alc-69': 0.96, 
             'p-alc-70': 0.9, 
 
             // Bomboneire
-            'p-bomb-1': 0.95, // Bala Canela - Decreased 10%
+            'p-bomb-1': 0.95, 
             'p-bomb-2': 0.9, 
             'p-bomb-3': 0.9, 
-            'p-bomb-4': 1.08, // Santa Fe Yogurt - Decreased 10% from 1.2
-            'p-bomb-5': 1.2, // Santa Fe Sortida - Increased 30%
+            'p-bomb-4': 1.08, 
+            'p-bomb-5': 1.2, 
             'p-bomb-8': 0.9, 
             'p-bomb-14': 0.9,
-            'p-bomb-15': 0.99, // Freegells - Increased 10% from 0.9
+            'p-bomb-15': 0.99, 
             'p-new-bala-freegells': 0.9,
             'p-new-bala-coffee': 0.9,
             'p-bomb-16': 0.9, 
@@ -720,31 +720,31 @@
             'p-bomb-20': 0.9, 
             'p-bomb-21': 0.9, 
             'p-bomb-22': 0.9,
-            'p-bomb-23': 0.75, // Pinta Lingua - Decreased 15%
+            'p-bomb-23': 0.75, 
             'p-bomb-25': 0.9, 
-            'p-bomb-26': 1.1, // Megalito - Increased 20%
+            'p-bomb-26': 1.1, 
             'p-new-cherry-pop': 0.9,
             'p-bomb-29': 0.9, 
-            'p-bomb-41': 0.75, // Purissimo - Decreased 15%
+            'p-bomb-41': 0.75, 
             'p-bomb-42': 0.9, 
             'p-new-doce-amendoim': 0.9,
             'p-bomb-56': 0.95, 
             'p-bomb-57': 0.95, 
             'p-bomb-58': 0.95,
-            'p-bomb-59': 1.18, // Batata Plus - Increased 20%
+            'p-bomb-59': 1.18, 
             'p-bomb-60': 0.95, 
             'p-bomb-61': 0.95, 
             'p-bomb-72': 0.95, 
             'p-bomb-62': 0.9, 
             'p-bomb-71': 0.9,
-            'p-bomb-63': 0.72, // Amendoim Jap 1kg - Decreased 20%
+            'p-bomb-63': 0.72, 
             'p-bomb-64': 0.9,
             'p-bomb-65': 0.9,
             'p-bomb-66': 0.9,
             'p-bomb-67': 0.9,
             'p-bomb-68': 0.95, 
             'p-bomb-69': 0.95, 
-            'p-bomb-70': 0.85, // Gostolac - Decreased 10%
+            'p-bomb-70': 0.85, 
             
             // Cigarro
             'p-cig-1': 0.9,
@@ -879,10 +879,11 @@
                 if (!product.price) return null;
                 
                 const packSize = product.packSize || 1;
-                const isPackPrice = product.isPackPrice; // Default logic assumed if undefined? No, explicit now.
+                const isPackPrice = product.isPackPrice; 
                 
                 const parsePrice = (p) => parseFloat(p.replace(',', '.'));
-                const formatPrice = (p) => p.toFixed(2).replace('.', ',');
+                // Custom formatPrice to floor values instead of rounding
+                const formatPrice = (val) => (Math.floor(val * 100) / 100).toFixed(2).replace('.', ',');
 
                 const cashPrice = parsePrice(product.price.cash);
                 const creditPrice = parsePrice(product.price.credit);
@@ -989,16 +990,16 @@
                                                 </div>
                                             </div>
                                         ) : (
-                                            <>
-                                                <div className="flex justify-between items-center p-4 bg-green-50 rounded-2xl border border-green-200 shadow-sm">
-                                                    <span className="text-green-800 font-bold uppercase text-sm">À vista</span>
-                                                    <span className="text-4xl font-black text-green-700 tracking-tight">R$ {product.price.cash}</span>
+                                            <div className="grid grid-cols-2 gap-2">
+                                                <div className="flex flex-col justify-center items-center p-3 bg-green-50 rounded-xl border border-green-200 shadow-sm h-full">
+                                                    <span className="text-green-800 font-bold uppercase text-xs mb-1">À vista</span>
+                                                    <span className="text-2xl font-black text-green-700 tracking-tight">R$ {product.price.cash}</span>
                                                 </div>
-                                                <div className="flex justify-between items-center p-3 bg-orange-50 rounded-xl border border-orange-200">
-                                                    <span className="text-orange-800 font-bold uppercase text-xs">No Boleto</span>
+                                                <div className="flex flex-col justify-center items-center p-3 bg-orange-50 rounded-xl border border-orange-200 h-full">
+                                                    <span className="text-orange-800 font-bold uppercase text-xs mb-1">Boleto</span>
                                                     <span className="text-2xl font-bold text-orange-600">R$ {product.price.credit}</span>
                                                 </div>
-                                            </>
+                                            </div>
                                         )}
                                     </div>
                                 )
@@ -1138,15 +1139,15 @@
                                     </div>
                                 ) : (
                                     product.price && showPrices && (
-                                        <div className="mt-2 flex flex-col gap-1">
-                                            <div className="bg-green-50 border border-green-200 rounded-lg p-1 text-center shadow-sm">
-                                                <span className="text-[9px] text-green-700 font-bold uppercase block tracking-wider mb-0.5 opacity-80">À Vista</span>
-                                                <span className="text-base sm:text-lg font-black text-green-700 leading-none block">R$ {product.price.cash}</span>
+                                        <div className="mt-2 grid grid-cols-2 gap-2 h-14 sm:h-16">
+                                            <div className="bg-green-50 border border-green-200 rounded-lg p-1 text-center shadow-sm flex flex-col justify-center h-full">
+                                                <span className="text-[9px] text-green-700 font-bold uppercase block tracking-wider mb-0.5 opacity-80 leading-none">À Vista</span>
+                                                <span className="text-sm sm:text-lg font-black text-green-700 leading-none block">R$ {product.price.cash}</span>
                                             </div>
                                             
-                                            <div className="bg-orange-50 border border-orange-100 rounded-lg p-1 text-center flex justify-center items-center gap-1">
-                                                <span className="text-[9px] text-orange-600 font-semibold uppercase">Boleto:</span>
-                                                <span className="text-xs font-bold text-orange-600">R$ {product.price.credit}</span>
+                                            <div className="bg-orange-50 border border-orange-100 rounded-lg p-1 text-center flex flex-col justify-center h-full">
+                                                <span className="text-[9px] text-orange-600 font-bold uppercase block tracking-wider mb-0.5 opacity-80 leading-none">A Prazo</span>
+                                                <span className="text-sm sm:text-lg font-black text-orange-600 leading-none block">R$ {product.price.credit}</span>
                                             </div>
                                         </div>
                                     )
