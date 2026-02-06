@@ -315,7 +315,7 @@
     <div class="wave-container"></div>
 
     <script type="text/babel">
-        // [2025-11-12] Eu desafio você a digitar "Cerveja Gelada" com os olhos fechados. Quero ver as tentativas abaixo.
+        // [2026-02-06] Eu desafio você a digitar "Sol de Verão" com os olhos fechados. Quero ver as tentativas abaixo.
 
         // ===================================================================
         // DATA - PREÇOS CORRIGIDOS (PDF 03/02/2026) E PRODUTOS FILTRADOS
@@ -336,7 +336,10 @@
             { id: 'p20', name: 'Suco Yulo 1,5L Frutas Cítricas', category: 'Bebidas não alcoólicas', details: [{flavor: 'Frutas Cítricas'}], imageUrl: 'https://i.ibb.co/0jPVR7XP/172760-800-auto.webp', sortOrder: 12, active: true, price: { cash: '30,30', credit: '30,91' }, packSize: 6, isPackPrice: true },
             { id: 'p21', name: 'Suco Yulo 400ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Uva'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/RGJmf393/1768939190446.png', sortOrder: 13, active: true, price: { cash: '23,85', credit: '24,33' }, packSize: 12, isPackPrice: true },
             { id: 'p22', name: 'Suco Yulo 200 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Uva'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/Fkxjg2Wq/1768939366828.png', sortOrder: 14, active: true, price: { cash: '17,59', credit: '17,70' }, packSize: 12, isPackPrice: true },
-            { id: 'p23', name: 'Chá Gelado Drink T 300ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Pêssego'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/5XN7dvCf/Gemini-Generated-Image-fr5a3efr5a3efr5a.png', sortOrder: 15, active: true, price: { cash: '26,50', credit: '26,33' }, packSize: 12, isPackPrice: true },
+            
+            // CORRIGIDO: DRINK T (Preço à vista estava maior que a prazo)
+            { id: 'p23', name: 'Chá Gelado Drink T 300ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Pêssego'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/5XN7dvCf/Gemini-Generated-Image-fr5a3efr5a3efr5a.png', sortOrder: 15, active: true, price: { cash: '26,33', credit: '26,50' }, packSize: 12, isPackPrice: true },
+            
             { id: 'p24', name: 'Energético Ener Up lata 269 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}, {flavor: 'Melância'}, {flavor: 'Tropical'}, {flavor: 'Maçã Verde'}, {flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/Wq8dkqz/1768937912013.png', sortOrder: 16, active: true, price: { cash: '24,85', credit: '25,34' }, packSize: 6, isPackPrice: true },
             { id: 'p-new-achoco', name: 'Achocolatado Maratinho', category: 'Bebidas não alcoólicas', details: [{flavor: 'Chocolate'}], imageUrl: 'https://i.ibb.co/W13jj1s/02.png', sortOrder: 16.1, active: true, price: { cash: '38,73', credit: '39,51' }, packSize: 27, isPackPrice: true },
             
@@ -345,7 +348,9 @@
             { id: 'p-alc-1', name: 'Cerveja Brussels Lager 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Lager'}], imageUrl: 'https://i.ibb.co/bjWqn9kf/lager.jpg', sortOrder: 17, active: true, price: { cash: '29,00', credit: '29,60' }, comingSoon: true, packSize: 12, isPackPrice: true },
             { id: 'p-new-brussels-lager-ln', name: 'Cerveja Brussels LN Lager', category: 'Bebidas alcoólicas', details: [{flavor: 'Lager'}], imageUrl: 'https://i.ibb.co/0pS9gMP7/49106a-035daaae8dbb473e9e1376a329918759-mv2.avif', sortOrder: 17.1, active: true, price: { cash: '23,50', credit: '24,00' }, comingSoon: true, packSize: 12, isPackPrice: true },
             { id: 'p-alc-2', name: 'Cerveja Brussels Ultra 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Ultra'}], imageUrl: 'https://i.ibb.co/5hq6TQHP/ultra.jpg', sortOrder: 18, active: true, price: { cash: '37,00', credit: '37,75' }, comingSoon: true, packSize: 12, isPackPrice: true },
-            { id: 'p-new-brussels-ultra-ln', name: 'Cerveja Brussels LN Ultra', category: 'Bebidas alcoólicas', details: [{flavor: 'Ultra'}], imageUrl: 'https://i.ibb.co/nqyZj560/49106a-03691b9df5c74efcabe7b4b6526779a2-mv2.avif', sortOrder: 18.1, active: true, price: { cash: '23,50', credit: '23,00' }, comingSoon: true, packSize: 12, isPackPrice: true },
+            
+            // CORRIGIDO: Brussels LN Ultra (Preço à vista estava maior que a prazo)
+            { id: 'p-new-brussels-ultra-ln', name: 'Cerveja Brussels LN Ultra', category: 'Bebidas alcoólicas', details: [{flavor: 'Ultra'}], imageUrl: 'https://i.ibb.co/nqyZj560/49106a-03691b9df5c74efcabe7b4b6526779a2-mv2.avif', sortOrder: 18.1, active: true, price: { cash: '23,00', credit: '23,50' }, comingSoon: true, packSize: 12, isPackPrice: true },
             
             // Pitú Garrafa: Preço Unitário
             { id: 'p-alc-3-com-papelao', name: 'Pitú Litro Completa (Com Vasilhame)', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/B5fHNL2y/aguardente-pitu-965ml-1a515249-2151-4db6-a2e5-57208f6a1803.jpg', sortOrder: 19.1, active: true, price: { cash: '9,46', credit: '9,73' }, packSize: 12, isPackPrice: false },
