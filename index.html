@@ -315,7 +315,7 @@
     <div class="wave-container"></div>
 
     <script type="text/babel">
-        // [2026-02-06] Eu desafio você a digitar "Sol de Verão" com os olhos fechados. Quero ver as tentativas abaixo.
+        // [2026-02-10] Eu desafio você a digitar "amor" com os olhos fechados. Quero ver as tentativas abaixo.
 
         // ===================================================================
         // DATA - PREÇOS CORRIGIDOS (PDF 03/02/2026) E PRODUTOS FILTRADOS
@@ -382,6 +382,9 @@
             // Cachaça Presidente: Preço Unitário, mas Pack de 6
             { id: 'p-new-cachaca-presidente', name: 'Cachaça Presidente 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/hJgSvCGB/Whats-App-Image-2025-12-16-at-15-02-04-3.jpg', sortOrder: 38.1, active: true, price: { cash: '7,68', credit: '7,84' }, packSize: 6, isPackPrice: false },
             
+            // NEW: Vodka Bolvana
+            { id: 'p-alc-bolvana', name: 'Vodka Bolvana 965ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/VWf46HJH/65382cf8d3712b6537c71157.webp', sortOrder: 42.5, active: true, price: { cash: '7,82', credit: '7,97' }, packSize: 12, isPackPrice: false },
+
             { id: 'p-alc-27', name: 'Vodka Newsnoff 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Q39y4ztD/Gemini-Generated-Image-usmcjjusmcjjusmc.png', sortOrder: 43, active: true, price: { cash: '7,99', credit: '8,00' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-28', name: 'Vodka Newsnoff Sabor Limão 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/27bddhyp/Gemini-Generated-Image-chu2xwchu2xwchu2.png', sortOrder: 44, active: true, price: { cash: '7,99', credit: '8,15' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-29', name: 'Vodka Newsnoff Sabor Frutas Vermelhas 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/tkv0q5N/Gemini-Generated-Image-quoocbquoocbquoo.png', sortOrder: 45, active: true, price: { cash: '7,99', credit: '8,15' }, packSize: 12, isPackPrice: false },
@@ -427,6 +430,9 @@
             { id: 'p-alc-68', name: 'Alcatrão São João da Barra 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/PvjZRQcT/134.jpg', sortOrder: 85, active: true, price: { cash: '19,19', credit: '19,57' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-69', name: 'Bebida alcoólica Gengibre Vida Nova Verde 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0V6X2rpH/Gemini-Generated-Image-jd60eajd60eajd60.png', sortOrder: 86, active: true, price: { cash: '7,45', credit: '7,60' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-70', name: 'Canelinha da Rocha 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4nyHHwMy/3708eb250af525b1f523081bc7116cd6.webp', sortOrder: 87, active: true, price: { cash: '12,65', credit: '12,90' }, packSize: 12, isPackPrice: false },
+
+            // NEW: Bala Fini (Primeiro lugar na Bomboniere)
+            { id: 'p-bomb-fini', name: 'Bala Fini 15g', category: 'Bomboneire', details: [{flavor: 'Cereja Maçã e Baunilha'}, {flavor: 'Uva Cítrico'}, {flavor: 'Morango com Laranja Azedinho'}, {flavor: 'Morango com Nata Cítrico'}, {flavor: 'Pinta Língua Framboesa'}, {flavor: 'Tutti Frutti'}, {flavor: 'Twister Cítrico'}, {flavor: 'Twister Frutas Silvestres'}], imageUrl: 'https://i.ibb.co/fZ387vp/D-NQ-NP-2-X-676773-MLB70177086105-062023-F-kit-c-200-finis-sortidos-15g-tubes-e-gelatinas.webp', sortOrder: 88, active: true, price: { cash: '9,36', credit: '9,55' } },
 
             { id: 'p-bomb-1', name: 'Bala Santa Fé Canela 600G', category: 'Bomboneire', details: [{flavor: 'Canela'}], imageUrl: 'https://i.ibb.co/Ds3YDxj/128.jpg', sortOrder: 89, active: true, price: { cash: '9,60', credit: '9,79' } },
             { id: 'p-bomb-2', name: 'Bala Icekiss Sortida 500G', category: 'Bomboneire', details: [{flavor: 'Sortida'}], imageUrl: 'https://i.ibb.co/7dVMMzqJ/bala-dura-icekiss-sortida-500g-16675-1-3b5416d1fada308118535e1796dcd3e3.webp', sortOrder: 90, active: true, price: { cash: '7,24', credit: '7,24' } },
@@ -477,7 +483,8 @@
 
             // --- Cigarro ---
             { id: 'p-cig-1', name: 'Fumo Coringa', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/jPfJDgsW/Gemini-Generated-Image-i5xfgwi5xfgwi5xf.png', sortOrder: 159, active: true, price: { cash: '84,00', credit: '85,68' } },
-            { id: 'p-cig-2', name: 'Papel para Fumo Bom de Fogo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4wkNb866/Gemini-Generated-Image-fke8b7fke8b7fke8.png', sortOrder: 160, active: true, price: { cash: '25,00', credit: '25,77' } },
+            // ATUALIZADO: Preço Papel Bom de Fogo
+            { id: 'p-cig-2', name: 'Papel para Fumo Bom de Fogo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4wkNb866/Gemini-Generated-Image-fke8b7fke8b7fke8.png', sortOrder: 160, active: true, price: { cash: '27,00', credit: '27,80' } },
             { id: 'p-cig-3', name: 'Cigarro de Palha Palheiro', category: 'Cigarro', details: [{flavor: 'Menta'}, {flavor: 'Tradicional'}, {flavor: 'Mamica de Cadela'}, {flavor: 'Cereja'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/wrWp8WZy/Gemini-Generated-Image-dpeppzdpeppzdpep.png', sortOrder: 161, active: true, price: { cash: '59,90', credit: '61,10' } },
             { id: 'p-cig-4', name: 'Seda para Fumo Zomo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/WpNNj4qQ/natural-ybudhybhlg.webp', sortOrder: 162, active: true, price: { cash: '36,15', credit: '36,87' } },
 
@@ -531,6 +538,7 @@
              'p-alc-20': "O tesouro de Salinas. Cachaça artesanal mineira de sabor aveludado e único.",
              'p-alc-21': "Mistura fina. Velho Barreiro é tradição, perfeita para caipirinhas ou pura.",
              'p-new-cachaca-presidente': "Qualidade presidencial. Cachaça selecionada para paladares exigentes.",
+             'p-alc-bolvana': "Pureza e tradição. Vodka Bolvana é a escolha certa para quem busca qualidade sem pagar caro.",
              'p-alc-27': "Vodka pura e cristalina. A base ideal para suas batidas e drinks de verão.",
              'p-alc-28': "Citrus refrescante. Vodka com toque de limão para drinks rápidos e saborosos.",
              'p-alc-29': "Doçura vermelha. Sabor frutas vermelhas para quem gosta de drinks coloridos e doces.",
@@ -565,6 +573,7 @@
              'p-alc-68': "O original do Rio. Alcatrão forte e encorpado para quem gosta de tradição.",
              'p-alc-69': "Gengibre que desce quente. Bebida mista ideal para dias frios ou festas juninas.",
              'p-alc-70': "Canela picante. Bebida mista doce e quente, para bebericar devagar.",
+             'p-bomb-fini': "A alegria da criançada! Balas de gelatina Fini coloridas e deliciosas, sucesso garantido.",
              'p-bomb-1': "Doce e picante. Bala dura de canela que deixa um gostinho de quero mais.",
              'p-bomb-2': "Beijo gelado. Balas Icekiss com aquela refrescância que gela a boca.",
              'p-bomb-3': "Derrete na boca. O caramelo premium que é pura sofisticação e sabor.",
@@ -667,6 +676,7 @@
             'p-alc-20': 0.99, // Seleta - Was 0.9, Increased 10% -> 0.99
             'p-alc-21': 0.95, 
             'p-new-cachaca-presidente': 1.05,
+            'p-alc-bolvana': 1.1, // NEW
             
             'p-alc-27': 1.11, // Newsnoff - Was 1.01, Increased 10% -> 1.11
             'p-alc-28': 1.05, // Newsnoff Limao - Was 0.95, Increased 10% -> 1.05
@@ -709,6 +719,7 @@
             'p-alc-70': 0.9, 
 
             // Bomboneire
+            'p-bomb-fini': 0.9, // NEW
             'p-bomb-1': 0.95, 
             'p-bomb-2': 0.9, 
             'p-bomb-3': 0.9, 
