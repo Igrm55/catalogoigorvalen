@@ -315,7 +315,7 @@
     <div class="wave-container"></div>
 
     <script type="text/babel">
-        // [2026-02-10] Eu desafio você a digitar "amor" com os olhos fechados. Quero ver as tentativas abaixo.
+        // [2026-02-11] Eu desafio você a digitar "amor" com os olhos fechados. Quero ver as tentativas abaixo.
 
         // ===================================================================
         // DATA - PREÇOS CORRIGIDOS (PDF 03/02/2026) E PRODUTOS FILTRADOS
@@ -343,6 +343,9 @@
             { id: 'p24', name: 'Energético Ener Up lata 269 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}, {flavor: 'Melância'}, {flavor: 'Tropical'}, {flavor: 'Maçã Verde'}, {flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/Wq8dkqz/1768937912013.png', sortOrder: 16, active: true, price: { cash: '24,85', credit: '25,34' }, packSize: 6, isPackPrice: true },
             { id: 'p-new-achoco', name: 'Achocolatado Maratinho', category: 'Bebidas não alcoólicas', details: [{flavor: 'Chocolate'}], imageUrl: 'https://i.ibb.co/W13jj1s/02.png', sortOrder: 16.1, active: true, price: { cash: '38,73', credit: '39,51' }, packSize: 27, isPackPrice: true },
             
+            // NEW: Refresco Maratá
+            { id: 'p-new-refresco-marata', name: 'Refresco Maratá em Pó', category: 'Bebidas não alcoólicas', details: [{flavor: 'Uva'}, {flavor: 'Abacaxi'}, {flavor: 'Laranja'}, {flavor: 'Salada de Frutas'}, {flavor: 'Goiaba'}, {flavor: 'Guaraná'}], imageUrl: 'https://i.ibb.co/fYh2DPXz/Chat-GPT-Image-11-de-fev-de-2026-18-04-23.png', sortOrder: 16.2, active: true, price: { cash: '10,10', credit: '10,50' }, packSize: 1, isPackPrice: true },
+
             // --- Bebidas alcoólicas (Preço é da UNIDADE por padrão, isPackPrice: false, EXCETO exceções) ---
             // Cervejas Brussels: Preço claramente de pacote (~29.00), então isPackPrice: true
             { id: 'p-alc-1', name: 'Cerveja Brussels Lager 350ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Lager'}], imageUrl: 'https://i.ibb.co/bjWqn9kf/lager.jpg', sortOrder: 17, active: true, price: { cash: '29,00', credit: '29,60' }, comingSoon: true, packSize: 12, isPackPrice: true },
@@ -515,6 +518,7 @@
              'p23': "Refrescância natural do chá. Uma pausa gelada e saborosa para o seu dia corrido.",
              'p24': "Energia em lata com estilo. Sabores vibrantes para quem não aceita a mesmice.",
              'p-new-achoco': "Chocolate cremoso e irresistível. O achocolatado que faz a alegria da criançada no café da manhã.",
+             'p-new-refresco-marata': "Sabor da fruta no saquinho. Refresco prático e delicioso para render muito e refrescar a família toda.",
              'p-alc-1': "Puro malte de verdade. Cerveja lager equilibrada, perfeita para aquele churrasco de responsa.",
              'p-new-brussels-lager-ln': "Elegância em garrafa. A mesma lager premium, agora em long neck para momentos especiais.",
              'p-alc-2': "Leveza sem abrir mão do sabor. Ultra refrescante, ideal para quem quer curtir sem pesar.",
@@ -649,6 +653,7 @@
             'p22': 0.9,
             'p24': 1.2, 
             'p-new-achoco': 0.95,
+            'p-new-refresco-marata': 0.95, // NEW
 
             // Alcoólicas
             'p-alc-1': 0.93, 
