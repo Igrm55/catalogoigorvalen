@@ -315,17 +315,17 @@
     <div class="wave-container"></div>
 
     <script type="text/babel">
-        // [2026-02-11] Eu desafio você a digitar "amor" com os olhos fechados. Quero ver as tentativas abaixo.
+        // [2026-02-20] Eu desafio você a digitar "calor" com os olhos fechados. Quero ver as tentativas abaixo.
 
         // ===================================================================
-        // DATA - PREÇOS CORRIGIDOS (PDF 03/02/2026) E PRODUTOS FILTRADOS
+        // DATA - PREÇOS CORRIGIDOS E PRODUTOS ATUALIZADOS
         // ===================================================================
         const MOCK_PRODUCTS = [
             // --- Bebidas não alcoólicas (Preço é do PACOTE por padrão, isPackPrice: true) ---
             { id: 'p1', name: 'Refrigerante Goob 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Uva'}, {flavor: 'Guaraná'}, {flavor: 'Laranja'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/23PSr9s0/Gemini-Generated-Image-a5jkuba5jkuba5jk.png', sortOrder: 1, active: true, price: { cash: '25,80', credit: '26,30' }, packSize: 6, isPackPrice: true },
             { id: 'p12', name: 'Refrigerante Goob 1L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Guaraná'}, {flavor: 'Laranja'}], imageUrl: 'https://i.ibb.co/Z6L113Sv/1768937474288.png', sortOrder: 2, active: true, price: { cash: '19,95', credit: '20,35' }, packSize: 6, isPackPrice: true },
             { id: 'p11', name: 'Refrigerante Goob 230ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Cola'}, {flavor: 'Guaraná'}, {flavor: 'Morango com Limão'}, {flavor: 'Limão'}, {flavor: 'Laranja'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/Csbp4YJd/1768937683878.png', sortOrder: 3, active: true, price: { cash: '13,86', credit: '14,00' }, packSize: 12, isPackPrice: true },
-            { id: 'p13', name: 'Energético Ener Up 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Sabor tradicional'}, {flavor: 'Melancia'}, {flavor: 'Maçã Verde'}], imageUrl: 'https://i.ibb.co/8LCtQwjT/ISM-SITE-BANNER-730-X400-ENERUP-2-L-640x400.png', sortOrder: 4, active: true, price: { cash: '36,00', credit: '36,72' }, packSize: 6, isPackPrice: true },
+            { id: 'p13', name: 'Energético Ener Up 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Sabor tradicional'}, {flavor: 'Melancia'}, {flavor: 'Maçã Verde'}], imageUrl: 'https://i.ibb.co/qLCP7Dn9/Gemini-Generated-Image-ywmz7cywmz7cywmz.png', sortOrder: 4, active: true, price: { cash: '36,00', credit: '36,72' }, packSize: 6, isPackPrice: true },
             { id: 'p2', name: 'Energético Ener Up 250ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/bjbfp4Xh/ISM-SITE-BANNER-730-X400-ENERUP-250-ML-640x400.png', sortOrder: 5, active: true, price: { cash: '32,90', credit: '33,56' }, packSize: 12, isPackPrice: true },
             { id: 'p14', name: 'Guaraná + Açaí Guaran Up de Copo 290ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/3mSgbrqw/ISM-SITE-BANNER-730-X400-GUARANUP-COPO-640x400.png', sortOrder: 6, active: true, price: { cash: '28,95', credit: '29,53' }, packSize: 24, isPackPrice: true },
             { id: 'p15', name: 'Guaraná + Açaí Guaran Up 200ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Y7Rm31tR/ISM-SITE-BANNER-730-X400-GUARANUP-GARRAFA-640x400.png', sortOrder: 7, active: true, price: { cash: '19,00', credit: '19,40' }, packSize: 12, isPackPrice: true },
@@ -341,6 +341,7 @@
             { id: 'p23', name: 'Chá Gelado Drink T 300ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Pêssego'}, {flavor: 'Limão'}], imageUrl: 'https://i.ibb.co/5XN7dvCf/Gemini-Generated-Image-fr5a3efr5a3efr5a.png', sortOrder: 15, active: true, price: { cash: '26,33', credit: '26,50' }, packSize: 12, isPackPrice: true },
             
             { id: 'p24', name: 'Energético Ener Up lata 269 ML', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}, {flavor: 'Melância'}, {flavor: 'Tropical'}, {flavor: 'Maçã Verde'}, {flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/Wq8dkqz/1768937912013.png', sortOrder: 16, active: true, price: { cash: '24,85', credit: '25,34' }, packSize: 6, isPackPrice: true },
+            { id: 'p-new-tubaina', name: 'Tubaína Meu Rei 2L', category: 'Bebidas não alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/23nbN3kN/Gemini-Generated-Image-sjtxaxsjtxaxsjtx.png', sortOrder: 16.05, active: true, price: { cash: '24,19', credit: '24,68' }, packSize: 6, isPackPrice: true },
             { id: 'p-new-achoco', name: 'Achocolatado Maratinho', category: 'Bebidas não alcoólicas', details: [{flavor: 'Chocolate'}], imageUrl: 'https://i.ibb.co/W13jj1s/02.png', sortOrder: 16.1, active: true, price: { cash: '38,73', credit: '39,51' }, packSize: 27, isPackPrice: true },
             
             // NEW: Refresco Maratá
@@ -374,10 +375,11 @@
             { id: 'p-alc-73', name: 'Rum Montila Carta Branca 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Carta Branca'}], imageUrl: 'https://i.ibb.co/S43Qdrdd/20240622170612-66772eb4ae2d8.webp', sortOrder: 29.1, active: true, price: { cash: '25,66', credit: '26,22' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-14', name: 'Cachaça Paratudo 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/mV5Jcph9/15126653667-1065-amargo-paratudo-900ml.jpg', sortOrder: 30, active: true, price: { cash: '13,13', credit: '13,39' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-16', name: 'Cachaça 51 de 965 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7ttFj1hP/156261-1.jpg', sortOrder: 32, active: true, price: { cash: '8,42', credit: '8,59' }, packSize: 12, isPackPrice: false },
-            { id: 'p-alc-17', name: 'Cachaça Asa Branca 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/vC07C1rt/D-Q-NP-682768-MLA85665355420-062025-O.webp', sortOrder: 33, active: true, price: { cash: '31,95', credit: '32,59' }, packSize: 12, isPackPrice: false },
+            { id: 'p-alc-17', name: 'Cachaça Asa Branca 980ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/vC07C1rt/D-Q-NP-682768-MLA85665355420-062025-O.webp', sortOrder: 33, active: true, price: { cash: '31,95', credit: '32,59' }, packSize: 12, isPackPrice: false },
             
             // Caninha Vida Nova: Preço de Pacote
             { id: 'p-alc-18', name: 'Cachaça Caninha Vida Nova 480 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Kp08m4QT/aguardente-caninha-vida-nova-ac63c08b-c80d-4c0a-8be0-b5b19dad39c2.png', sortOrder: 34, active: true, price: { cash: '32,76', credit: '33,41' }, packSize: 12, isPackPrice: true },
+            { id: 'p-alc-vida-nova-960', name: 'Cachaça Caninha Vida Nova 960ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/pqQPPFw/Gemini-Generated-Image-6fwfed6fwfed6fwf.png', sortOrder: 34.1, active: true, price: { cash: '8,14', credit: '8,30' }, packSize: 12, isPackPrice: false },
             
             { id: 'p-alc-20', name: 'Cachaça Seleta 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/zhKBWs5w/51-SGWL1j-Jr-L.jpg', sortOrder: 36, active: true, price: { cash: '47,90', credit: '48,86' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-21', name: 'Cachaça Velho Barreiro 910 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Qj1Sg9ws/10987-cachaca-velho-barreiro-910ml-1un-20250901154933.png', sortOrder: 37, active: true, price: { cash: '14,85', credit: '15,03' }, packSize: 12, isPackPrice: false },
@@ -393,6 +395,7 @@
             { id: 'p-alc-29', name: 'Vodka Newsnoff Sabor Frutas Vermelhas 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Frutas Vermelhas'}], imageUrl: 'https://i.ibb.co/tkv0q5N/Gemini-Generated-Image-quoocbquoocbquoo.png', sortOrder: 45, active: true, price: { cash: '7,99', credit: '8,15' }, packSize: 12, isPackPrice: false },
             
             { id: 'p-alc-30', name: 'Vodka Natasha 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7xs3PBVR/258980-1.webp', sortOrder: 46, active: true, price: { cash: '17,88', credit: '18,24' }, packSize: 12, isPackPrice: false },
+            { id: 'p-alc-slova', name: 'Vodka Slova Tradicional 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/LdW9kdjf/screenshot-20221231-183752-chrome-vsdier.webp', sortOrder: 46.5, active: true, price: { cash: '13,30', credit: '13,57' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-31', name: 'Vodka Smirnoff 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/YBrqssM4/961397-1.jpg', sortOrder: 47, active: true, price: { cash: '31,98', credit: '32,62' }, packSize: 12, isPackPrice: false },
             
             { id: 'p-alc-33', name: 'Whisky Black Stone 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0pnMv0XZ/268299.webp', sortOrder: 49, active: true, price: { cash: '22,68', credit: '23,13' }, packSize: 12, isPackPrice: false },
@@ -402,12 +405,14 @@
             
             { id: 'p-alc-38', name: 'Whisky Red Label 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Tq1SbBdG/bo839.png', sortOrder: 54, active: true, price: { cash: '87,23', credit: '88,87' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-39', name: 'Whisky Black Label 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Psf9MdzP/001.webp', sortOrder: 55, active: true, price: { cash: '139,50', credit: '142,30' }, packSize: 12, isPackPrice: false },
+            { id: 'p-alc-chivas', name: 'Whisky Chivas Regal 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/6JbmjR9V/Gemini-Generated-Image-n3kr08n3kr08n3kr.png', sortOrder: 55.1, active: true, price: { cash: '95,64', credit: '97,55' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-42', name: 'Whisky Passport Scotch 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Tx12qb5m/51-UYCr-Fpn5-S-UF1000-1000-QL80.jpg', sortOrder: 58, active: true, price: { cash: '41,50', credit: '42,33' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-43', name: 'Whisky White Horse 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/r2B695NC/45018-1.jpg', sortOrder: 59, active: true, price: { cash: '66,50', credit: '67,83' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-44', name: 'Whisky Chanceler 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/VpBDSjHw/259762.webp', sortOrder: 60, active: true, price: { cash: '18,96', credit: '19,34' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-45', name: 'Whisky Ballantine’s 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/6JZDgC3D/51fuir-Dim-QL.jpg', sortOrder: 61, active: true, price: { cash: '66,84', credit: '68,18' }, packSize: 12, isPackPrice: false },
             
             { id: 'p-alc-50', name: 'Genebra Dubar Zora 960 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/G4bPGLdH/51r-Oz-Lf4s-ML.jpg', sortOrder: 66, active: true, price: { cash: '25,26', credit: '25,77' }, packSize: 12, isPackPrice: false },
+            { id: 'p-alc-gintudo', name: 'Gin Gintudo 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/ty0Wbyn/Gemini-Generated-Image-1emlea1emlea1eml.png', sortOrder: 66.1, active: true, price: { cash: '22,71', credit: '23,17' }, packSize: 12, isPackPrice: false },
             
             // Ice e Glow: Preço de Pacote (6 un)
             { id: 'p-alc-52', name: 'Ice Syn Lemon Ice 300ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/WpjLmXH7/Syn-Ice-300-PET-Limao-25a1a95d.png', sortOrder: 69, active: true, price: { cash: '16,18', credit: '16,51' }, packSize: 6, isPackPrice: true },
@@ -417,6 +422,7 @@
             { id: 'p-alc-55', name: 'Vinho Quinta do Morgado Suave 750ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/j0dGyjr/quinta-do-morgado-tinto-suave.jpg', sortOrder: 72, active: true, price: { cash: '14,42', credit: '14,71' }, packSize: 12, isPackPrice: false },
             { id: 'p-new-quinta-morgado-1l', name: 'Vinho Quinta Morgado 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tinto Suave'}], imageUrl: 'https://i.ibb.co/spJ1bcDy/quinta-do-morgado-tinto-suave-1l.jpg', sortOrder: 72.1, active: true, price: { cash: '20,66', credit: '21,17' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-56', name: 'Vinho Cantina da Serra 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/DfmgKCmx/vinho-coquetel-cantina-da-serra-tinto-suave-embalagem-12x15-lt-preco-unitario-r9-3enygexapi.webp', sortOrder: 73, active: true, price: { cash: '6,15', credit: '6,27' }, packSize: 12, isPackPrice: false },
+            { id: 'p-alc-dom-bosco', name: 'Vinho Dom Bosco 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tinto Suave'}], imageUrl: 'https://i.ibb.co/Ls27Fp3/Gemini-Generated-Image-m6uw3lm6uw3lm6uw.png', sortOrder: 73.1, active: true, price: { cash: '18,11', credit: '18,47' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-57', name: 'Vinho Pérgula Tinto Suave 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/pjykdnSp/Vinho-Brasileiro-Pergola-Tinto-Suave-1l.png', sortOrder: 74, active: true, price: { cash: '21,50', credit: '21,91' }, packSize: 12, isPackPrice: false },
             
             { id: 'p-new-vinho-pergula-rose', name: 'Vinho Pérgula Rosé', category: 'Bebidas alcoólicas', details: [{flavor: 'Rosé'}], imageUrl: 'https://i.ibb.co/0RRrMJRS/Produtos-Site.jpg', sortOrder: 74.1, active: true, price: { cash: '21,50', credit: '21,90' }, packSize: 12, isPackPrice: false },
@@ -429,7 +435,7 @@
             { id: 'p-alc-62', name: 'Conhaque Dreher 1L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/ksGwKgS8/20240629110719-66801517ad651.webp', sortOrder: 79, active: true, price: { cash: '18,95', credit: '19,33' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-64', name: 'Conhaque Domecq 1 L', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/5h7zC8sB/51-Ir-C0-JN5a-L.jpg', sortOrder: 81, active: true, price: { cash: '37,83', credit: '38,59' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-65', name: 'Licor Menta São Paulo 960ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/gFB5d5wS/Gemini-Generated-Image-nts7ifnts7ifnts7.png', sortOrder: 82, active: true, price: { cash: '8,25', credit: '8,42' }, packSize: 12, isPackPrice: false },
-            { id: 'p-alc-67', name: 'Catuaba Vida Nova 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/j91j5KRh/01-325152-01.webp', sortOrder: 84, active: true, price: { cash: '7,78', credit: '7,94' }, packSize: 12, isPackPrice: false },
+            { id: 'p-alc-67', name: 'Catuaba Vida Nova 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/MxNQdY8h/Gemini-Generated-Image-ul5z4yul5z4yul5z.png', sortOrder: 84, active: true, price: { cash: '7,78', credit: '7,94' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-68', name: 'Alcatrão São João da Barra 900 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/PvjZRQcT/134.jpg', sortOrder: 85, active: true, price: { cash: '19,19', credit: '19,57' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-69', name: 'Bebida alcoólica Gengibre Vida Nova Verde 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/0V6X2rpH/Gemini-Generated-Image-jd60eajd60eajd60.png', sortOrder: 86, active: true, price: { cash: '7,45', credit: '7,60' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-70', name: 'Canelinha da Rocha 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4nyHHwMy/3708eb250af525b1f523081bc7116cd6.webp', sortOrder: 87, active: true, price: { cash: '12,65', credit: '12,90' }, packSize: 12, isPackPrice: false },
@@ -473,6 +479,7 @@
             { id: 'p-bomb-60', name: 'Salgadinho Agitos 85G', category: 'Bomboneire', details: [{flavor: 'Cebola'}, {flavor: 'Barbecue'}, {flavor: 'Presunto'}, {flavor: 'Requeijão'}, {flavor: 'Queijo'}, {flavor: 'Galinha caipira'}], imageUrl: 'https://i.ibb.co/4gtTH7sz/Gemini-Generated-Image-2p7o242p7o242p7o.png', sortOrder: 148, active: true, price: { cash: '14,63', credit: '14,93' } },
             { id: 'p-bomb-61', name: 'Salgadinho Pimentinha Sortida Agitos 40G', category: 'Bomboneire', details: [{flavor: 'Cebola e Salsa'}, {flavor: 'Queijo'}, {flavor: 'Bacon'}, {flavor: 'Churrasco'}, {flavor: 'Pimenta'}], imageUrl: 'https://i.ibb.co/Nf9N43z/Gemini-Generated-Image-6z7eu06z7eu06z7e.png', sortOrder: 149, active: true, price: { cash: '41,70', credit: '42,53' } },
             { id: 'p-bomb-72', name: 'Salgadinhos Snacks Amendupã', category: 'Bomboneire', details: [{flavor: 'Sortido'}], imageUrl: 'https://i.ibb.co/Myt3D7dB/Captura-de-tela-2025-10-22-145716.png', sortOrder: 149.1, active: true, price: { cash: '21,00', credit: '21,10' } },
+            { id: 'p-bomb-amendupa-40', name: 'Salgadinho Amendupã 40G', category: 'Bomboneire', details: [{flavor: 'Calabresa'}, {flavor: 'Cebola'}, {flavor: 'Bacon'}, {flavor: 'Costela'}, {flavor: 'Pizza'}, {flavor: 'Churrasco'}, {flavor: 'Queijo'}, {flavor: 'Pimenta'}], imageUrl: 'https://i.ibb.co/q3n2hqK7/Gemini-Generated-Image-9d88r19d88r19d88.png', sortOrder: 149.2, active: true, price: { cash: '20,63', credit: '21,04' } },
             { id: 'p-bomb-62', name: 'Salgadinho Agitos 25G', category: 'Bomboneire', details: [{flavor: 'Cebola e Salsa'}, {flavor: 'Queijo'}, {flavor: 'Bacon'}, {flavor: 'Churrasco'}, {flavor: 'Pimenta'}], imageUrl: 'https://i.ibb.co/xt3dTbRK/Gemini-Generated-Image-hg0fm8hg0fm8hg0f-1.png', sortOrder: 150, active: true, price: { cash: '6,10', credit: '6,22' } },
             { id: 'p-bomb-71', name: 'Amendoim Japonês 60G', category: 'Bomboneire', details: [{flavor: 'Japonês'}], imageUrl: 'https://i.ibb.co/B5SCK4rF/Captura-de-tela-2025-10-22-145649.png', sortOrder: 150.1, active: true, price: { cash: '4,00', credit: '4,20' } },
             { id: 'p-bomb-63', name: 'Amendoim Japonês 1KG', category: 'Bomboneire', details: [{flavor: 'Japonês'}], imageUrl: 'https://i.ibb.co/7tFByG95/mendozitos-1kg.jpg', sortOrder: 151, active: true, price: { cash: '19,49', credit: '20,59' } },
@@ -486,8 +493,8 @@
 
             // --- Cigarro ---
             { id: 'p-cig-1', name: 'Fumo Coringa', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/jPfJDgsW/Gemini-Generated-Image-i5xfgwi5xfgwi5xf.png', sortOrder: 159, active: true, price: { cash: '84,00', credit: '85,68' } },
-            // ATUALIZADO: Preço Papel Bom de Fogo
             { id: 'p-cig-2', name: 'Papel para Fumo Bom de Fogo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4wkNb866/Gemini-Generated-Image-fke8b7fke8b7fke8.png', sortOrder: 160, active: true, price: { cash: '27,00', credit: '27,80' } },
+            { id: 'p-cig-sao-jose', name: 'Papel para Fumo São José', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://placehold.co/400x400/1f2937/ffffff?text=Papel+S%C3%A3o+Jos%C3%A9', sortOrder: 160.1, active: true, price: { cash: '24,71', credit: '25,20' } },
             { id: 'p-cig-3', name: 'Cigarro de Palha Palheiro', category: 'Cigarro', details: [{flavor: 'Menta'}, {flavor: 'Tradicional'}, {flavor: 'Mamica de Cadela'}, {flavor: 'Cereja'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/wrWp8WZy/Gemini-Generated-Image-dpeppzdpeppzdpep.png', sortOrder: 161, active: true, price: { cash: '59,90', credit: '61,10' } },
             { id: 'p-cig-4', name: 'Seda para Fumo Zomo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/WpNNj4qQ/natural-ybudhybhlg.webp', sortOrder: 162, active: true, price: { cash: '36,15', credit: '36,87' } },
 
@@ -514,9 +521,10 @@
              'p19': "Explosão de frutas na caixinha! O companheiro inseparável da lancheira escolar.",
              'p20': "Suco de verdade para todos. Rendimento incrível com sabor de fruta fresca colhida no pé.",
              'p21': "A dose dupla de sabor. Tamanho intermediário perfeito para quem quer mais que uma caixinha.",
-             'p22': "Pequeno no tamanho, gigante no sabor. Prático para o lanche rápido sem desperdício.",
+             'p22': "Pequeno no tamanho, gigante no sabor. Prático para o lanche rápido sem desperício.",
              'p23': "Refrescância natural do chá. Uma pausa gelada e saborosa para o seu dia corrido.",
              'p24': "Energia em lata com estilo. Sabores vibrantes para quem não aceita a mesmice.",
+             'p-new-tubaina': "O sabor inconfundível da Tubaína Meu Rei. A pedida perfeita para refrescar a galera!",
              'p-new-achoco': "Chocolate cremoso e irresistível. O achocolatado que faz a alegria da criançada no café da manhã.",
              'p-new-refresco-marata': "Sabor da fruta no saquinho. Refresco prático e delicioso para render muito e refrescar a família toda.",
              'p-alc-1': "Puro malte de verdade. Cerveja lager equilibrada, perfeita para aquele churrasco de responsa.",
@@ -539,6 +547,7 @@
              'p-alc-16': "Uma boa ideia sempre. A cachaça 51 clássica, mundialmente famosa e brasileira.",
              'p-alc-17': "A legítima do sertão. Asa Branca traz o sabor rústico e autêntico da cana.",
              'p-alc-18': "Pequena notável. Caninha forte e saborosa em embalagem prática.",
+             'p-alc-vida-nova-960': "A dose maior da sua Caninha Vida Nova favorita. Mais tradição e sabor na sua mesa.",
              'p-alc-20': "O tesouro de Salinas. Cachaça artesanal mineira de sabor aveludado e único.",
              'p-alc-21': "Mistura fina. Velho Barreiro é tradição, perfeita para caipirinhas ou pura.",
              'p-new-cachaca-presidente': "Qualidade presidencial. Cachaça selecionada para paladares exigentes.",
@@ -547,23 +556,27 @@
              'p-alc-28': "Citrus refrescante. Vodka com toque de limão para drinks rápidos e saborosos.",
              'p-alc-29': "Doçura vermelha. Sabor frutas vermelhas para quem gosta de drinks coloridos e doces.",
              'p-alc-30': "Suavidade russa. Natasha é a vodka versátil que não pode faltar no seu bar.",
+             'p-alc-slova': "A autêntica vodka Slova. Qualidade e tradição que garantem o sucesso das suas batidas.",
              'p-alc-31': "A número 1 do mundo. Smirnoff dispensa apresentações, qualidade garantida.",
              'p-alc-33': "Sabor intenso e marcante. Whisky acessível para quem aprecia um bom destilado.",
              'p-alc-34': "O Grande Old Parr. Whisky escocês envelhecido, símbolo de status e bom gosto.",
              'p-alc-35': "O Tennessee Whiskey original. Jack Daniel's traz o sabor único da suavização em carvão.",
              'p-alc-38': "O caminhante continua. Red Label é o whisky escocês mais vendido do mundo por um motivo.",
              'p-alc-39': "Profundidade e caráter. Black Label é o blend de luxo para momentos especiais.",
+             'p-alc-chivas': "Blend escocês premium. Chivas é o whisky rico e suave para brindar grandes momentos.",
              'p-alc-42': "Espírito jovem. Passport é o whisky vibrante e frutado para quem está começando.",
              'p-alc-43': "O Cavalo Branco. Blend histórico e suave, perfeito com gelo ou puro.",
              'p-alc-44': "O sabor do sucesso. Chanceler é o destilado nacional de malte whisky apreciado por todos.",
              'p-alc-45': "Equilíbrio perfeito. Ballantine's é o scotch complexo e refinado para paladares apurados.",
              'p-alc-50': "O sabor dos Alpes. Genebra aromática com zimbro, ideal para esquentar.",
+             'p-alc-gintudo': "O gin nacional que conquistou a galera. Perfeito para preparar aquele Gin Tônica refrescante.",
              'p-alc-52': "Refrescância alcoólica. Ice sabor limão, pronta para beber e gelar sua festa.",
              'p-alc-53': "Brilho na garrafa. Ice Glow traz estilo e sabor para a balada.",
              'p-alc-54': "Glow na lata. A mesma vibração em embalagem prática para levar pro rolê.",
              'p-alc-55': "O suave da serra gaúcha. Vinho de mesa tinto doce, fácil de beber e amar.",
              'p-new-quinta-morgado-1l': "Mais vinho, mais prazer. A garrafa de 1L do clássico suave para dividir.",
              'p-alc-56': "O campeão do custo-benefício. Cantina da Serra é o vinho popular que agrada a todos.",
+             'p-alc-dom-bosco': "O clássico vinho Dom Bosco. Sabor marcante e adocicado, o preferido da mesa das famílias.",
              'p-alc-57': "Tradição em cada taça. Pérgula tinto suave é o vinho de mesa que não erra.",
              'p-new-vinho-pergula-rose': "Leveza rosada. Vinho rosé refrescante para tardes quentes.",
              'p-new-vinho-dom-macedo': "Sabor caseiro. Vinho de mesa honesto e saboroso para o dia a dia.",
@@ -609,6 +622,7 @@
              'p-bomb-60': "Agito garantido. Pacote maior para dividir com a galera no happy hour.",
              'p-bomb-61': "Roleta de sabores. Mix apimentado para testar seu paladar.",
              'p-bomb-72': "Variedade crocante. Snacks sortidos para todos os momentos.",
+             'p-bomb-amendupa-40': "Salgadinho crocante e cheio de sabor! Diversas opções para agradar todo mundo no lanche.",
              'p-bomb-62': "Lanchinho rápido. Pacote individual para levar na bolsa.",
              'p-bomb-71': "Crocância oriental. Amendoim com casca crocante tipo japonês.",
              'p-bomb-63': "O gigante do aperitivo. 1kg de amendoim japonês para não faltar na mesa do bar.",
@@ -621,6 +635,7 @@
              'p-bomb-70': "Versatilidade na cozinha. Composto lácteo ideal para receitas e vitaminas.",
              'p-cig-1': "Tradição do norte. Fumo de rolo forte e autêntico.",
              'p-cig-2': "Qualidade na queima. Papel de seda fino para enrolar seu fumo.",
+             'p-cig-sao-jose': "Qualidade superior na hora de enrolar o seu fumo. Papel São José é tradição e confiança.",
              'p-cig-3': "Sabor da roça. Palheiro artesanal com palha de milho selecionada.",
              'p-cig-4': "A seda do momento. Zomo garante uma queima lenta e uniforme.",
              'p-out-1': "O copo do Brasil. Copo americano resistente e icônico para café ou cerveja.",
@@ -640,7 +655,7 @@
             'p1': 0.9, 
             'p12': 0.9, 
             'p11': 1.2, 
-            'p13': 1.54, 
+            'p13': 0.95, // Enerup novo banner
             'p2': 1.61,  
             'p14': { scale: 2.12, translateY: '-15px' }, 
             'p15': 1.60,  
@@ -652,8 +667,9 @@
             'p21': 0.9,
             'p22': 0.9,
             'p24': 1.2, 
+            'p-new-tubaina': 0.95,
             'p-new-achoco': 0.95,
-            'p-new-refresco-marata': 0.95, // NEW
+            'p-new-refresco-marata': 0.95, 
 
             // Alcoólicas
             'p-alc-1': 0.93, 
@@ -661,7 +677,7 @@
             'p-alc-2': 0.93,
             'p-new-brussels-ultra-ln': 0.93,
             
-            'p-alc-3-com-papelao': 0.88, // Pitu Completa - Was 0.8, Increased 10% -> 0.88
+            'p-alc-3-com-papelao': 0.88, 
             'p-alc-4': 1.16, 
             'p-alc-5': 1.74, 
             'p-alc-6': 0.8, 
@@ -672,21 +688,23 @@
             'p-alc-11': 0.8, 
             'p-alc-12': 0.8, 
             
-            'p-alc-72': 0.88, // Montilla Ouro - Was 0.80, Increased 10% -> 0.88
-            'p-alc-73': 0.99, // Montilla Branca - Was 0.9, Increased 10% -> 0.99
-            'p-alc-14': 1.1, // Paratudo - Was 1.0, Increased 10% -> 1.1
-            'p-alc-16': 0.99, // 51 - Was 0.9, Increased 10% -> 0.99
-            'p-alc-17': 0.99, // Asa Branca - Was 0.9, Increased 10% -> 0.99
+            'p-alc-72': 0.88, 
+            'p-alc-73': 0.99, 
+            'p-alc-14': 1.1, 
+            'p-alc-16': 0.99, 
+            'p-alc-17': 0.99, 
             'p-alc-18': 0.9, 
-            'p-alc-20': 0.99, // Seleta - Was 0.9, Increased 10% -> 0.99
+            'p-alc-vida-nova-960': 0.95,
+            'p-alc-20': 0.99, 
             'p-alc-21': 0.95, 
             'p-new-cachaca-presidente': 1.05,
-            'p-alc-bolvana': 1.1, // NEW
+            'p-alc-bolvana': 1.1, 
             
-            'p-alc-27': 1.11, // Newsnoff - Was 1.01, Increased 10% -> 1.11
-            'p-alc-28': 1.05, // Newsnoff Limao - Was 0.95, Increased 10% -> 1.05
-            'p-alc-29': 1.05, // Newsnoff Frutas - Was 0.95, Increased 10% -> 1.05
-            'p-alc-30': 0.99, // Natasha - Was 0.9, Increased 10% -> 0.99
+            'p-alc-27': 1.11, 
+            'p-alc-28': 1.05, 
+            'p-alc-29': 1.05, 
+            'p-alc-30': 0.99, 
+            'p-alc-slova': 0.95,
             'p-alc-31': 0.9, 
             
             'p-alc-33': 0.9, 
@@ -695,12 +713,14 @@
             
             'p-alc-38': 0.9, 
             'p-alc-39': 0.9, 
+            'p-alc-chivas': 0.95,
             'p-alc-42': 0.9, 
             'p-alc-43': 1.0, 
             'p-alc-44': { scale: 1.05, translateY: '5px' }, 
             'p-alc-45': 1.0, 
             
             'p-alc-50': { scale: 0.95, translateY: '5px' }, 
+            'p-alc-gintudo': 0.95,
             'p-alc-52': 1.4, 
             'p-alc-53': 0.8, 
             'p-alc-54': 0.7, 
@@ -708,6 +728,7 @@
             'p-alc-55': 0.95, 
             'p-new-quinta-morgado-1l': 0.95,
             'p-alc-56': 0.95, 
+            'p-alc-dom-bosco': 0.95,
             'p-alc-57': 0.95, 
             'p-new-vinho-pergula-rose': 0.95,
             'p-new-vinho-dom-macedo': 0.95,
@@ -718,13 +739,13 @@
             'p-alc-62': 0.9, 
             'p-alc-64': 0.9, 
             'p-alc-65': 1.05, 
-            'p-alc-67': { scale: 1.18, translateY: '13px' }, 
+            'p-alc-67': 0.95, 
             'p-alc-68': 1.16, 
             'p-alc-69': 0.96, 
             'p-alc-70': 0.9, 
 
             // Bomboneire
-            'p-bomb-fini': 0.9, // NEW
+            'p-bomb-fini': 0.9, 
             'p-bomb-1': 0.95, 
             'p-bomb-2': 0.9, 
             'p-bomb-3': 0.9, 
@@ -756,6 +777,7 @@
             'p-bomb-60': 0.95, 
             'p-bomb-61': 0.95, 
             'p-bomb-72': 0.95, 
+            'p-bomb-amendupa-40': 0.95,
             'p-bomb-62': 0.9, 
             'p-bomb-71': 0.9,
             'p-bomb-63': 0.72, 
@@ -770,10 +792,11 @@
             // Cigarro
             'p-cig-1': 0.9,
             'p-cig-2': 0.9,
+            'p-cig-sao-jose': 0.95,
             'p-cig-3': 0.9,
             'p-cig-4': 0.9,
 
-            // Outros - Decreased 10%
+            // Outros
             'p-out-1': 0.855, 
             'p-new-copo-desc': 0.9, 
             'p-new-incenso': 0.855, 
