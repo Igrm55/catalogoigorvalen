@@ -315,7 +315,7 @@
     <div class="wave-container"></div>
 
     <script type="text/babel">
-        // [2026-02-20] Eu desafio você a digitar "calor" com os olhos fechados. Quero ver as tentativas abaixo.
+        // [2026-02-20] Eu desafio vc digitar "cachaça" com os olhos fechados quero ver as tentativas abaixo.
 
         // ===================================================================
         // DATA - PREÇOS CORRIGIDOS E PRODUTOS ATUALIZADOS
@@ -376,6 +376,7 @@
             { id: 'p-alc-14', name: 'Cachaça Paratudo 900ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/mV5Jcph9/15126653667-1065-amargo-paratudo-900ml.jpg', sortOrder: 30, active: true, price: { cash: '13,13', credit: '13,39' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-16', name: 'Cachaça 51 de 965 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/7ttFj1hP/156261-1.jpg', sortOrder: 32, active: true, price: { cash: '8,42', credit: '8,59' }, packSize: 12, isPackPrice: false },
             { id: 'p-alc-17', name: 'Cachaça Asa Branca 980ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/vC07C1rt/D-Q-NP-682768-MLA85665355420-062025-O.webp', sortOrder: 33, active: true, price: { cash: '31,95', credit: '32,59' }, packSize: 12, isPackPrice: false },
+            { id: 'p-new-asa-branca-270', name: 'Cachaça Asa Branca 270ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/vxvn54ZZ/image.png', sortOrder: 33.1, active: true, price: { cash: '17,95', credit: '18,31' }, packSize: 12, isPackPrice: false },
             
             // Caninha Vida Nova: Preço de Pacote
             { id: 'p-alc-18', name: 'Cachaça Caninha Vida Nova 480 ML', category: 'Bebidas alcoólicas', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/Kp08m4QT/aguardente-caninha-vida-nova-ac63c08b-c80d-4c0a-8be0-b5b19dad39c2.png', sortOrder: 34, active: true, price: { cash: '32,76', credit: '33,41' }, packSize: 12, isPackPrice: true },
@@ -494,7 +495,7 @@
             // --- Cigarro ---
             { id: 'p-cig-1', name: 'Fumo Coringa', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/jPfJDgsW/Gemini-Generated-Image-i5xfgwi5xfgwi5xf.png', sortOrder: 159, active: true, price: { cash: '84,00', credit: '85,68' } },
             { id: 'p-cig-2', name: 'Papel para Fumo Bom de Fogo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/4wkNb866/Gemini-Generated-Image-fke8b7fke8b7fke8.png', sortOrder: 160, active: true, price: { cash: '27,00', credit: '27,80' } },
-            { id: 'p-cig-sao-jose', name: 'Papel para Fumo São José', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://placehold.co/400x400/1f2937/ffffff?text=Papel+S%C3%A3o+Jos%C3%A9', sortOrder: 160.1, active: true, price: { cash: '24,71', credit: '25,20' } },
+            { id: 'p-cig-sao-jose', name: 'Papel para Fumo São José', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/qYc4KZ6J/Gemini-Generated-Image-1evtl31evtl31evt.png', sortOrder: 160.1, active: true, price: { cash: '24,71', credit: '25,20' } },
             { id: 'p-cig-3', name: 'Cigarro de Palha Palheiro', category: 'Cigarro', details: [{flavor: 'Menta'}, {flavor: 'Tradicional'}, {flavor: 'Mamica de Cadela'}, {flavor: 'Cereja'}, {flavor: 'Uva'}], imageUrl: 'https://i.ibb.co/wrWp8WZy/Gemini-Generated-Image-dpeppzdpeppzdpep.png', sortOrder: 161, active: true, price: { cash: '59,90', credit: '61,10' } },
             { id: 'p-cig-4', name: 'Seda para Fumo Zomo', category: 'Cigarro', details: [{flavor: 'Tradicional'}], imageUrl: 'https://i.ibb.co/WpNNj4qQ/natural-ybudhybhlg.webp', sortOrder: 162, active: true, price: { cash: '36,15', credit: '36,87' } },
 
@@ -546,6 +547,7 @@
              'p-alc-14': "Tradição em raízes. O amargo que faz bem, apreciado por gerações.",
              'p-alc-16': "Uma boa ideia sempre. A cachaça 51 clássica, mundialmente famosa e brasileira.",
              'p-alc-17': "A legítima do sertão. Asa Branca traz o sabor rústico e autêntico da cana.",
+             'p-new-asa-branca-270': "A legítima do sertão em tamanho prático. Sabor rústico e autêntico na medida certa.",
              'p-alc-18': "Pequena notável. Caninha forte e saborosa em embalagem prática.",
              'p-alc-vida-nova-960': "A dose maior da sua Caninha Vida Nova favorita. Mais tradição e sabor na sua mesa.",
              'p-alc-20': "O tesouro de Salinas. Cachaça artesanal mineira de sabor aveludado e único.",
@@ -693,8 +695,9 @@
             'p-alc-14': 1.1, 
             'p-alc-16': 0.99, 
             'p-alc-17': 0.99, 
+            'p-new-asa-branca-270': 0.95,
             'p-alc-18': 0.9, 
-            'p-alc-vida-nova-960': 0.95,
+            'p-alc-vida-nova-960': 1.425, // Aumentado em 50% (antes 0.95)
             'p-alc-20': 0.99, 
             'p-alc-21': 0.95, 
             'p-new-cachaca-presidente': 1.05,
